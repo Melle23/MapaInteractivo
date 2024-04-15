@@ -1,10 +1,10 @@
-package com.mycompany.mapainteractivopresentacion;
+package com.mycompany.mapainteractivopersistencia;
 
 /**
  *
  * @author molin
  */
-public class MapaInteractivoPresentacion {
+public class MapaInteractivoPersistencia {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
