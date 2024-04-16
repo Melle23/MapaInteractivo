@@ -1,7 +1,5 @@
 package Vistas;
 
-import javax.swing.JButton;
-
 /**
  *
  * @author RAUL EDUARDO GOMEZ
@@ -12,8 +10,8 @@ public class frmAjustes extends javax.swing.JFrame {
      * Creates new form Ajustes
      */
     public frmAjustes() {
-
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -52,39 +50,48 @@ public class frmAjustes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 40));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 260, 110));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 260, 110));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 10));
 
+        btnIniciarSesion.setBackground(new java.awt.Color(7, 36, 93));
         btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setText("INICIAR SESION");
         btnIniciarSesion.setBorder(null);
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 150, 70));
+        jPanel1.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 150, 70));
 
+        btnAjustes.setBackground(new java.awt.Color(7, 36, 93));
         btnAjustes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAjustes.setForeground(new java.awt.Color(255, 255, 255));
+        btnAjustes.setText("AJUSTES");
         btnAjustes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAjustes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAjustesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 150, 60));
+        jPanel1.add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 150, 60));
 
+        btnVerHorario.setBackground(new java.awt.Color(7, 36, 93));
         btnVerHorario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVerHorario.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerHorario.setText("VER HORARIO");
         btnVerHorario.setBorder(null);
         btnVerHorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerHorarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 150, 60));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 300, 470));
+        jPanel1.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 150, 60));
+
+        jLabel1.setForeground(new java.awt.Color(52, 85, 185));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\logoPotro.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, -130, 320, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

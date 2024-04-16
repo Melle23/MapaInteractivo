@@ -8,11 +8,18 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form MapaInteractivo
+     * @param parent
+     * @param modal
      */
-    public frmPrincipal() {
+    public frmPrincipal(java.awt.Frame parent, boolean modal) {
         initComponents();
     }
 
+    public frmPrincipal() {
+         initComponents();
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +37,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         Label_Mapa = new javax.swing.JLabel();
         Label_TextoBusqueda = new javax.swing.JLabel();
         CuadroBusqueda = new javax.swing.JTextField();
+        Boton_Ajustes1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,13 +46,13 @@ public class frmPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Boton_Ajustes.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes.setText("---");
+        Boton_Ajustes.setText("cerrar");
         Boton_Ajustes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_AjustesActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_Ajustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 50, 20));
+        jPanel1.add(Boton_Ajustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 20));
 
         Boton_TusSalones.setBackground(new java.awt.Color(231, 231, 231));
         Boton_TusSalones.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -57,8 +65,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos De Interes");
         jPanel1.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 140, -1));
+
+        Label_LogoITSON.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\Logo_ITSON (1).png")); // NOI18N
         jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 80));
-        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 280, 330));
+
+        Label_Mapa.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\mapa-itson (1).png")); // NOI18N
+        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 140, -1, 330));
 
         Label_TextoBusqueda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Label_TextoBusqueda.setText("Búsqueda:");
@@ -70,6 +82,15 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(CuadroBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 190, -1));
+
+        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        Boton_Ajustes1.setText("---");
+        Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_Ajustes1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Boton_Ajustes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 50, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,14 +113,61 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void Boton_AjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_AjustesActionPerformed
         // TODO add your handling code here:
-        frmAjustes ajustes = new frmAjustes();
-        ajustes.setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_Boton_AjustesActionPerformed
 
+    private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
+        // TODO add your handling code here:
+        frmAjustes control = new frmAjustes();
+        control.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
+
+      /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                frmPrincipal dialog = new frmPrincipal(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Boton_Ajustes;
+    private javax.swing.JButton Boton_Ajustes1;
     private javax.swing.JButton Boton_PuntosDeInteres;
     private javax.swing.JButton Boton_TusSalones;
     private javax.swing.JTextField CuadroBusqueda;
