@@ -270,12 +270,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
 
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
             }
         });
-
         Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
 
@@ -293,6 +293,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
         Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
+        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_Ajustes1ActionPerformed(evt);
