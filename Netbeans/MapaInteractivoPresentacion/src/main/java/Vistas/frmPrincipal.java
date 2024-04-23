@@ -2,6 +2,7 @@ package Vistas;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -92,6 +93,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_PuntosDeInteres = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
         Boton_Ajustes1 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mapa ITSON");
@@ -286,7 +288,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
         Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opciones.png"))); // NOI18N
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
         Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,14 +296,21 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCerrar.setBackground(new java.awt.Color(231, 231, 231));
+        btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
+        btnCerrar.setText("Cerrar");
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(Boton_PuntosDeInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,8 +318,14 @@ public class frmPrincipal extends javax.swing.JFrame {
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Boton_Ajustes1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Boton_Ajustes1))
                         .addGap(19, 19, 19))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(Boton_PuntosDeInteres)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +335,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
-                .addComponent(Boton_PuntosDeInteres)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Boton_PuntosDeInteres)
+                    .addComponent(btnCerrar))
                 .addGap(15, 15, 15))
         );
 
@@ -354,15 +371,41 @@ public class frmPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
 
+    private boolean puntosVisibles = false;
+    
     private void Boton_PuntosDeInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_PuntosDeInteresActionPerformed
+        
+         if (puntosVisibles) {
+        Biblioteca.setVisible(false);
+        PasilloEstudiantil.setVisible(false);
+        Kiawa.setVisible(false);
+        CISCO.setVisible(false);
+        Alamos.setVisible(false);
+        RegistroEscolar.setVisible(false);
+        puntosVisibles = false;
+    } else { 
         Biblioteca.setVisible(true);
         PasilloEstudiantil.setVisible(true);
         Kiawa.setVisible(true);
         CISCO.setVisible(true);
         Alamos.setVisible(true);
         RegistroEscolar.setVisible(true);
+        puntosVisibles = true;
+    }
         
     }//GEN-LAST:event_Boton_PuntosDeInteresActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+         String[] botones = {"Si", "No"};
+
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
+
+        if(variable == 0){
+            dispose();
+        }else{
+            return;
+        }
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
       /**
      * @param args the command line arguments
@@ -449,6 +492,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel RegistroEscolar;
     private javax.swing.JLabel Resiedencias;
     private javax.swing.JLabel Tutorias;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
