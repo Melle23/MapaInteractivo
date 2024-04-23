@@ -104,7 +104,7 @@
         <Component class="javax.swing.JLabel" name="Label_LogoITSON">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\OneDrive\Documentos\MapaInteractivoNuevo\MapaInteractivo\Netbeans\MapaInteractivoPresentacion\src\main\java\Utilerias\Logo_ITSON (1).png"/>
+              <Image iconType="3" name="/imagenes/Logo_ITSON (1).png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -114,11 +114,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Mapa">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\OneDrive\Documentos\MapaInteractivoNuevo\MapaInteractivo\Netbeans\MapaInteractivoPresentacion\src\main\java\Utilerias\mapa-itson (1).png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="1" y="140" width="-1" height="330"/>

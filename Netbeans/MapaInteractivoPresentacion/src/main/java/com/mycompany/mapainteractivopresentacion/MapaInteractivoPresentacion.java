@@ -7,6 +7,6 @@ package com.mycompany.mapainteractivopresentacion;
 public class MapaInteractivoPresentacion {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
     }
 }

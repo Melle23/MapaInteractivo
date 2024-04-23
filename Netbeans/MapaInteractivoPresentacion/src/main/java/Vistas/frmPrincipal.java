@@ -66,10 +66,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setText("Puntos De Interes");
         jPanel1.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 140, -1));
 
-        Label_LogoITSON.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\Logo_ITSON (1).png")); // NOI18N
+        Label_LogoITSON.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
         jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 80));
-
-        Label_Mapa.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\mapa-itson (1).png")); // NOI18N
         jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 140, -1, 330));
 
         Label_TextoBusqueda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
