@@ -1,26 +1,20 @@
 package Vistas;
 
+import Controladora.ControlPresentacion;
+
 /**
  *
  * @author JOSUE GOMEZ
  */
 public class DlgInicioSesion extends javax.swing.JDialog {
 
-    /**
-     * Creates new form InicioSesion
-     * @param parent
-     * @param modal
-     */
-    public DlgInicioSesion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        this.transparenciaBoton();
-    }
+    ControlPresentacion control = new ControlPresentacion();
 
     public DlgInicioSesion() {
         initComponents();
+        this.setVisible(true);
+        this.transparenciaBoton();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,7 +45,6 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(880, 620));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButtonRegreso.setBackground(new java.awt.Color(47, 109, 202));
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
@@ -63,7 +56,7 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         });
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 70, 60));
 
-        btnIniciarSesion.setBackground(new java.awt.Color(0, 102, 204));
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 51, 102));
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("INICIAR SESIÓN");
@@ -83,15 +76,15 @@ public class DlgInicioSesion extends javax.swing.JDialog {
                 btnRegresoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
+        jPanel1.add(btnRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("USUARIO:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CONTRASEÑA:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 190, 30));
@@ -135,23 +128,21 @@ public class DlgInicioSesion extends javax.swing.JDialog {
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
 
-        frmAjustes ajustes = new frmAjustes();
-        ajustes.setVisible(true);
-        this.dispose();
+        control.deplegarAjustes();
+        dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresoActionPerformed
         // TODO add your handling code here:
-        frmPrincipal control = new frmPrincipal();
-        control.setVisible(true);
+        control.desplegarPrincipal();
         dispose();
     }//GEN-LAST:event_btnRegresoActionPerformed
-  public void transparenciaBoton() {
+    public void transparenciaBoton() {
         btnIniciarSesion.setOpaque(false);
         btnIniciarSesion.setContentAreaFilled(false);
         btnIniciarSesion.setBorderPainted(false);
-        
-          ButtonRegreso.setOpaque(false);
+
+        ButtonRegreso.setOpaque(false);
         ButtonRegreso.setContentAreaFilled(false);
         ButtonRegreso.setBorderPainted(false);
     }

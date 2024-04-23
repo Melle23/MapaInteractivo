@@ -1,5 +1,6 @@
 package Vistas;
 
+import Controladora.ControlPresentacion;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
@@ -10,8 +11,11 @@ import javax.swing.JOptionPane;
  */
 public class frmPrincipal extends javax.swing.JFrame {
 
+    ControlPresentacion control = new ControlPresentacion();
+
     /**
      * Creates new form MapaInteractivo
+     *
      * @param parent
      * @param modal
      */
@@ -20,9 +24,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     public frmPrincipal() {
-         initComponents();
-         
-         txtBusqueda.addFocusListener(new FocusListener() {
+        initComponents();
+        this.setVisible(true);
+        txtBusqueda.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 // Borrar el texto predeterminado cuando el JTextField obtiene el foco
@@ -362,52 +366,50 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
-    
-    
+
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
         // TODO add your handling code here:
-        frmAjustes control = new frmAjustes();
-        control.setVisible(true);
+        control.deplegarAjustes();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
 
     private boolean puntosVisibles = false;
-    
+
     private void Boton_PuntosDeInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_PuntosDeInteresActionPerformed
-        
-         if (puntosVisibles) {
-        Biblioteca.setVisible(false);
-        PasilloEstudiantil.setVisible(false);
-        Kiawa.setVisible(false);
-        CISCO.setVisible(false);
-        Alamos.setVisible(false);
-        RegistroEscolar.setVisible(false);
-        puntosVisibles = false;
-    } else { 
-        Biblioteca.setVisible(true);
-        PasilloEstudiantil.setVisible(true);
-        Kiawa.setVisible(true);
-        CISCO.setVisible(true);
-        Alamos.setVisible(true);
-        RegistroEscolar.setVisible(true);
-        puntosVisibles = true;
-    }
-        
+
+        if (puntosVisibles) {
+            Biblioteca.setVisible(false);
+            PasilloEstudiantil.setVisible(false);
+            Kiawa.setVisible(false);
+            CISCO.setVisible(false);
+            Alamos.setVisible(false);
+            RegistroEscolar.setVisible(false);
+            puntosVisibles = false;
+        } else {
+            Biblioteca.setVisible(true);
+            PasilloEstudiantil.setVisible(true);
+            Kiawa.setVisible(true);
+            CISCO.setVisible(true);
+            Alamos.setVisible(true);
+            RegistroEscolar.setVisible(true);
+            puntosVisibles = true;
+        }
+
     }//GEN-LAST:event_Boton_PuntosDeInteresActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-         String[] botones = {"Si", "No"};
+        String[] botones = {"Si", "No"};
 
         int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
 
-        if(variable == 0){
+        if (variable == 0) {
             dispose();
-        }else{
+        } else {
             return;
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-      /**
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

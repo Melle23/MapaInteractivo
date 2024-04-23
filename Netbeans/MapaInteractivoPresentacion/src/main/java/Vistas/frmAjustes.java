@@ -1,10 +1,14 @@
 package Vistas;
 
+import Controladora.ControlPresentacion;
+
 /**
  *
  * @author RAUL EDUARDO GOMEZ
  */
-public class frmAjustes extends javax.swing.JFrame {
+public final class frmAjustes extends javax.swing.JFrame {
+
+    ControlPresentacion control = new ControlPresentacion();
 
     /**
      * Creates new form Ajustes
@@ -39,7 +43,7 @@ public class frmAjustes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_2.png"))); // NOI18N
@@ -130,9 +134,8 @@ public class frmAjustes extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
-        DlgInicioSesion inicioSesion = new DlgInicioSesion();
-        inicioSesion.setVisible(true);
-        this.dispose();
+        control.desplegarInicioSesion();
+        dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
@@ -145,10 +148,8 @@ public class frmAjustes extends javax.swing.JFrame {
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
         // TODO add your handling code here:
-        frmPrincipal principal = new frmPrincipal();
-        principal.setVisible(true);
-        this.dispose();
-        
+        control.desplegarPrincipal();
+        dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
     public void transparenciaBoton() {
         btnAjustes.setOpaque(false);
@@ -162,13 +163,12 @@ public class frmAjustes extends javax.swing.JFrame {
         btnIniciarSesion.setOpaque(false);
         btnIniciarSesion.setContentAreaFilled(false);
         btnIniciarSesion.setBorderPainted(false);
-        
-          ButtonRegreso.setOpaque(false);
+
+        ButtonRegreso.setOpaque(false);
         ButtonRegreso.setContentAreaFilled(false);
         ButtonRegreso.setBorderPainted(false);
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
