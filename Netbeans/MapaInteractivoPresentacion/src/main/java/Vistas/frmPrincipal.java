@@ -1,5 +1,8 @@
 package Vistas;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 /**
  *
  * @author RAUL EDUARDO GOMEZ
@@ -17,9 +20,23 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     public frmPrincipal() {
          initComponents();
+         
+         txtBusqueda.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Borrar el texto predeterminado cuando el JTextField obtiene el foco
+                if (txtBusqueda.getText().equals("Búsqueda...")) {
+                    txtBusqueda.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // No es necesario hacer nada cuando se pierde el foco
+            }
+        });
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,14 +49,17 @@ public class frmPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Boton_Ajustes = new javax.swing.JButton();
         Boton_TusSalones = new javax.swing.JButton();
-        Boton_PuntosDeInteres = new javax.swing.JButton();
         Label_LogoITSON = new javax.swing.JLabel();
         Label_Mapa = new javax.swing.JLabel();
-        Label_TextoBusqueda = new javax.swing.JLabel();
-        CuadroBusqueda = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        Boton_PuntosDeInteres = new javax.swing.JButton();
+        txtBusqueda = new javax.swing.JTextField();
         Boton_Ajustes1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mapa ITSON");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,7 +72,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 Boton_AjustesActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_Ajustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 20));
+        jPanel1.add(Boton_Ajustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 80, 20));
 
         Boton_TusSalones.setBackground(new java.awt.Color(231, 231, 231));
         Boton_TusSalones.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -60,28 +80,27 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_TusSalones.setText("Tus salones");
         jPanel1.add(Boton_TusSalones, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 120, -1));
 
+        Label_LogoITSON.setIcon(new javax.swing.ImageIcon("C:\\Users\\adria\\OneDrive\\Documentos\\GitHub\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\Logo_ITSON (1).png")); // NOI18N
+        jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 80));
+        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 140, -1, 330));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 153));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 850, 10));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
         Boton_PuntosDeInteres.setBackground(new java.awt.Color(231, 231, 231));
         Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
-        Boton_PuntosDeInteres.setText("Puntos De Interes");
-        jPanel1.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 140, -1));
+        Boton_PuntosDeInteres.setText("Puntos interés");
 
-        Label_LogoITSON.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\Logo_ITSON (1).png")); // NOI18N
-        jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 80));
-
-        Label_Mapa.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\mapa-itson (1).png")); // NOI18N
-        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 140, -1, 330));
-
-        Label_TextoBusqueda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        Label_TextoBusqueda.setText("Búsqueda:");
-        jPanel1.add(Label_TextoBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 40));
-
-        CuadroBusqueda.addActionListener(new java.awt.event.ActionListener() {
+        txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBusqueda.setText("Búsqueda...");
+        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CuadroBusquedaActionPerformed(evt);
+                txtBusquedaActionPerformed(evt);
             }
         });
-        jPanel1.add(CuadroBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 190, -1));
 
         Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         Boton_Ajustes1.setText("---");
@@ -90,7 +109,38 @@ public class frmPrincipal extends javax.swing.JFrame {
                 Boton_Ajustes1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_Ajustes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 50, 20));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(Boton_PuntosDeInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
+                .addComponent(Boton_PuntosDeInteres)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 250, 550));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,17 +150,19 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CuadroBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuadroBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CuadroBusquedaActionPerformed
+    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
 
+    }//GEN-LAST:event_txtBusquedaActionPerformed
+
+    
+    
     private void Boton_AjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_AjustesActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -170,10 +222,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton Boton_Ajustes1;
     private javax.swing.JButton Boton_PuntosDeInteres;
     private javax.swing.JButton Boton_TusSalones;
-    private javax.swing.JTextField CuadroBusqueda;
     private javax.swing.JLabel Label_LogoITSON;
     private javax.swing.JLabel Label_Mapa;
-    private javax.swing.JLabel Label_TextoBusqueda;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }
