@@ -266,16 +266,20 @@ public class frmPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         Boton_PuntosDeInteres.setBackground(new java.awt.Color(231, 231, 231));
-        Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); 
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
+
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
             }
         });
 
-        txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+
+        txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); 
         txtBusqueda.setText("Búsqueda...");
         txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +288,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
 
         Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
-        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); 
+
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
+        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_Ajustes1ActionPerformed(evt);
