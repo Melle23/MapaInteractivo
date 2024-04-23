@@ -1,10 +1,14 @@
 package Vistas;
 
+import Controladora.ControlPresentacion;
+
 /**
  *
  * @author RAUL EDUARDO GOMEZ
  */
 public class frmAjustes extends javax.swing.JFrame {
+
+    ControlPresentacion control = new ControlPresentacion();
 
     /**
      * Creates new form Ajustes
@@ -48,7 +52,7 @@ public class frmAjustes extends javax.swing.JFrame {
                 ButtonRegresoActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 40));
+        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 40, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 260, 110));
@@ -106,10 +110,8 @@ public class frmAjustes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        // TODO add your handling code here:
-        DlgInicioSesion inicioSesion = new DlgInicioSesion();
-        inicioSesion.setVisible(true);
-        this.dispose();
+        control.desplegarInicioSesion();
+        dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
@@ -121,11 +123,8 @@ public class frmAjustes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        // TODO add your handling code here:
-        frmPrincipal principal = new frmPrincipal();
-        principal.setVisible(true);
-        this.dispose();
-        
+        control.desplegarPrincipal();
+        dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
     public void transparenciaBoton() {
         btnAjustes.setOpaque(false);
@@ -141,7 +140,6 @@ public class frmAjustes extends javax.swing.JFrame {
         btnIniciarSesion.setBorderPainted(false);
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;

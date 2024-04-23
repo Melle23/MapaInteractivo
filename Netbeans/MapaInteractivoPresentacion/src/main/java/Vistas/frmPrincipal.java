@@ -1,13 +1,18 @@
 package Vistas;
 
+import Controladora.ControlPresentacion;
+
 /**
  *
  * @author RAUL EDUARDO GOMEZ
  */
 public class frmPrincipal extends javax.swing.JFrame {
 
+    ControlPresentacion control = new ControlPresentacion();
+
     /**
      * Creates new form MapaInteractivo
+     *
      * @param parent
      * @param modal
      */
@@ -16,10 +21,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     public frmPrincipal() {
-         initComponents();
+        initComponents();
+        this.setVisible(true);
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,13 +122,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_AjustesActionPerformed
 
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
-        // TODO add your handling code here:
-        frmAjustes control = new frmAjustes();
-        control.setVisible(true);
+        control.deplegarAjustes();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
 
-      /**
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

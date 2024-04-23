@@ -1,25 +1,19 @@
 package Vistas;
 
+import Controladora.ControlPresentacion;
+
 /**
  *
  * @author RAUL EDUARDO GOMEZ
  */
 public class DlgInicioSesion extends javax.swing.JDialog {
 
-    /**
-     * Creates new form InicioSesion
-     * @param parent
-     * @param modal
-     */
-    public DlgInicioSesion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+    ControlPresentacion control = new ControlPresentacion();
 
     public DlgInicioSesion() {
         initComponents();
+        this.setVisible(true);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +62,11 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("INICIAR SESIÓN");
         btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
 
         txtContraseña.setText("jPasswordField1");
@@ -116,17 +115,19 @@ public class DlgInicioSesion extends javax.swing.JDialog {
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
 
-        frmAjustes ajustes = new frmAjustes();
-        ajustes.setVisible(true);
-        this.dispose();
+        control.deplegarAjustes();
+        dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresoActionPerformed
-        // TODO add your handling code here:
-        frmPrincipal control = new frmPrincipal();
-        control.setVisible(true);
+
+        control.desplegarInicioSesion();
         dispose();
     }//GEN-LAST:event_btnRegresoActionPerformed
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
