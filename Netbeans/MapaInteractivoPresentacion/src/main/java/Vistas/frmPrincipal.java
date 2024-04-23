@@ -47,8 +47,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Boton_Ajustes = new javax.swing.JButton();
-        Boton_TusSalones = new javax.swing.JButton();
         Label_LogoITSON = new javax.swing.JLabel();
         Label_Mapa = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -65,26 +63,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Boton_Ajustes.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes.setText("cerrar");
-        Boton_Ajustes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Boton_AjustesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Boton_Ajustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 80, 20));
-
-        Boton_TusSalones.setBackground(new java.awt.Color(231, 231, 231));
-        Boton_TusSalones.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        Boton_TusSalones.setForeground(new java.awt.Color(25, 111, 196));
-        Boton_TusSalones.setText("Tus salones");
-        jPanel1.add(Boton_TusSalones, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 120, -1));
-
         Label_LogoITSON.setIcon(new javax.swing.ImageIcon("C:\\Users\\adria\\OneDrive\\Documentos\\GitHub\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\Logo_ITSON (1).png")); // NOI18N
         jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 80));
         jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 140, -1, 330));
 
         jSeparator2.setForeground(new java.awt.Color(0, 102, 153));
+        jSeparator2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 850, 10));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -102,8 +86,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
         Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes1.setText("---");
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon("C:\\Users\\adria\\OneDrive\\Documentos\\GitHub\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\opciones.png")); // NOI18N
         Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_Ajustes1ActionPerformed(evt);
@@ -114,26 +99,26 @@ public class frmPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(Boton_PuntosDeInteres, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Boton_Ajustes1)
+                        .addGap(19, 19, 19))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(19, 19, 19)
+                .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
                 .addComponent(Boton_PuntosDeInteres)
@@ -163,11 +148,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     
     
-    private void Boton_AjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_AjustesActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_Boton_AjustesActionPerformed
-
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
         // TODO add your handling code here:
         frmAjustes control = new frmAjustes();
@@ -218,10 +198,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Boton_Ajustes;
     private javax.swing.JButton Boton_Ajustes1;
     private javax.swing.JButton Boton_PuntosDeInteres;
-    private javax.swing.JButton Boton_TusSalones;
     private javax.swing.JLabel Label_LogoITSON;
     private javax.swing.JLabel Label_Mapa;
     private javax.swing.JPanel jPanel1;
