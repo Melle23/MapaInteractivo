@@ -77,6 +77,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtBusqueda.setText("Búsqueda...");
@@ -88,7 +89,8 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
         Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon("C:\\Users\\adria\\OneDrive\\Documentos\\GitHub\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\opciones.png")); // NOI18N
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
+        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_Ajustes1ActionPerformed(evt);
