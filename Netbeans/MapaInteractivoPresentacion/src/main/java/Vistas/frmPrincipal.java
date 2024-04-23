@@ -369,7 +369,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
         // TODO add your handling code here:
-        control.deplegarAjustes();
+        control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
 

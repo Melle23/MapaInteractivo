@@ -6,14 +6,14 @@ import Controladora.ControlPresentacion;
  *
  * @author RAUL EDUARDO GOMEZ
  */
-public final class frmAjustes extends javax.swing.JFrame {
+public final class frmMenu extends javax.swing.JFrame {
 
     ControlPresentacion control = new ControlPresentacion();
 
     /**
      * Creates new form Ajustes
      */
-    public frmAjustes() {
+    public frmMenu() {
         initComponents();
         this.setVisible(true);
         this.transparenciaBoton();
@@ -44,6 +44,7 @@ public final class frmAjustes extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setVerifyInputWhenFocusTarget(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_2.png"))); // NOI18N
@@ -140,10 +141,14 @@ public final class frmAjustes extends javax.swing.JFrame {
 
     private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
         // TODO add your handling code here:
+        control.desplegarAjustes();
+        dispose();
     }//GEN-LAST:event_btnAjustesActionPerformed
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed
         // TODO add your handling code here:
+        control.desplegatHorario();
+        dispose();
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed

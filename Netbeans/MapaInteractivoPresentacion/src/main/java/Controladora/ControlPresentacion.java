@@ -1,7 +1,9 @@
 package Controladora;
 
+import Vistas.DlgAjustes;
+import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
-import Vistas.frmAjustes;
+import Vistas.frmMenu;
 import Vistas.frmPrincipal;
 
 /**
@@ -18,11 +20,19 @@ public class ControlPresentacion {
         frmPrincipal frmprincipal = new frmPrincipal();
     }
 
-    public void deplegarAjustes() {
-        frmAjustes frmajustes = new frmAjustes();
+    public void deplegarMenu() {
+        frmMenu menu = new frmMenu();
     }
 
     public void desplegarInicioSesion() {
         DlgInicioSesion inicioSesion = new DlgInicioSesion();
+    }
+    
+    public void desplegatHorario(){
+        DlgHorario horario = new DlgHorario();
+    }
+    
+    public void desplegarAjustes(){
+        DlgAjustes ajustes = new DlgAjustes();
     }
 }
