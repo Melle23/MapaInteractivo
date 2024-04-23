@@ -31,7 +31,6 @@ public class frmAjustes extends javax.swing.JFrame {
         btnIniciarSesion = new javax.swing.JButton();
         btnAjustes = new javax.swing.JButton();
         btnVerHorario = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
 
@@ -50,7 +49,9 @@ public class frmAjustes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 40));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 260, 110));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 260, 110));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, 10));
 
         btnIniciarSesion.setBackground(new java.awt.Color(7, 36, 93));
@@ -88,10 +89,6 @@ public class frmAjustes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 150, 60));
-
-        jLabel1.setForeground(new java.awt.Color(52, 85, 185));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\OneDrive\\Documentos\\MapaInteractivoNuevo\\MapaInteractivo\\Netbeans\\MapaInteractivoPresentacion\\src\\main\\java\\Utilerias\\logoPotro.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, -130, 320, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,7 +149,6 @@ public class frmAjustes extends javax.swing.JFrame {
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnVerHorario;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
