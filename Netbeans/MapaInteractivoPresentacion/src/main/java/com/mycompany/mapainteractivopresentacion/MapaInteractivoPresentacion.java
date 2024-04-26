@@ -1,5 +1,7 @@
 package com.mycompany.mapainteractivopresentacion;
 
+import Vistas.DlgInicioSesion;
+
 /**
  *
  * @author molin
@@ -7,6 +9,7 @@ package com.mycompany.mapainteractivopresentacion;
 public class MapaInteractivoPresentacion {
 
     public static void main(String[] args) {
-        
+        DlgInicioSesion inicio = new DlgInicioSesion();
+        inicio.setVisible(true);
     }
 }

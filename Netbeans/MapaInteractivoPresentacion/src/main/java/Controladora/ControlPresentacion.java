@@ -4,7 +4,7 @@ import Vistas.DlgAjustes;
 import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
 import Vistas.frmMenu;
-import Vistas.frmPrincipal;
+import Vistas.frmMapa;
 
 /**
  *
@@ -13,11 +13,10 @@ import Vistas.frmPrincipal;
 public class ControlPresentacion {
 
     public ControlPresentacion() {
-
     }
 
-    public void desplegarPrincipal() {
-        frmPrincipal frmprincipal = new frmPrincipal();
+    public void desplegarMapa() {
+        frmMapa mapa = new frmMapa();
     }
 
     public void deplegarMenu() {
