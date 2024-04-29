@@ -5,22 +5,25 @@ import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
+import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 
 /**
  *
  * @author molin
  */
 public class ControlPresentacion {
+UsuarioDTO sesion = new UsuarioDTO();
 
-    public ControlPresentacion() {
+    public ControlPresentacion(UsuarioDTO sesion) {
+        this.sesion = sesion;
     }
 
     public void desplegarMapa() {
-        frmMapa mapa = new frmMapa();
+        frmMapa mapa = new frmMapa(sesion);
     }
 
     public void deplegarMenu() {
-        frmMenu menu = new frmMenu();
+        frmMenu menu = new frmMenu(sesion);
     }
 
     public void desplegarInicioSesion() {
@@ -28,10 +31,10 @@ public class ControlPresentacion {
     }
     
     public void desplegatHorario(){
-        DlgHorario horario = new DlgHorario();
+        DlgHorario horario = new DlgHorario(sesion);
     }
     
     public void desplegarAjustes(){
-        DlgAjustes ajustes = new DlgAjustes();
+        DlgAjustes ajustes = new DlgAjustes(sesion);
     }
 }

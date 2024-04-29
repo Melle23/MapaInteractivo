@@ -1,19 +1,18 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author RAUL EDUARDO GOMEZ
+ * @author JOSUE GOMEZ
  */
 public class frmMapa extends javax.swing.JFrame {
-
-    ControlPresentacion control = new ControlPresentacion();
-
+ UsuarioDTO sesion = new UsuarioDTO();
+   ControlPresentacion control = new ControlPresentacion(sesion);
     /**
      * Creates new form MapaInteractivo
      *
@@ -24,22 +23,25 @@ public class frmMapa extends javax.swing.JFrame {
         initComponents();
     }
 
-    public frmMapa() {
+    public frmMapa(UsuarioDTO usuario) {
         initComponents();
-
-        txtBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+        this.setVisible(true);
+        txtBusqueda.addFocusListener(new FocusListener() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtBusquedaMouseClicked(evt);
-            }
-
-            private void txtBusquedaMouseClicked(MouseEvent evt) {
+            public void focusGained(FocusEvent e) {
+                // Borrar el texto predeterminado cuando el JTextField obtiene el foco
                 if (txtBusqueda.getText().equals("Búsqueda...")) {
                     txtBusqueda.setText("");
                 }
+                
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // No es necesario hacer nada cuando se pierde el foco
             }
         });
-        this.setVisible(true);
+        this.sesion = usuario;
     }
 
     /**
@@ -52,7 +54,6 @@ public class frmMapa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        ButtonRegreso = new javax.swing.JButton();
         AV1400 = new javax.swing.JLabel();
         AV1000 = new javax.swing.JLabel();
         AV1500 = new javax.swing.JLabel();
@@ -93,13 +94,14 @@ public class frmMapa extends javax.swing.JFrame {
         CasaClub = new javax.swing.JLabel();
         AulaMagna = new javax.swing.JLabel();
         Label_Mapa = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        txtBusqueda = new javax.swing.JTextField();
         Boton_PuntosDeInteres = new javax.swing.JButton();
+        txtBusqueda = new javax.swing.JTextField();
+        Boton_Ajustes1 = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        lblNombre = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
+        contenido = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mapa ITSON");
@@ -109,240 +111,177 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
-        ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegresoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 50, 40));
-
         AV1400.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
+        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
         AV1400.setVisible(false);
 
         AV1000.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+        jPanel1.add(AV1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
         AV1000.setVisible(false);
 
         AV1500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, -1, -1));
+        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
         AV1500.setVisible(false);
 
         LV1500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+        jPanel1.add(LV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
         LV1500.setVisible(false);
 
         PoliDeportivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(PoliDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
+        jPanel1.add(PoliDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 50, -1));
         PoliDeportivo.setVisible(false);
 
         CentroIdiomas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CentroIdiomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, -1, -1));
+        jPanel1.add(CentroIdiomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 40, 30));
         CentroIdiomas.setVisible(false);
 
         AudioVisual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AudioVisual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, -1));
+        jPanel1.add(AudioVisual, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, -1, -1));
         AudioVisual.setVisible(false);
 
         LV500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV500, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+        jPanel1.add(LV500, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
         LV500.setVisible(false);
 
         PasilloEstudiantil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        PasilloEstudiantil.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                PasilloEstudiantilMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                PasilloEstudiantilMouseExited(evt);
-            }
-        });
-        jPanel1.add(PasilloEstudiantil, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
+        jPanel1.add(PasilloEstudiantil, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 30, 40));
         PasilloEstudiantil.setVisible(false);
 
         CISCO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        CISCO.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CISCOMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CISCOMouseExited(evt);
-            }
-        });
-        jPanel1.add(CISCO, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, -1, -1));
+        jPanel1.add(CISCO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
         CISCO.setVisible(false);
 
         AlbercaOlimpica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AlbercaOlimpica, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
+        jPanel1.add(AlbercaOlimpica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 40));
         AlbercaOlimpica.setVisible(false);
 
         Kiawa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
         Kiawa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                KiawaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                KiawaMouseExited(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KiawaMouseClicked(evt);
             }
         });
-        jPanel1.add(Kiawa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
+        jPanel1.add(Kiawa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 60));
         Kiawa.setVisible(false);
 
         CAD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
+        jPanel1.add(CAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, -1));
         CAD.setVisible(false);
 
         Resiedencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Resiedencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, -1, -1));
+        jPanel1.add(Resiedencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 60, -1));
         Resiedencias.setVisible(false);
 
         LV1800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
+        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
         LV1800.setVisible(false);
 
         AV800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, -1, -1));
+        jPanel1.add(AV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
         AV800.setVisible(false);
 
         Biblioteca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        Biblioteca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BibliotecaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                BibliotecaMouseExited(evt);
-            }
-        });
-        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, -1, -1));
+        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
         Biblioteca.setVisible(false);
 
         AV600.setVisible(false);
         AV600.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV600, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, -1, -1));
+        jPanel1.add(AV600, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
 
         AV700.setVisible(false);
         AV700.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, -1, -1));
+        jPanel1.add(AV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, 30));
 
         LV300.setVisible(false);
         LV300.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV300, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, -1));
+        jPanel1.add(LV300, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
 
         Alamos.setVisible(false);
         Alamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        Alamos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AlamosMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                AlamosMouseExited(evt);
-            }
-        });
-        jPanel1.add(Alamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+        jPanel1.add(Alamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, -1, -1));
 
         LV1100.setVisible(false);
         LV1100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
+        jPanel1.add(LV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
 
         CanchaTennis.setVisible(false);
         CanchaTennis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CanchaTennis, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, -1));
+        jPanel1.add(CanchaTennis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 60, -1));
 
         Civil.setVisible(false);
         Civil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+        jPanel1.add(Civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
 
         RegistroEscolar.setVisible(false);
         RegistroEscolar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        RegistroEscolar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                RegistroEscolarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                RegistroEscolarMouseExited(evt);
-            }
-        });
-        jPanel1.add(RegistroEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, -1, -1));
+        jPanel1.add(RegistroEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
 
         AV1600.setVisible(false);
         AV1600.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1600, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+        jPanel1.add(AV1600, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, 40));
 
         LV800.setVisible(false);
         LV800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
+        jPanel1.add(LV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
         LV700.setVisible(false);
         LV700.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
+        jPanel1.add(LV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
 
         AV1100.setVisible(false);
         AV1100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
+        jPanel1.add(AV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 30, -1));
 
         AV1200.setVisible(false);
         AV1200.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
+        jPanel1.add(AV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
 
         AV1300.setVisible(false);
         AV1300.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1300, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
+        jPanel1.add(AV1300, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
 
         Enfermeria.setVisible(false);
         Enfermeria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Enfermeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, -1, -1));
+        jPanel1.add(Enfermeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
 
         Tutorias.setVisible(false);
         Tutorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Tutorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
+        jPanel1.add(Tutorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, -1));
 
         Label_LogoITSON.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_1.png"))); // NOI18N
-        jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 250, 90));
+        jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 80));
 
         AV1700.setVisible(false);
         AV1700.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1700, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
+        jPanel1.add(AV1700, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
 
         Cultura.setVisible(false);
         Cultura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Cultura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, -1, -1));
+        jPanel1.add(Cultura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
 
         Movilidad.setVisible(false);
         Movilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Movilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, -1, -1));
+        jPanel1.add(Movilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, -1));
 
         CasaClub.setVisible(false);
         CasaClub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CasaClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
+        jPanel1.add(CasaClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, -1));
 
         AulaMagna.setVisible(false);
         AulaMagna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
+        jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 30, -1));
 
         Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.jpg"))); // NOI18N
-        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 600, 450));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 850, 12));
+        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 450));
 
-        jPanel2.setBackground(new java.awt.Color(25, 111, 196));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 153));
+        jSeparator2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 850, 10));
 
-        txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtBusqueda.setText("Búsqueda...");
-        txtBusqueda.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 102, 238, 30));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         Boton_PuntosDeInteres.setBackground(new java.awt.Color(231, 231, 231));
-        Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
         Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -351,10 +290,27 @@ public class frmMapa extends javax.swing.JFrame {
                 Boton_PuntosDeInteresActionPerformed(evt);
             }
         });
-        jPanel2.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 509, -1, -1));
+
+        txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBusqueda.setText("Búsqueda...");
+        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusquedaActionPerformed(evt);
+            }
+        });
+
+        Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
+        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
+        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_Ajustes1ActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setBackground(new java.awt.Color(231, 231, 231));
-        btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrar.setText("Cerrar");
         btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -363,19 +319,62 @@ public class frmMapa extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 509, 77, -1));
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 230, 30));
+        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
+        contenido.setLayout(contenidoLayout);
+        contenidoLayout.setHorizontalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 238, Short.MAX_VALUE)
+        );
+        contenidoLayout.setVerticalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 354, Short.MAX_VALUE)
+        );
 
-        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 50));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Boton_Ajustes1))
+                        .addGap(19, 19, 19))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(Boton_PuntosDeInteres)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Boton_PuntosDeInteres)
+                    .addComponent(btnCerrar))
+                .addGap(15, 15, 15))
+        );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 250, 550));
+
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -393,9 +392,15 @@ public class frmMapa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-        
+
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
+
+    private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
+        // TODO add your handling code here:
+        control.desplegarAjustes();
+        dispose();
+    }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
 
     private boolean puntosVisibles = false;
 
@@ -424,9 +429,7 @@ public class frmMapa extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         String[] botones = {"Si", "No"};
 
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", 
-                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
-                null/*icono*/, botones, botones[0]);
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
 
         if (variable == 0) {
             dispose();
@@ -435,118 +438,14 @@ public class frmMapa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        control.deplegarMenu();
-        dispose();
-    }//GEN-LAST:event_ButtonRegresoActionPerformed
-
-    private void CISCOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseEntered
-        lblNombre.setText("CISCO");
-        lblDescripcion.setText("<html>Cuenta con 478 computadoras, distribuidos en: "
-            + "Laboratorios de cómputo, aulas interactivas, "
-            + "1 laboratorio y 1 aula de diseño gráfico.</html>");
-    }//GEN-LAST:event_CISCOMouseEntered
-
-    private void CISCOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_CISCOMouseExited
-
-    private void RegistroEscolarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseEntered
-        lblNombre.setText("Registro Escolar");
-        lblDescripcion.setText("<html>Área de autoservicio de alumnos y maestros, análisis de procesos, "
-                + "Cédula en línea, Titulación Web.</html>");
-    }//GEN-LAST:event_RegistroEscolarMouseEntered
-
-    private void RegistroEscolarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_RegistroEscolarMouseExited
-
-    private void BibliotecaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseEntered
-        lblNombre.setText("Biblioteca");
-        lblDescripcion.setText("<html>Servicios presenciales: Consulta en Sala, Préstamo de Acervo a"
-                + " Domicilio, Cubículos de Estudio Grupal, Capacitación, entre otros.</html>");
-    }//GEN-LAST:event_BibliotecaMouseEntered
-
-    private void BibliotecaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_BibliotecaMouseExited
-
-    private void PasilloEstudiantilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseEntered
-        lblNombre.setText("Pasillo Estudiantil");
-        lblDescripcion.setText("<html>Centro de Servicios Estudiantiles, "
-                + "\nComedor Estudiantil con horario de 8:00 a.m a  4:00 p.m.</html>");
-    }//GEN-LAST:event_PasilloEstudiantilMouseEntered
-
-    private void PasilloEstudiantilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_PasilloEstudiantilMouseExited
-
-    private void KiawaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseEntered
-        lblNombre.setText("Cafetería Kiawa");
-        lblDescripcion.setText("<html>Horario de 8:00 a.m a  4:00 p.m.​</html>");
-    }//GEN-LAST:event_KiawaMouseEntered
-
-    private void KiawaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_KiawaMouseExited
-
-    private void AlamosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseEntered
-        lblNombre.setText("Cafetería Potros");
-        lblDescripcion.setText("<html>Horario de 8:00 a.m a  7:00 p.m.</html>");
-    }//GEN-LAST:event_AlamosMouseEntered
-
-    private void AlamosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_AlamosMouseExited
+    private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
+       
+    }//GEN-LAST:event_KiawaMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                frmMapa dialog = new frmMapa(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AV1000;
@@ -565,8 +464,8 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel AudioVisual;
     private javax.swing.JLabel AulaMagna;
     private javax.swing.JLabel Biblioteca;
+    private javax.swing.JButton Boton_Ajustes1;
     private javax.swing.JButton Boton_PuntosDeInteres;
-    private javax.swing.JButton ButtonRegreso;
     private javax.swing.JLabel CAD;
     private javax.swing.JLabel CISCO;
     private javax.swing.JLabel CanchaTennis;
@@ -592,11 +491,11 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel Resiedencias;
     private javax.swing.JLabel Tutorias;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JPanel contenido;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblNombre;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

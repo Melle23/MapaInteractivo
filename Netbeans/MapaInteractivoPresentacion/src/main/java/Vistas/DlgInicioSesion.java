@@ -1,6 +1,8 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import DTO.ValidacionesUsuario;
+import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 import javax.swing.JOptionPane;
 
 /**
@@ -9,13 +11,15 @@ import javax.swing.JOptionPane;
  */
 public final class DlgInicioSesion extends javax.swing.JDialog {
 
-    ControlPresentacion control = new ControlPresentacion();
+    ControlPresentacion control;
+ValidacionesUsuario vUsuario = new ValidacionesUsuario();
+UsuarioDTO sesion = new UsuarioDTO();
 
     public DlgInicioSesion() {
         initComponents();
         this.setVisible(true);
         this.transparenciaBoton();
-
+ ControlPresentacion control = new ControlPresentacion(sesion);
     }
 
     /**
@@ -140,7 +144,10 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegresoActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        // TODO add your handling code here:
+      String usuario = txtUsuario.getText();
+      
+      sesion = vUsuario.verificarUsuario(usuario);
+      control = new ControlPresentacion(sesion);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -152,8 +159,7 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        frmMenu menu = new frmMenu();
-        menu.setVisible(true);
+        control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     public void transparenciaBoton() {

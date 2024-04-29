@@ -1,6 +1,7 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 
 /**
  *
@@ -8,12 +9,13 @@ import Controladora.ControlPresentacion;
  */
 public class DlgHorario extends javax.swing.JDialog {
 
-    ControlPresentacion control = new ControlPresentacion();
+    UsuarioDTO sesion = new UsuarioDTO();
+   ControlPresentacion control = new ControlPresentacion(sesion);
 
-    public DlgHorario() {
+    public DlgHorario(UsuarioDTO usuario) {
         initComponents();
         setVisible(true);
-
+ this.sesion = usuario;
     }
 
     /**

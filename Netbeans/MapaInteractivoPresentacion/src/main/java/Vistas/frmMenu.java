@@ -1,22 +1,24 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 
 /**
  *
  * @author RAUL EDUARDO GOMEZ
  */
 public final class frmMenu extends javax.swing.JFrame {
-
-    ControlPresentacion control = new ControlPresentacion();
-
+UsuarioDTO sesion = new UsuarioDTO();
+   ControlPresentacion control = new ControlPresentacion(sesion);
     /**
      * Creates new form Ajustes
+     * @param usuario
      */
-    public frmMenu() {
+    public frmMenu(UsuarioDTO usuario) {
         initComponents();
         this.setVisible(true);
         this.transparenciaBoton();
+         this.sesion = usuario;
     }
 
     /**

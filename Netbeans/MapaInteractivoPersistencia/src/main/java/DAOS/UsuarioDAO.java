@@ -9,8 +9,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import javax.swing.text.Document;
-//import org.bson.Document;
+import com.mongodb.client.model.Filters;
+import org.bson.Document;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -41,21 +41,19 @@ public class UsuarioDAO {
         this.dataBase = dbServer.getDatabase("mongoBD");
     }
 
-//    public void agregarUsuario(String usuario, String contraseña) {
-//        // Seleccionar la colección donde se almacenarán los usuarios
-//        MongoCollection<Document> collection = dataBase.getCollection("Personas");
-//
-//        // Crear un nuevo documento para el usuario
-//        Document usuarioDoc = new Document("usuario", usuario)
-//                .append("contraseña", contraseña);
-//
-//        try {
-//            // Insertar el documento en la colección
-//            collection.insertOne(usuarioDoc);
-//            System.out.println("Usuario agregado exitosamente.");
-//        } catch (MongoWriteException e) {
-//            System.out.println("Error al agregar el usuario: " + e.getMessage());
-//        }
-//    }
+    public UsuarioDTO obtenerUsuario(String usuario) {
 
+        MongoCollection<Document> collection = dataBase.getCollection("Personas");
+
+        Document usuarioDoc = collection.find(Filters.eq("usuario", usuario)).first();
+
+        if (usuarioDoc != null) {
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+            usuarioDTO.setUsuario(usuarioDoc.getString("usuario"));
+            usuarioDTO.setContraseña(usuarioDoc.getString("contraseña"));
+            return usuarioDTO;
+        } else {
+            return null;
+        }
+    }
 }

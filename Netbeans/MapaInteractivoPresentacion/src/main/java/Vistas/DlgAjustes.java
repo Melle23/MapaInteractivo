@@ -1,18 +1,19 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 
 /**
  *
  * @author molin
  */
 public class DlgAjustes extends javax.swing.JDialog {
-
-    ControlPresentacion control = new ControlPresentacion();
-
-    public DlgAjustes() {
+  UsuarioDTO sesion = new UsuarioDTO();
+   ControlPresentacion control = new ControlPresentacion(sesion);
+    public DlgAjustes(UsuarioDTO usuario) {
         initComponents();
         setVisible(true);
+        this.sesion = usuario;
 
     }
 
