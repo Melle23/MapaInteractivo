@@ -23,6 +23,12 @@ public class frmMapa extends javax.swing.JFrame {
         initComponents();
     }
 
+    public frmMapa() {
+        initComponents();
+        this.setVisible(true);
+        
+    }
+    
     public frmMapa(UsuarioDTO usuario) {
         initComponents();
         this.setVisible(true);
@@ -398,7 +404,8 @@ public class frmMapa extends javax.swing.JFrame {
 
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
         // TODO add your handling code here:
-        control.desplegarAjustes();
+        System.out.println(sesion);
+        control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
 

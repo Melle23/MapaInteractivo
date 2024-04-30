@@ -8,7 +8,7 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  * @author RAUL EDUARDO GOMEZ
  */
 public final class frmMenu extends javax.swing.JFrame {
-UsuarioDTO sesion = new UsuarioDTO();
+UsuarioDTO sesion;
    ControlPresentacion control = new ControlPresentacion(sesion);
     /**
      * Creates new form Ajustes
@@ -16,9 +16,11 @@ UsuarioDTO sesion = new UsuarioDTO();
      */
     public frmMenu(UsuarioDTO usuario) {
         initComponents();
+        System.out.println(this.sesion);
         this.setVisible(true);
         this.transparenciaBoton();
          this.sesion = usuario;
+         
     }
 
     /**
@@ -35,7 +37,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         ButtonRegreso = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnVerMapa = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
         btnVerHorario = new javax.swing.JButton();
         btnAjustes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -54,7 +56,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
@@ -68,24 +70,27 @@ UsuarioDTO sesion = new UsuarioDTO();
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnVerMapa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVerMapa.setForeground(new java.awt.Color(255, 255, 255));
-        btnVerMapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulIS.png"))); // NOI18N
-        btnVerMapa.setBorder(null);
-        btnVerMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVerMapa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulISS.png"))); // NOI18N
-        btnVerMapa.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulIS.png"))); // NOI18N
+        btnIniciarSesion.setBorder(null);
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIniciarSesion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulISS.png"))); // NOI18N
+        if (sesion == null) {
+            this.setVisible(false);
+        }
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerMapaActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnVerMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 170, -1));
+        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 170, -1));
 
         btnVerHorario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVerHorario.setForeground(new java.awt.Color(255, 255, 255));
         btnVerHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorario.png"))); // NOI18N
         btnVerHorario.setBorder(null);
-        btnVerHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVerHorario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorarioS.png"))); // NOI18N
         btnVerHorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +104,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         btnAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulA.png"))); // NOI18N
         btnAjustes.setBorder(null);
         btnAjustes.setBorderPainted(false);
-        btnAjustes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAjustes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAjustes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulAS.png"))); // NOI18N
         btnAjustes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,10 +125,10 @@ UsuarioDTO sesion = new UsuarioDTO();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMapaActionPerformed
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         control.desplegarMapa();
         dispose();
-    }//GEN-LAST:event_btnVerMapaActionPerformed
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
         control.desplegarAjustes();
@@ -136,10 +141,12 @@ UsuarioDTO sesion = new UsuarioDTO();
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        control.desplegarInicioSesion();
+        control.desplegarMapa();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
     public void transparenciaBoton() {
+        
+        
         btnAjustes.setOpaque(false);
         btnAjustes.setContentAreaFilled(false);
         btnAjustes.setBorderPainted(false);
@@ -148,9 +155,9 @@ UsuarioDTO sesion = new UsuarioDTO();
         btnVerHorario.setContentAreaFilled(false);
         btnVerHorario.setBorderPainted(false);
 
-        btnVerMapa.setOpaque(false);
-        btnVerMapa.setContentAreaFilled(false);
-        btnVerMapa.setBorderPainted(false);
+        btnIniciarSesion.setOpaque(false);
+        btnIniciarSesion.setContentAreaFilled(false);
+        btnIniciarSesion.setBorderPainted(false);
 
         ButtonRegreso.setOpaque(false);
         ButtonRegreso.setContentAreaFilled(false);
@@ -161,8 +168,8 @@ UsuarioDTO sesion = new UsuarioDTO();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnAjustes;
+    private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnVerHorario;
-    private javax.swing.JButton btnVerMapa;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

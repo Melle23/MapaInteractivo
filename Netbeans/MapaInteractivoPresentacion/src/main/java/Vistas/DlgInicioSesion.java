@@ -32,11 +32,11 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         btnRegreso = new javax.swing.JButton();
         btnMenu = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnIniciarSesion = new javax.swing.JButton();
+        btnSinConexin = new javax.swing.JButton();
+        btnIniciarSesion2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
@@ -52,16 +52,6 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(880, 620));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 50, 50));
-
         btnRegreso.setBackground(new java.awt.Color(0, 51, 102));
         btnRegreso.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnRegreso.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,21 +66,33 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
 
         btnMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
-        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 880, 90));
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 880, 90));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnIniciarSesion.setBackground(new java.awt.Color(0, 51, 102));
-        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciarSesion.setText("INICIAR SESIÓN");
-        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+        btnSinConexin.setBackground(new java.awt.Color(0, 51, 102));
+        btnSinConexin.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnSinConexin.setForeground(new java.awt.Color(255, 255, 255));
+        btnSinConexin.setText("Ver mapa sin conexion");
+        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSinConexin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarSesionActionPerformed(evt);
+                btnSinConexinActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, -1));
+        jPanel2.add(btnSinConexin, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, -1, -1));
+
+        btnIniciarSesion2.setBackground(new java.awt.Color(0, 51, 102));
+        btnIniciarSesion2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnIniciarSesion2.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion2.setText("INICIAR SESIÓN");
+        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIniciarSesion2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesion2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnIniciarSesion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,18 +100,7 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
 
         txtContrasena.setText("jPasswordField1");
-        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContrasenaActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 190, 30));
-
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 190, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
@@ -143,43 +134,35 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnRegresoActionPerformed
 
-    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+    private void btnSinConexinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSinConexinActionPerformed
+        dispose();
+        sesion = null;
+        control = new ControlPresentacion(sesion);
+        control.desplegarMapa();
+    }//GEN-LAST:event_btnSinConexinActionPerformed
+
+    private void btnIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesion2ActionPerformed
         String usuario = txtUsuario.getText();
         String contra = txtContrasena.getText();
         sesion = vUsuario.verificarUsuario(usuario, contra);
         System.out.println(sesion);
         if (sesion != null) {
-            
+            dispose();
             control = new ControlPresentacion(sesion);
             control.desplegarMapa();
         }
-
-
-    }//GEN-LAST:event_btnIniciarSesionActionPerformed
-
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
-    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtContrasenaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        control.deplegarMenu();
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnIniciarSesion2ActionPerformed
     public void transparenciaBoton() {
-        btnIniciarSesion.setOpaque(false);
-        btnIniciarSesion.setContentAreaFilled(false);
-        btnIniciarSesion.setBorderPainted(false);
+        btnSinConexin.setOpaque(false);
+        btnSinConexin.setContentAreaFilled(false);
+        btnSinConexin.setBorderPainted(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnIniciarSesion2;
     private javax.swing.JLabel btnMenu;
     private javax.swing.JButton btnRegreso;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSinConexin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
