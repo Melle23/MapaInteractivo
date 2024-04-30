@@ -29,7 +29,7 @@ public class UsuarioDAO {
     
     public void CrearConexion() {
         String cadenaConexion = "mongodb+srv://luisfavela246853:4qvAKxlMSD7P7LuP@cluster0.bmevjzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-        String database = "mongoDB";
+        String database = "mongoBD";
         String coleccion = "Personas";
 
         com.mongodb.client.MongoClient mongoClient = MongoClients.create(cadenaConexion);
@@ -44,10 +44,13 @@ public class UsuarioDAO {
         collection.insertOne(documento);
         
         Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).first();
-
+        System.out.println(usuarioEncontrado);
+        
         if (usuarioEncontrado != null) {
             String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
             if (contraseñaAlmacenada.equals(contra)) {
+                System.out.println(usuarioEncontrado.getString("usuario"));
+                System.out.println(usuarioEncontrado.getString("contrasena"));
                 return new UsuarioDTO(usuarioEncontrado.getString("nombre"), usuarioEncontrado.getString("contrasena"));
             } else {
                 return null;

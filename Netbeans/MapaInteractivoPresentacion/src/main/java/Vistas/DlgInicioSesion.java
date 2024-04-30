@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
 public final class DlgInicioSesion extends javax.swing.JDialog {
 
     ControlPresentacion control;
-ValidacionesUsuario vUsuario = new ValidacionesUsuario();
-UsuarioDTO sesion = new UsuarioDTO();
+    ValidacionesUsuario vUsuario = new ValidacionesUsuario();
+    UsuarioDTO sesion = new UsuarioDTO();
 
     public DlgInicioSesion() {
         initComponents();
         this.setVisible(true);
         this.transparenciaBoton();
- ControlPresentacion control = new ControlPresentacion(sesion);
+        ControlPresentacion control = new ControlPresentacion(sesion);
     }
 
     /**
@@ -132,8 +132,8 @@ UsuarioDTO sesion = new UsuarioDTO();
     private void btnRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresoActionPerformed
         String[] botones = {"Si", "No"};
 
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", 
-                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?",
+                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null/*icono*/, botones, botones[0]);
 
         if (variable == 0) {
@@ -144,11 +144,17 @@ UsuarioDTO sesion = new UsuarioDTO();
     }//GEN-LAST:event_btnRegresoActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-      String usuario = txtUsuario.getText();
-      String contra = txtContrasena.getText();
-      
-      sesion = vUsuario.verificarUsuario(usuario, contra);
-      control = new ControlPresentacion(sesion);
+        String usuario = txtUsuario.getText();
+        String contra = txtContrasena.getText();
+        sesion = vUsuario.verificarUsuario(usuario, contra);
+        System.out.println(sesion);
+        if (sesion != null) {
+            
+            control = new ControlPresentacion(sesion);
+            control.desplegarMapa();
+        }
+
+
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -166,7 +172,7 @@ UsuarioDTO sesion = new UsuarioDTO();
     public void transparenciaBoton() {
         btnIniciarSesion.setOpaque(false);
         btnIniciarSesion.setContentAreaFilled(false);
-        btnIniciarSesion.setBorderPainted(false);        
+        btnIniciarSesion.setBorderPainted(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

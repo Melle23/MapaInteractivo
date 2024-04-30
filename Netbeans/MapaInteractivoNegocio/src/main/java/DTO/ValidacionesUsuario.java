@@ -24,7 +24,7 @@ public class ValidacionesUsuario implements VerificarUsuario{
        if(uDAO.obtenerUsuario(usuario, contra) == null){
            JOptionPane.showMessageDialog(null,"No se encontró el usuario, vuelva a intentarlo.");
        }else{
-           uDAO.obtenerUsuario(usuario, contra);
+           return uDAO.obtenerUsuario(usuario, contra);
        }
        return null;
     }
