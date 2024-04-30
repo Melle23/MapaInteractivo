@@ -20,11 +20,11 @@ public class ValidacionesUsuario implements VerificarUsuario{
     }
 
     @Override
-    public UsuarioDTO verificarUsuario(String usuario) {
-       if(uDAO.obtenerUsuario(usuario) == null){
+    public UsuarioDTO verificarUsuario(String usuario, String contra) {
+       if(uDAO.obtenerUsuario(usuario, contra) == null){
            JOptionPane.showMessageDialog(null,"No se encontró el usuario, vuelva a intentarlo.");
        }else{
-           uDAO.obtenerUsuario(usuario);
+           uDAO.obtenerUsuario(usuario, contra);
        }
        return null;
     }

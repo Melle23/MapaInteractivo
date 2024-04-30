@@ -22,36 +22,36 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class UsuarioDAO {
 
-    private final MongoDatabase dataBase;
+    private MongoCollection<Document> collection;
 
     public UsuarioDAO() {
-        CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
+    }
+    
+    public void CrearConexion() {
+        String cadenaConexion = "mongodb+srv://luisfavela246853:4qvAKxlMSD7P7LuP@cluster0.bmevjzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+        String database = "mongoDB";
+        String coleccion = "Personas";
 
-        CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
-
-        ConnectionString cadenaConexion = new ConnectionString("mongodb://localhost/27017");
-
-        MongoClientSettings clientsSettings = MongoClientSettings.builder()
-                .applyConnectionString(cadenaConexion)
-                .codecRegistry(codecRegistry)
-                .build();
-
-        MongoClient dbServer = MongoClients.create(clientsSettings);
-
-        this.dataBase = dbServer.getDatabase("mongoBD");
+        com.mongodb.client.MongoClient mongoClient = MongoClients.create(cadenaConexion);
+        MongoDatabase mongoDataBase = mongoClient.getDatabase(database);
+        this.collection = mongoDataBase.getCollection(coleccion);
     }
 
-    public UsuarioDTO obtenerUsuario(String usuario) {
+    public UsuarioDTO obtenerUsuario(String usuario, String contra) {
+        
+        this.CrearConexion();
+        org.bson.Document documento=new org.bson.Document("usuario", "insertado").append("contrasena", "funciona");
+        collection.insertOne(documento);
+        
+        Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).first();
 
-        MongoCollection<Document> collection = dataBase.getCollection("Personas");
-
-        Document usuarioDoc = collection.find(Filters.eq("usuario", usuario)).first();
-
-        if (usuarioDoc != null) {
-            UsuarioDTO usuarioDTO = new UsuarioDTO();
-            usuarioDTO.setUsuario(usuarioDoc.getString("usuario"));
-            usuarioDTO.setContraseña(usuarioDoc.getString("contraseña"));
-            return usuarioDTO;
+        if (usuarioEncontrado != null) {
+            String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
+            if (contraseñaAlmacenada.equals(contra)) {
+                return new UsuarioDTO(usuarioEncontrado.getString("nombre"), usuarioEncontrado.getString("contrasena"));
+            } else {
+                return null;
+            }
         } else {
             return null;
         }

@@ -12,5 +12,5 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public interface VerificarUsuario {
     
-    public UsuarioDTO verificarUsuario(String usuario);
+    public UsuarioDTO verificarUsuario(String usuario, String contra);
 }

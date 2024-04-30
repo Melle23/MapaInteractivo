@@ -38,7 +38,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         jPanel2 = new javax.swing.JPanel();
         btnIniciarSesion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtContraseña = new javax.swing.JPasswordField();
+        txtContrasena = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -54,7 +54,7 @@ UsuarioDTO sesion = new UsuarioDTO();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -66,7 +66,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         btnRegreso.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnRegreso.setForeground(new java.awt.Color(255, 255, 255));
         btnRegreso.setText("Salir");
-        btnRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresoActionPerformed(evt);
@@ -84,7 +84,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("INICIAR SESIÓN");
-        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
@@ -97,13 +97,13 @@ UsuarioDTO sesion = new UsuarioDTO();
         jLabel1.setText("USUARIO:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
 
-        txtContraseña.setText("jPasswordField1");
-        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+        txtContrasena.setText("jPasswordField1");
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraseñaActionPerformed(evt);
+                txtContrasenaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 190, 30));
+        jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 190, 30));
 
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,8 +145,9 @@ UsuarioDTO sesion = new UsuarioDTO();
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
       String usuario = txtUsuario.getText();
+      String contra = txtContrasena.getText();
       
-      sesion = vUsuario.verificarUsuario(usuario);
+      sesion = vUsuario.verificarUsuario(usuario, contra);
       control = new ControlPresentacion(sesion);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
@@ -154,9 +155,9 @@ UsuarioDTO sesion = new UsuarioDTO();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraseñaActionPerformed
+    }//GEN-LAST:event_txtContrasenaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         control.deplegarMenu();
@@ -178,7 +179,7 @@ UsuarioDTO sesion = new UsuarioDTO();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
