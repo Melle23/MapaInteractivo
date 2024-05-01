@@ -1,6 +1,9 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import DAOS.LocacionDAO;
+import DTO.ValidacionesLocacion;
+import com.mycompany.mapainteractivopersistencia.LocacionDTO;
 import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -12,9 +15,13 @@ import javax.swing.JOptionPane;
  * @author JOSUE GOMEZ
  */
 public class frmMapa extends javax.swing.JFrame {
-
-    UsuarioDTO sesion = new UsuarioDTO();
-    ControlPresentacion control = new ControlPresentacion(sesion);
+    
+    UsuarioDTO sesionUsuario = new UsuarioDTO();
+    ControlPresentacion control = new ControlPresentacion(sesionUsuario);
+    LocacionDAO locacion = new LocacionDAO();
+    private boolean puntosVisibles = false;
+    ValidacionesLocacion vLocacion = new ValidacionesLocacion();
+    LocacionDTO sesionLocacion = new LocacionDTO();
 
     /**
      * Creates new form MapaInteractivo
@@ -25,32 +32,23 @@ public class frmMapa extends javax.swing.JFrame {
     public frmMapa(java.awt.Frame parent, boolean modal) {
         initComponents();
     }
-
-    public frmMapa() {
-        initComponents();
-        this.setVisible(true);
-
-    }
-
+    
     public frmMapa(UsuarioDTO usuario) {
         initComponents();
         this.setVisible(true);
         txtBusqueda.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                // Borrar el texto predeterminado cuando el JTextField obtiene el foco
                 if (txtBusqueda.getText().equals("Búsqueda...")) {
                     txtBusqueda.setText("");
                 }
-
             }
-
+            
             @Override
             public void focusLost(FocusEvent e) {
-                // No es necesario hacer nada cuando se pierde el foco
             }
         });
-        this.sesion = usuario;
+        this.sesionUsuario = usuario;
     }
 
     /**
@@ -111,6 +109,7 @@ public class frmMapa extends javax.swing.JFrame {
         contenido = new javax.swing.JPanel();
         imagen = new javax.swing.JLabel();
         texto = new javax.swing.JLabel();
+        NombreEdificio = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -377,8 +376,16 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 514, 77, -1));
 
         contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        contenido.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 130));
-        contenido.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 128, 220, 200));
+        contenido.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 130));
+
+        texto.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        texto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        texto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        texto.setInheritsPopupMenu(false);
+        contenido.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 210, 170));
+
+        NombreEdificio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        contenido.add(NombreEdificio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 20));
 
         jPanel2.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 139, 230, 357));
 
@@ -427,18 +434,15 @@ public class frmMapa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
-
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
         // TODO add your handling code here:
-        System.out.println(sesion);
         control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
-
-    private boolean puntosVisibles = false;
+    
 
     private void Boton_PuntosDeInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_PuntosDeInteresActionPerformed
-
+        
         if (puntosVisibles) {
             Biblioteca.setVisible(false);
             PasilloEstudiantil.setVisible(false);
@@ -461,35 +465,40 @@ public class frmMapa extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         String[] botones = {"Si", "No"};
-
+        
         int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
-
+        
         if (variable == 0) {
             dispose();
         } else {
             return;
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    /**
+     * Toma una direccion de imagen de una locacion y la pone en el panel
+     * lateral de la aplicacion
+     *
+     * @param direccion La ruta a la imagen que colocara.
+     */
     public void mostrarInformacion(String direccion) {
-
-        // Ruta correcta de la imagen
         String imagePath = direccion;
-
-        // Obtener la ruta absoluta del archivo de imagen
         String absolutePath = getClass().getResource(imagePath).getPath();
-
-        // Crear el ImageIcon con la ruta absoluta
         ImageIcon icon = new ImageIcon(absolutePath);
-
-        // Asignar el nuevo ícono al JLabel imagen
         imagen.setIcon(icon);
     }
+
     private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
 
     }//GEN-LAST:event_KiawaMouseClicked
 
     private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
         this.mostrarInformacion("/imagenes/Cisco.jpg");
+        sesionLocacion = vLocacion.verificarLocacion("CISCO");
+        if (sesionLocacion != null) {
+            NombreEdificio.setText(sesionLocacion.getNombre());
+            texto.setText(sesionLocacion.getDescripcion());
+        }
 
     }//GEN-LAST:event_CISCOMouseClicked
 
@@ -601,6 +610,7 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel Label_LogoITSON;
     private javax.swing.JLabel Label_Mapa;
     private javax.swing.JLabel Movilidad;
+    private javax.swing.JLabel NombreEdificio;
     private javax.swing.JLabel PasilloEstudiantil;
     private javax.swing.JLabel PoliDeportivo;
     private javax.swing.JLabel RegistroEscolar;
