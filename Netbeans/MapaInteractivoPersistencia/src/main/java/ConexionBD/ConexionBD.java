@@ -18,30 +18,19 @@ public class ConexionBD {
     
     private MongoClient mongoClient;
     private MongoDatabase mongoDatabase;
-    private MongoCollection<Document> collection;
     
-    public MongoCollection<Document> CrearConexionUsuarios() {
+    // Constructor que inicializa la conexión
+    public ConexionBD() {
         String cadenaConexion = "mongodb+srv://luisfavela246853:4qvAKxlMSD7P7LuP@cluster0.bmevjzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
         String database = "mongoBD";
-        String coleccion = "Personas";
 
         mongoClient = MongoClients.create(cadenaConexion);
         mongoDatabase = mongoClient.getDatabase(database);
-        collection = mongoDatabase.getCollection(coleccion);
-        
-        return collection;
     }
     
-    public MongoCollection<Document> CrearConexionLocaciones() {
-        String cadenaConexion = "mongodb+srv://luisfavela246853:4qvAKxlMSD7P7LuP@cluster0.bmevjzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-        String database = "mongoBD";
-        String coleccion = "Locaciones";
-
-        mongoClient = MongoClients.create(cadenaConexion);
-        mongoDatabase = mongoClient.getDatabase(database);
-        collection = mongoDatabase.getCollection(coleccion);
-        
-        return collection;
+    // Método para obtener una colección específica
+    public MongoCollection<Document> obtenerColeccion(String nombreColeccion) {
+        return mongoDatabase.getCollection(nombreColeccion);
     }
     
     // Método para cerrar la conexión
@@ -51,3 +40,4 @@ public class ConexionBD {
         }
     }
 }
+

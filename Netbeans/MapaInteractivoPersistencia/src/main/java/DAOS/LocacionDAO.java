@@ -8,7 +8,6 @@ import ConexionBD.ConexionBD;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mycompany.mapainteractivopersistencia.LocacionDTO;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 import org.bson.Document;
 
 /**
@@ -16,47 +15,50 @@ import org.bson.Document;
  * @author favel
  */
 public class LocacionDAO {
-    
+
     ConexionBD conexion = new ConexionBD();
-    
+
     public LocacionDAO() {
-        
+
     }
-    
+
     /**
-     * SIEMPRE REGRESA NULL, pero eso esta bien
-     * o no, pero no da error y yo no juzgo, asi que se queda
-     * 
-     *                                                        -favela
+     * SIEMPRE REGRESA NULL, pero eso esta bien o no, pero no da error y yo no
+     * juzgo, asi que se queda
+     *
+     * -favela
+     *
      * @param nombre
      * @param descripcion
-     * @return 
+     * @return
      */
     public LocacionDTO RegistrarLocacion(String nombre, String descripcion) {
-        MongoCollection<Document> collection = conexion.CrearConexionLocaciones();
-        
+        ConexionBD conexion = new ConexionBD();
+        MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
+
         try {
-            org.bson.Document LocacionNueva = new org.bson.Document("nombre", nombre)
-                .append("descripcion", descripcion);
-        collection.insertOne(LocacionNueva);
+            Document locacionNueva = new Document("nombre", nombre)
+                    .append("descripcion", descripcion);
+            collection.insertOne(locacionNueva);
         } finally {
             conexion.cerrarConexion();
         }
         return null;
     }
-    
+
     public LocacionDTO obtenerLocacion(String nombre) {
-        MongoCollection<Document> collection = conexion.CrearConexionLocaciones();
-        
+        ConexionBD conexion = new ConexionBD();
+        MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
+
         try {
-            Document locacionEncontrado = collection.find(Filters.eq("nombre", nombre)).first();
-            if (locacionEncontrado != null) {
-                    return new LocacionDTO(locacionEncontrado.getString("nombre"), locacionEncontrado.getString("descripcion"));
+            Document locacionEncontrada = collection.find(Filters.eq("nombre", nombre)).first();
+            if (locacionEncontrada != null) {
+                return new LocacionDTO(locacionEncontrada.getString("nombre"), locacionEncontrada.getString("descripcion"));
             }
         } finally {
             conexion.cerrarConexion();
         }
         return null;
-    } 
-    
+    }
+
 }

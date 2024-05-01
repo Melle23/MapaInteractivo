@@ -18,22 +18,21 @@ public class UsuarioDAO {
     }
     
     public UsuarioDTO obtenerUsuario(String usuario, String contra) {
-        
-        ConexionBD conexion = new ConexionBD();
-        MongoCollection<Document> collection = conexion.CrearConexionUsuarios();
-        
-        try {
-            Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).first();
-            if (usuarioEncontrado != null) {
-                String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
-                if (contraseñaAlmacenada.equals(contra)) {
-                    conexion.cerrarConexion();
-                    return new UsuarioDTO(usuarioEncontrado.getString("nombre"), usuarioEncontrado.getString("contrasena"));
-                }
+    ConexionBD conexion = new ConexionBD();
+    MongoCollection<Document> collection = conexion.obtenerColeccion("Personas");
+    
+    try {
+        Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).first();
+        if (usuarioEncontrado != null) {
+            String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
+            if (contraseñaAlmacenada.equals(contra)) {
+                return new UsuarioDTO(usuarioEncontrado.getString("nombre"), usuarioEncontrado.getString("contrasena"));
             }
-        } finally {
-            conexion.cerrarConexion();
         }
-        return null;
+    } finally {
+        conexion.cerrarConexion();
     }
+    return null;
+}
+
 }

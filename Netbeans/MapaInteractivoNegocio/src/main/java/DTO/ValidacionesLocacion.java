@@ -6,6 +6,7 @@ package DTO;
 
 import DAOS.LocacionDAO;
 import com.mycompany.mapainteractivopersistencia.LocacionDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +25,7 @@ public class ValidacionesLocacion {
         if (NuevaLocacion == null) {
             return NuevaLocacion;
         } else {
-            System.out.println("No se registro: LocacionDTO");
+            JOptionPane.showMessageDialog(null,"No se registro la locacion.");
         }
         return null;
     }
