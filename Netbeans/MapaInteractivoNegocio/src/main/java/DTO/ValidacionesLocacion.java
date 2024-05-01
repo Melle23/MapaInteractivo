@@ -19,8 +19,10 @@ public class ValidacionesLocacion {
     }
 
     public LocacionDTO registrarLocacion(String nombre, String descripcion) {
-        if (lDAO.RegistrarLocacion(nombre, descripcion) == null) {
-            return lDAO.RegistrarLocacion(nombre, descripcion);
+        LocacionDTO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
+        
+        if (NuevaLocacion == null) {
+            return NuevaLocacion;
         } else {
             System.out.println("No se registro: LocacionDTO");
         }

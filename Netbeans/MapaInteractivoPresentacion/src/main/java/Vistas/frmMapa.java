@@ -157,6 +157,9 @@ public class frmMapa extends javax.swing.JFrame {
 
         PasilloEstudiantil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
         PasilloEstudiantil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PasilloEstudiantilMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PasilloEstudiantilMouseEntered(evt);
             }
@@ -209,9 +212,14 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel1.add(Resiedencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 60, -1));
         Resiedencias.setVisible(false);
 
-        LV1800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
         LV1800.setVisible(false);
+        LV1800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        LV1800.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV1800MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         AV800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
         jPanel1.add(AV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
@@ -219,6 +227,9 @@ public class frmMapa extends javax.swing.JFrame {
 
         Biblioteca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
         Biblioteca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BibliotecaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 BibliotecaMouseEntered(evt);
             }
@@ -244,6 +255,9 @@ public class frmMapa extends javax.swing.JFrame {
         Alamos.setVisible(false);
         Alamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
         Alamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AlamosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AlamosMouseEntered(evt);
             }
@@ -268,6 +282,9 @@ public class frmMapa extends javax.swing.JFrame {
         RegistroEscolar.setVisible(false);
         RegistroEscolar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
         RegistroEscolar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RegistroEscolarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 RegistroEscolarMouseEntered(evt);
             }
@@ -488,7 +505,12 @@ public class frmMapa extends javax.swing.JFrame {
     }
 
     private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
-
+        this.mostrarInformacion("/imagenes/Kiawa.png");
+        sesionLocacion = vLocacion.verificarLocacion("Kiawa");
+        if (sesionLocacion != null) {
+            NombreEdificio.setText(sesionLocacion.getNombre());
+            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
+        }
     }//GEN-LAST:event_KiawaMouseClicked
 
     private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
@@ -496,7 +518,7 @@ public class frmMapa extends javax.swing.JFrame {
         sesionLocacion = vLocacion.verificarLocacion("CISCO");
         if (sesionLocacion != null) {
             NombreEdificio.setText(sesionLocacion.getNombre());
-            texto.setText(sesionLocacion.getDescripcion());
+            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
         }
     }//GEN-LAST:event_CISCOMouseClicked
 
@@ -564,6 +586,46 @@ public class frmMapa extends javax.swing.JFrame {
         lblNombre.setText("");
         lblDescripcion.setText("");
     }//GEN-LAST:event_AlamosMouseExited
+
+    private void LV1800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1800MouseClicked
+        setVisible(true);
+    }//GEN-LAST:event_LV1800MouseClicked
+
+    private void RegistroEscolarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseClicked
+        this.mostrarInformacion("/imagenes/RegistroEscolar.jpg");
+        sesionLocacion = vLocacion.verificarLocacion("Registro escolar");
+        if (sesionLocacion != null) {
+            NombreEdificio.setText(sesionLocacion.getNombre());
+            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
+        }
+    }//GEN-LAST:event_RegistroEscolarMouseClicked
+
+    private void PasilloEstudiantilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseClicked
+        this.mostrarInformacion("/imagenes/PasilloEstudiantil.jpg");
+        sesionLocacion = vLocacion.verificarLocacion("Pasillo estudiantil");
+        if (sesionLocacion != null) {
+            NombreEdificio.setText(sesionLocacion.getNombre());
+            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
+        }
+    }//GEN-LAST:event_PasilloEstudiantilMouseClicked
+
+    private void BibliotecaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseClicked
+        this.mostrarInformacion("/imagenes/Biblioteca.jpg");
+        sesionLocacion = vLocacion.verificarLocacion("Biblioteca");
+        if (sesionLocacion != null) {
+            NombreEdificio.setText(sesionLocacion.getNombre());
+            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
+        }
+    }//GEN-LAST:event_BibliotecaMouseClicked
+
+    private void AlamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseClicked
+        this.mostrarInformacion("/imagenes/CafeteriaAlamos.jpg");
+        sesionLocacion = vLocacion.verificarLocacion("Alamos");
+        if (sesionLocacion != null) {
+            NombreEdificio.setText(sesionLocacion.getNombre());
+            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
+        }
+    }//GEN-LAST:event_AlamosMouseClicked
 
     /**
      * @param args the command line arguments

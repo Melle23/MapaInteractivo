@@ -114,7 +114,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         if (sesionLocacion == null) {
             System.out.println("Se registro la locacion: DlgRegistroLocacion");
         } else {
-            System.out.println("No se registro: DlgRegistro");
+            System.out.println("No se registro: DlgRegistroLocacion");
         }
     }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
 
