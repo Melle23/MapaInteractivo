@@ -36,7 +36,7 @@ public class ValidacionesLocacion {
             byte[] imagen = lDAO.obtenerImagenLocacion(nombre);
             return new LocacionDTO(locacion.getNombre(), locacion.getDescripcion(), imagen);
         } else {
-            System.out.println("No encontro la locacion");
+            System.out.println("ValidacionesLocacion: No encontro la locacion");
         }
         return null;
     }

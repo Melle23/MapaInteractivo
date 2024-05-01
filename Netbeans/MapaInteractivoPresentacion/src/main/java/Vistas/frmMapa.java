@@ -681,131 +681,195 @@ public class frmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistroEscolarMouseClicked
 
     private void LV1500MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1500MouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("LV1500");
+        this.mostrarInformacion(sesionLocacion);
         this.mostrarPunto(LV1500, true);
     }//GEN-LAST:event_LV1500MouseClicked
 
     private void LV1200MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1200MouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("LV1200");
+        this.mostrarInformacion(sesionLocacion);
         this.mostrarPunto(LV1200, true);
     }//GEN-LAST:event_LV1200MouseClicked
 
     private void PoliDeportivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PoliDeportivoMouseClicked
         this.mostrarPunto(PoliDeportivo, true);
+        sesionLocacion = vLocacion.verificarLocacion("PoliDeportivo");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_PoliDeportivoMouseClicked
 
     private void CanchaTennisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CanchaTennisMouseClicked
         this.mostrarPunto(CanchaTennis, true);
+        sesionLocacion = vLocacion.verificarLocacion("CanchaTennis");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_CanchaTennisMouseClicked
 
     private void CasaClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CasaClubMouseClicked
         this.mostrarPunto(CasaClub, true);
+        sesionLocacion = vLocacion.verificarLocacion("CasaClub");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_CasaClubMouseClicked
 
     private void MovilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MovilidadMouseClicked
         this.mostrarPunto(Movilidad, true);
+        sesionLocacion = vLocacion.verificarLocacion("Movilidad");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_MovilidadMouseClicked
 
     private void CulturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CulturaMouseClicked
         this.mostrarPunto(Cultura, true);
+        sesionLocacion = vLocacion.verificarLocacion("Cultural");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_CulturaMouseClicked
 
     private void AV1700MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1700MouseClicked
         this.mostrarPunto(AV1700, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1700");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1700MouseClicked
 
     private void TutoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TutoriasMouseClicked
         this.mostrarPunto(Tutorias, true);
+        sesionLocacion = vLocacion.verificarLocacion("Tutorias");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_TutoriasMouseClicked
 
     private void LV1100MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1100MouseClicked
         this.mostrarPunto(LV1100, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV1100");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV1100MouseClicked
 
     private void AV1600MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1600MouseClicked
         this.mostrarPunto(AV1600, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV1600");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1600MouseClicked
 
     private void AV1500MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1500MouseClicked
         this.mostrarPunto(AV1500, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1500");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1500MouseClicked
 
     private void AV1400MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1400MouseClicked
         this.mostrarPunto(AV1400, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1400");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1400MouseClicked
 
     private void CADMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CADMouseClicked
         this.mostrarPunto(CAD, true);
+        sesionLocacion = vLocacion.verificarLocacion("CAD");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_CADMouseClicked
 
     private void CentroIdiomasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CentroIdiomasMouseClicked
         this.mostrarPunto(CentroIdiomas, true);
+        sesionLocacion = vLocacion.verificarLocacion("Idiomas");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_CentroIdiomasMouseClicked
 
     private void AudioVisualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AudioVisualMouseClicked
         this.mostrarPunto(AudioVisual, true);
+        sesionLocacion = vLocacion.verificarLocacion("AudioVisual");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AudioVisualMouseClicked
 
     private void LV700MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV700MouseClicked
         this.mostrarPunto(LV700, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV700");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV700MouseClicked
 
     private void LV800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV800MouseClicked
         this.mostrarPunto(LV800, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV800");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV800MouseClicked
 
     private void AV1300MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1300MouseClicked
         this.mostrarPunto(AV1300, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1300");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1300MouseClicked
 
     private void AV1200MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1200MouseClicked
         this.mostrarPunto(AV1200, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1200");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1200MouseClicked
 
     private void AV1100MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1100MouseClicked
         this.mostrarPunto(AV1100, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1100");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1100MouseClicked
 
     private void LV500MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV500MouseClicked
         this.mostrarPunto(LV500, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV500");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV500MouseClicked
 
     private void EnfermeriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnfermeriaMouseClicked
         this.mostrarPunto(Enfermeria, true);
+        sesionLocacion = vLocacion.verificarLocacion("Enfermeria");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_EnfermeriaMouseClicked
 
     private void AulaMagnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AulaMagnaMouseClicked
         this.mostrarPunto(AulaMagna, true);
+        sesionLocacion = vLocacion.verificarLocacion("AulaMagna");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AulaMagnaMouseClicked
 
     private void LV300MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV300MouseClicked
         this.mostrarPunto(LV300, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV300");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV300MouseClicked
 
     private void AV1000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1000MouseClicked
         this.mostrarPunto(AV1000, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV1000");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1000MouseClicked
 
     private void ResiedenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResiedenciasMouseClicked
         this.mostrarPunto(Resiedencias, true);
+        sesionLocacion = vLocacion.verificarLocacion("Residencias");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_ResiedenciasMouseClicked
 
     private void AV800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV800MouseClicked
         this.mostrarPunto(AV800, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV800");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV800MouseClicked
 
     private void AV700MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV700MouseClicked
         this.mostrarPunto(AV700, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV700");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV700MouseClicked
 
     private void AV600MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV600MouseClicked
         this.mostrarPunto(AV600, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV600");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV600MouseClicked
 
     private void AlbercaOlimpicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlbercaOlimpicaMouseClicked
         this.mostrarPunto(AlbercaOlimpica, true);
+        sesionLocacion = vLocacion.verificarLocacion("AlbercaOlimpica");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AlbercaOlimpicaMouseClicked
 
     private void LV1800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1800MouseClicked
         this.mostrarPunto(LV1800, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV1800");
+        this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV1800MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
