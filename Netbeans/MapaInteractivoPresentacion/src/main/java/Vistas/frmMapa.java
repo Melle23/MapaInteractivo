@@ -435,7 +435,6 @@ public class frmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBusquedaActionPerformed
 
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
-        // TODO add your handling code here:
         control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
@@ -499,7 +498,6 @@ public class frmMapa extends javax.swing.JFrame {
             NombreEdificio.setText(sesionLocacion.getNombre());
             texto.setText(sesionLocacion.getDescripcion());
         }
-
     }//GEN-LAST:event_CISCOMouseClicked
 
     private void CISCOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseEntered
@@ -518,7 +516,6 @@ public class frmMapa extends javax.swing.JFrame {
         lblNombre.setText("Biblioteca");
         lblDescripcion.setText("<html>Servicios presenciales: Consulta en Sala, Préstamo de Acervo a"
                 + " Domicilio, Cubículos de Estudio Grupal, Capacitación, entre otros.</html>");
-
     }//GEN-LAST:event_BibliotecaMouseEntered
 
     private void BibliotecaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseExited

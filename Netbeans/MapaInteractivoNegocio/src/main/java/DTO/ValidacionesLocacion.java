@@ -18,6 +18,15 @@ public class ValidacionesLocacion {
     public ValidacionesLocacion() {
     }
 
+    public LocacionDTO registrarLocacion(String nombre, String descripcion) {
+        if (lDAO.RegistrarLocacion(nombre, descripcion) == null) {
+            return lDAO.RegistrarLocacion(nombre, descripcion);
+        } else {
+            System.out.println("No se registro: LocacionDTO");
+        }
+        return null;
+    }
+    
     public LocacionDTO verificarLocacion(String nombre) {
         if (lDAO.obtenerLocacion(nombre) != null) {
             return lDAO.obtenerLocacion(nombre);

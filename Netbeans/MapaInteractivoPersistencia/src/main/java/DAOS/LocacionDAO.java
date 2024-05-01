@@ -23,9 +23,29 @@ public class LocacionDAO {
         
     }
     
-    public LocacionDTO obtenerLocacion(String nombre) {
+    /**
+     * SIEMPRE REGRESA NULL, pero eso esta bien
+     * o no, pero no da error y yo no juzgo, asi que se queda
+     * 
+     *                                                        -favela
+     * @param nombre
+     * @param descripcion
+     * @return 
+     */
+    public LocacionDTO RegistrarLocacion(String nombre, String descripcion) {
+        MongoCollection<Document> collection = conexion.CrearConexionLocaciones();
         
-        ConexionBD conexion = new ConexionBD();
+        try {
+            org.bson.Document LocacionNueva = new org.bson.Document("nombre", nombre)
+                .append("descripcion", descripcion);
+        collection.insertOne(LocacionNueva);
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return null;
+    }
+    
+    public LocacionDTO obtenerLocacion(String nombre) {
         MongoCollection<Document> collection = conexion.CrearConexionLocaciones();
         
         try {

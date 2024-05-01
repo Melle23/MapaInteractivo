@@ -8,10 +8,13 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  * @author RAUL EDUARDO GOMEZ
  */
 public final class frmMenu extends javax.swing.JFrame {
-UsuarioDTO sesion;
-   ControlPresentacion control = new ControlPresentacion(sesion);
+
+    UsuarioDTO sesion;
+    ControlPresentacion control = new ControlPresentacion(sesion);
+
     /**
      * Creates new form Ajustes
+     *
      * @param usuario
      */
     public frmMenu(UsuarioDTO usuario) {
@@ -19,8 +22,8 @@ UsuarioDTO sesion;
         System.out.println("Esta imprimiendo la sesion: " + this.sesion);
         this.setVisible(true);
         this.transparenciaBoton();
-         this.sesion = usuario;
-         
+        this.sesion = usuario;
+
     }
 
     /**
@@ -38,6 +41,7 @@ UsuarioDTO sesion;
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnIniciarSesion = new javax.swing.JButton();
+        btnRegistrarLocacion = new javax.swing.JButton();
         btnVerHorario = new javax.swing.JButton();
         btnAjustes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -84,7 +88,23 @@ UsuarioDTO sesion;
                 btnIniciarSesionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 170, -1));
+        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 170, -1));
+
+        btnRegistrarLocacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegistrarLocacion.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarLocacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulIS.png"))); // NOI18N
+        btnRegistrarLocacion.setBorder(null);
+        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegistrarLocacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulISS.png"))); // NOI18N
+        if (sesion == null) {
+            this.setVisible(false);
+        }
+        btnRegistrarLocacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarLocacionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 170, -1));
 
         btnVerHorario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVerHorario.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,11 +145,6 @@ UsuarioDTO sesion;
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        control.desplegarMapa();
-        dispose();
-    }//GEN-LAST:event_btnIniciarSesionActionPerformed
-
     private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
         control.desplegarAjustes();
         dispose();
@@ -144,9 +159,18 @@ UsuarioDTO sesion;
         control.desplegarMapa();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        control.desplegarMapa();
+        dispose();
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void btnRegistrarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLocacionActionPerformed
+        control.desplegarRegistroLocacion();
+        dispose();
+    }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
     public void transparenciaBoton() {
-        
-        
+
         btnAjustes.setOpaque(false);
         btnAjustes.setContentAreaFilled(false);
         btnAjustes.setBorderPainted(false);
@@ -169,6 +193,7 @@ UsuarioDTO sesion;
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnAjustes;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnRegistrarLocacion;
     private javax.swing.JButton btnVerHorario;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

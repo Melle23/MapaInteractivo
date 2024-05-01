@@ -3,6 +3,7 @@ package Controladora;
 import Vistas.DlgAjustes;
 import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
+import Vistas.DlgRegistroLocacion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
 import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
@@ -22,6 +23,12 @@ UsuarioDTO sesion = new UsuarioDTO();
         frmMapa mapa = new frmMapa(sesion);
     }
 
+    
+    /*
+    se saltaron la S
+                  |
+                  V
+    */
     public void deplegarMenu() {
         frmMenu menu = new frmMenu(sesion);
     }
@@ -36,5 +43,9 @@ UsuarioDTO sesion = new UsuarioDTO();
     
     public void desplegarAjustes(){
         DlgAjustes ajustes = new DlgAjustes(sesion);
+    }
+    
+    public void desplegarRegistroLocacion() {
+        DlgRegistroLocacion registro = new DlgRegistroLocacion(sesion);
     }
 }
