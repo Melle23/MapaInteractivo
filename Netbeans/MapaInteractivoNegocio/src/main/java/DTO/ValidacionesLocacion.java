@@ -31,8 +31,10 @@ public class ValidacionesLocacion {
     }
     
     public LocacionDTO verificarLocacion(String nombre) {
-        if (lDAO.obtenerLocacion(nombre) != null) {
-            return lDAO.obtenerLocacion(nombre);
+        LocacionDTO locacion = lDAO.obtenerLocacion(nombre);
+        if (locacion != null) {
+            byte[] imagen = lDAO.obtenerImagenLocacion(nombre);
+            return new LocacionDTO(locacion.getNombre(), locacion.getDescripcion(), imagen);
         } else {
             System.out.println("No encontro la locacion");
         }

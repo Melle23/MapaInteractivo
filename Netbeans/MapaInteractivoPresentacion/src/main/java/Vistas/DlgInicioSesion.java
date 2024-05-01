@@ -145,7 +145,9 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         String usuario = txtUsuario.getText();
         String contra = txtContrasena.getText();
         sesion = vUsuario.verificarUsuario(usuario, contra);
-        System.out.println(sesion);
+        System.out.println("////////////////////////////////////////////////////\n"
+                         + "DlgInicioSesion - Imprimiento tu sesion: " + this.sesion 
+                       + "\n////////////////////////////////////////////////////");
         if (sesion != null) {
             dispose();
             control = new ControlPresentacion(sesion);

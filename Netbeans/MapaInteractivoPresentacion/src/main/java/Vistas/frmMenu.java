@@ -19,7 +19,9 @@ public final class frmMenu extends javax.swing.JFrame {
      */
     public frmMenu(UsuarioDTO usuario) {
         initComponents();
-        System.out.println("Esta imprimiendo la sesion: " + this.sesion);
+        System.out.println("////////////////////////////////////////////////////"
+                         + "\nfrmMenu - Imprimiento tu sesion: " + this.sesion 
+                       + "\n////////////////////////////////////////////////////");
         this.setVisible(true);
         this.transparenciaBoton();
         this.sesion = usuario;

@@ -15,6 +15,7 @@ public class LocacionDTO {
     private ObjectId id;
     private String nombre;
     private String descripcion;
+    private byte[] imagen;
 
     public LocacionDTO() {
     }
@@ -23,6 +24,22 @@ public class LocacionDTO {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
+
+    public LocacionDTO(String nombre, String descripcion, byte[] imagen) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+    
+    
 
     public ObjectId getId() {
         return id;

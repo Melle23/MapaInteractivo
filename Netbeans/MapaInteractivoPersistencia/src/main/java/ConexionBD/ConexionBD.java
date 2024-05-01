@@ -17,7 +17,7 @@ import org.bson.Document;
 public class ConexionBD {
     
     private MongoClient mongoClient;
-    private MongoDatabase mongoDatabase;
+    public MongoDatabase mongoDatabase;
     
     // Constructor que inicializa la conexión
     public ConexionBD() {
@@ -38,6 +38,11 @@ public class ConexionBD {
         if (mongoClient != null) {
             mongoClient.close();
         }
+    }
+    
+    // Método para obtener la base de datos
+    public MongoDatabase getDatabase() {
+        return mongoDatabase;
     }
 }
 

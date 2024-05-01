@@ -8,6 +8,7 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,11 +16,15 @@ import javax.swing.JOptionPane;
  * @author JOSUE GOMEZ
  */
 public class frmMapa extends javax.swing.JFrame {
-    
+
+    //Gestiona la sesion iniciada
     UsuarioDTO sesionUsuario = new UsuarioDTO();
+    //Funciona para mantener una unica locacion seleccionada a la vez
+    private JLabel ultimoLabelActivado = null;
+    //Funciona para mantener los puntos de interes visibles a la vez
+    private boolean puntosVisibles = true;
     ControlPresentacion control = new ControlPresentacion(sesionUsuario);
     LocacionDAO locacion = new LocacionDAO();
-    private boolean puntosVisibles = false;
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
     LocacionDTO sesionLocacion = new LocacionDTO();
 
@@ -32,7 +37,7 @@ public class frmMapa extends javax.swing.JFrame {
     public frmMapa(java.awt.Frame parent, boolean modal) {
         initComponents();
     }
-    
+
     public frmMapa(UsuarioDTO usuario) {
         initComponents();
         this.setVisible(true);
@@ -43,7 +48,7 @@ public class frmMapa extends javax.swing.JFrame {
                     txtBusqueda.setText("");
                 }
             }
-            
+
             @Override
             public void focusLost(FocusEvent e) {
             }
@@ -84,7 +89,7 @@ public class frmMapa extends javax.swing.JFrame {
         Alamos = new javax.swing.JLabel();
         LV1100 = new javax.swing.JLabel();
         CanchaTennis = new javax.swing.JLabel();
-        Civil = new javax.swing.JLabel();
+        LV1200 = new javax.swing.JLabel();
         RegistroEscolar = new javax.swing.JLabel();
         AV1600 = new javax.swing.JLabel();
         LV800 = new javax.swing.JLabel();
@@ -123,231 +128,312 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AV1400.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
-        AV1400.setVisible(false);
+        AV1400.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1400.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1400MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 40, 30));
 
-        AV1000.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, -1));
-        AV1000.setVisible(false);
+        AV1000.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1000MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 325, 30, 30));
 
-        AV1500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
-        AV1500.setVisible(false);
+        AV1500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1500.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1500MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 40, 20));
 
-        LV1500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
-        LV1500.setVisible(false);
+        LV1500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV1500.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV1500MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 50, 40));
 
-        PoliDeportivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(PoliDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 50, -1));
-        PoliDeportivo.setVisible(false);
+        PoliDeportivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PoliDeportivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PoliDeportivoMouseClicked(evt);
+            }
+        });
+        jPanel1.add(PoliDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 60, 30));
 
-        CentroIdiomas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        CentroIdiomas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CentroIdiomas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CentroIdiomasMouseClicked(evt);
+            }
+        });
         jPanel1.add(CentroIdiomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 40, 30));
-        CentroIdiomas.setVisible(false);
 
-        AudioVisual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AudioVisual, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, -1, -1));
-        AudioVisual.setVisible(false);
+        AudioVisual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AudioVisual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AudioVisualMouseClicked(evt);
+            }
+        });
+        jPanel1.add(AudioVisual, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 30, 30));
 
-        LV500.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV500, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
-        LV500.setVisible(false);
+        LV500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV500.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV500MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV500, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 40, 20));
 
-        PasilloEstudiantil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        PasilloEstudiantil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PasilloEstudiantil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PasilloEstudiantilMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                PasilloEstudiantilMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                PasilloEstudiantilMouseExited(evt);
-            }
         });
-        jPanel1.add(PasilloEstudiantil, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 30, 40));
-        PasilloEstudiantil.setVisible(false);
+        jPanel1.add(PasilloEstudiantil, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 50, 40));
 
-        CISCO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        CISCO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CISCO.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CISCOMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CISCOMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CISCOMouseExited(evt);
+        });
+        jPanel1.add(CISCO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 40, 30));
+
+        AlbercaOlimpica.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AlbercaOlimpica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AlbercaOlimpicaMouseClicked(evt);
             }
         });
-        jPanel1.add(CISCO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
-        CISCO.setVisible(false);
+        jPanel1.add(AlbercaOlimpica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 50, 60));
 
-        AlbercaOlimpica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AlbercaOlimpica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 40));
-        AlbercaOlimpica.setVisible(false);
-
-        Kiawa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        Kiawa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Kiawa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 KiawaMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                KiawaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                KiawaMouseExited(evt);
+        });
+        jPanel1.add(Kiawa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 30, 60));
+
+        CAD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CAD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CADMouseClicked(evt);
             }
         });
-        jPanel1.add(Kiawa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 60));
-        Kiawa.setVisible(false);
+        jPanel1.add(CAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 40, 30));
 
-        CAD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, -1));
-        CAD.setVisible(false);
+        Resiedencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Resiedencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ResiedenciasMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Resiedencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 50, 30));
 
-        Resiedencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Resiedencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 60, -1));
-        Resiedencias.setVisible(false);
-
-        LV1800.setVisible(false);
-        LV1800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        LV1800.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV1800.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LV1800MouseClicked(evt);
             }
         });
-        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 40, 30));
 
-        AV800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
-        AV800.setVisible(false);
+        AV800.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV800.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV800MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 40, 20));
 
-        Biblioteca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        Biblioteca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Biblioteca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BibliotecaMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BibliotecaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                BibliotecaMouseExited(evt);
+        });
+        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 365, 40, 50));
+
+        AV600.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV600.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV600MouseClicked(evt);
             }
         });
-        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
-        Biblioteca.setVisible(false);
+        jPanel1.add(AV600, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 30, 20));
 
-        AV600.setVisible(false);
-        AV600.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV600, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
+        AV700.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV700.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV700MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 30, 20));
 
-        AV700.setVisible(false);
-        AV700.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, 30));
+        LV300.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV300.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV300MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV300, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 30, 20));
 
-        LV300.setVisible(false);
-        LV300.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV300, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
-
-        Alamos.setVisible(false);
-        Alamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        Alamos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Alamos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AlamosMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AlamosMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                AlamosMouseExited(evt);
+        });
+        jPanel1.add(Alamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 20, 30));
+
+        LV1100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV1100.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV1100MouseClicked(evt);
             }
         });
-        jPanel1.add(Alamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, -1, -1));
+        jPanel1.add(LV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 30, 40));
 
-        LV1100.setVisible(false);
-        LV1100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
+        CanchaTennis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CanchaTennis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CanchaTennisMouseClicked(evt);
+            }
+        });
+        jPanel1.add(CanchaTennis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 60, 30));
 
-        CanchaTennis.setVisible(false);
-        CanchaTennis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CanchaTennis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 60, -1));
+        LV1200.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV1200.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV1200MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 50, 30));
 
-        Civil.setVisible(false);
-        Civil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
-
-        RegistroEscolar.setVisible(false);
-        RegistroEscolar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        RegistroEscolar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RegistroEscolar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RegistroEscolarMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                RegistroEscolarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                RegistroEscolarMouseExited(evt);
+        });
+        jPanel1.add(RegistroEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 30, 30));
+
+        AV1600.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1600.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1600MouseClicked(evt);
             }
         });
-        jPanel1.add(RegistroEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
+        jPanel1.add(AV1600, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 40, 20));
 
-        AV1600.setVisible(false);
-        AV1600.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1600, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, 40));
+        LV800.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV800.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV800MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 40, 20));
 
-        LV800.setVisible(false);
-        LV800.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
+        LV700.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV700.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV700MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 310, 30, 20));
 
-        LV700.setVisible(false);
-        LV700.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(LV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
+        AV1100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1100.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1100MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 335, 40, 20));
 
-        AV1100.setVisible(false);
-        AV1100.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 30, -1));
+        AV1200.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1200.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1200MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 30, 20));
 
-        AV1200.setVisible(false);
-        AV1200.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
+        AV1300.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1300.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1300MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1300, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 40, 20));
 
-        AV1300.setVisible(false);
-        AV1300.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1300, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
+        Enfermeria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Enfermeria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EnfermeriaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Enfermeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 30, 20));
 
-        Enfermeria.setVisible(false);
-        Enfermeria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Enfermeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
-
-        Tutorias.setVisible(false);
-        Tutorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Tutorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, -1));
+        Tutorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Tutorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TutoriasMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Tutorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 30, 30));
 
         Label_LogoITSON.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_1.png"))); // NOI18N
         jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 80));
 
-        AV1700.setVisible(false);
-        AV1700.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AV1700, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+        AV1700.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV1700.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV1700MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV1700, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 30, 20));
 
-        Cultura.setVisible(false);
-        Cultura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Cultura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
+        Cultura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Cultura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CulturaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Cultura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 20, 30));
 
-        Movilidad.setVisible(false);
-        Movilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Movilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, -1));
+        Movilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Movilidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MovilidadMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Movilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 20, 30));
 
-        CasaClub.setVisible(false);
-        CasaClub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(CasaClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, -1));
+        CasaClub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CasaClub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CasaClubMouseClicked(evt);
+            }
+        });
+        jPanel1.add(CasaClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 30, 40));
 
-        AulaMagna.setVisible(false);
-        AulaMagna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 30, -1));
+        AulaMagna.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AulaMagna.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AulaMagnaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 30, 20));
 
         Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.jpg"))); // NOI18N
         jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 450));
@@ -455,35 +541,30 @@ public class frmMapa extends javax.swing.JFrame {
         control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
-    
 
     private void Boton_PuntosDeInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_PuntosDeInteresActionPerformed
-        
         if (puntosVisibles) {
-            Biblioteca.setVisible(false);
-            PasilloEstudiantil.setVisible(false);
-            Kiawa.setVisible(false);
-            CISCO.setVisible(false);
-            Alamos.setVisible(false);
-            RegistroEscolar.setVisible(false);
-            puntosVisibles = false;
-        } else {
-            Biblioteca.setVisible(true);
-            PasilloEstudiantil.setVisible(true);
-            Kiawa.setVisible(true);
-            CISCO.setVisible(true);
-            Alamos.setVisible(true);
-            RegistroEscolar.setVisible(true);
+            this.mostrarPuntosDeInteres(Biblioteca, true);
+            this.mostrarPuntosDeInteres(PasilloEstudiantil, true);
+            this.mostrarPuntosDeInteres(Kiawa, true);
+            this.mostrarPuntosDeInteres(CISCO, true);
+            this.mostrarPuntosDeInteres(Alamos, true);
+            this.mostrarPuntosDeInteres(RegistroEscolar, true);
             puntosVisibles = true;
+        } else {
+            this.mostrarPuntosDeInteres(Biblioteca, false);
+            this.mostrarPuntosDeInteres(PasilloEstudiantil, false);
+            this.mostrarPuntosDeInteres(Kiawa, false);
+            this.mostrarPuntosDeInteres(CISCO, false);
+            this.mostrarPuntosDeInteres(Alamos, false);
+            this.mostrarPuntosDeInteres(RegistroEscolar, false);
+            puntosVisibles = false;
         }
-
     }//GEN-LAST:event_Boton_PuntosDeInteresActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         String[] botones = {"Si", "No"};
-        
         int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
-        
         if (variable == 0) {
             dispose();
         } else {
@@ -492,144 +573,240 @@ public class frmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
-     * Toma una direccion de imagen de una locacion y la pone en el panel
-     * lateral de la aplicacion
+     * Toma un array de bytes de la base de datos y la muestra como una imagen
+     * en el lateral de la aplicacion
      *
-     * @param direccion La ruta a la imagen que colocara.
+     * @param imagenBytes el array de bytes sacado de la DB que representa una
+     * imagen
      */
-    public void mostrarInformacion(String direccion) {
-        String imagePath = direccion;
-        String absolutePath = getClass().getResource(imagePath).getPath();
-        ImageIcon icon = new ImageIcon(absolutePath);
+    public void mostrarImagen(byte[] imagenBytes) {
+        ImageIcon icon = new ImageIcon(imagenBytes);
         imagen.setIcon(icon);
     }
 
-    private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
-        this.mostrarInformacion("/imagenes/Kiawa.png");
-        sesionLocacion = vLocacion.verificarLocacion("Kiawa");
+    /**
+     * Muestra en el panel lateral el nombre de la locacion, su descripcion y su
+     * imagen, todo sacado desde la base de datos
+     *
+     * @param sesionLocacion
+     */
+    public void mostrarInformacion(LocacionDTO sesionLocacion) {
         if (sesionLocacion != null) {
+            NombreEdificio.setText("");
+            texto.setText("");
             NombreEdificio.setText(sesionLocacion.getNombre());
             texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
+            this.mostrarImagen(sesionLocacion.getImagen());
         }
-    }//GEN-LAST:event_KiawaMouseClicked
-
-    private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
-        this.mostrarInformacion("/imagenes/Cisco.jpg");
-        sesionLocacion = vLocacion.verificarLocacion("CISCO");
-        if (sesionLocacion != null) {
-            NombreEdificio.setText(sesionLocacion.getNombre());
-            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
-        }
-    }//GEN-LAST:event_CISCOMouseClicked
-
-    private void CISCOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseEntered
-        lblNombre.setText("CISCO");
-        lblDescripcion.setText("<html>Cuenta con 478 computadoras, distribuidos en: "
-                + "Laboratorios de cómputo, aulas interactivas, "
-                + "1 laboratorio y 1 aula de diseño gráfico.</html>");
-    }//GEN-LAST:event_CISCOMouseEntered
-
-    private void CISCOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_CISCOMouseExited
-
-    private void BibliotecaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseEntered
-        lblNombre.setText("Biblioteca");
-        lblDescripcion.setText("<html>Servicios presenciales: Consulta en Sala, Préstamo de Acervo a"
-                + " Domicilio, Cubículos de Estudio Grupal, Capacitación, entre otros.</html>");
-    }//GEN-LAST:event_BibliotecaMouseEntered
-
-    private void BibliotecaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_BibliotecaMouseExited
-
-    private void RegistroEscolarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseEntered
-        lblNombre.setText("Registro Escolar");
-        lblDescripcion.setText("<html>Área de autoservicio de alumnos y maestros, análisis de procesos, "
-                + "Cédula en línea, Titulación Web.</html>");
-    }//GEN-LAST:event_RegistroEscolarMouseEntered
-
-    private void RegistroEscolarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_RegistroEscolarMouseExited
-
-    private void PasilloEstudiantilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseEntered
-        lblNombre.setText("Pasillo Estudiantil");
-        lblDescripcion.setText("<html>Centro de Servicios Estudiantiles, "
-                + "\nComedor Estudiantil con horario de 8:00 a.m a  4:00 p.m.</html>");
-    }//GEN-LAST:event_PasilloEstudiantilMouseEntered
-
-    private void PasilloEstudiantilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_PasilloEstudiantilMouseExited
-
-    private void KiawaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseEntered
-        lblNombre.setText("Cafetería Kiawa");
-        lblDescripcion.setText("<html>Horario de 8:00 a.m a  4:00 p.m.​</html>");
-    }//GEN-LAST:event_KiawaMouseEntered
-
-    private void KiawaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_KiawaMouseExited
-
-    private void AlamosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseEntered
-        lblNombre.setText("Cafetería Potros");
-        lblDescripcion.setText("<html>Horario de 8:00 a.m a  7:00 p.m.</html>");
-    }//GEN-LAST:event_AlamosMouseEntered
-
-    private void AlamosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseExited
-        lblNombre.setText("");
-        lblDescripcion.setText("");
-    }//GEN-LAST:event_AlamosMouseExited
-
-    private void LV1800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1800MouseClicked
-        setVisible(true);
-    }//GEN-LAST:event_LV1800MouseClicked
-
-    private void RegistroEscolarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseClicked
-        this.mostrarInformacion("/imagenes/RegistroEscolar.jpg");
-        sesionLocacion = vLocacion.verificarLocacion("Registro escolar");
-        if (sesionLocacion != null) {
-            NombreEdificio.setText(sesionLocacion.getNombre());
-            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
-        }
-    }//GEN-LAST:event_RegistroEscolarMouseClicked
-
-    private void PasilloEstudiantilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseClicked
-        this.mostrarInformacion("/imagenes/PasilloEstudiantil.jpg");
-        sesionLocacion = vLocacion.verificarLocacion("Pasillo estudiantil");
-        if (sesionLocacion != null) {
-            NombreEdificio.setText(sesionLocacion.getNombre());
-            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
-        }
-    }//GEN-LAST:event_PasilloEstudiantilMouseClicked
-
-    private void BibliotecaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseClicked
-        this.mostrarInformacion("/imagenes/Biblioteca.jpg");
-        sesionLocacion = vLocacion.verificarLocacion("Biblioteca");
-        if (sesionLocacion != null) {
-            NombreEdificio.setText(sesionLocacion.getNombre());
-            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
-        }
-    }//GEN-LAST:event_BibliotecaMouseClicked
-
-    private void AlamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseClicked
-        this.mostrarInformacion("/imagenes/CafeteriaAlamos.jpg");
-        sesionLocacion = vLocacion.verificarLocacion("Alamos");
-        if (sesionLocacion != null) {
-            NombreEdificio.setText(sesionLocacion.getNombre());
-            texto.setText("<html>" + sesionLocacion.getDescripcion() + "</html>");
-        }
-    }//GEN-LAST:event_AlamosMouseClicked
+    }
 
     /**
-     * @param args the command line arguments
+     * Metodo que se llama cuando un label es clickeado para cambiar su icon de
+     * none a la flecha de localizacion
+     *
+     * @param label el label que vamos a modificar
+     * @param bo si es true, se mostrar el icon, si es false, se desactivara
      */
+    public void mostrarPunto(JLabel label, boolean bo) {
+        if (ultimoLabelActivado != null) {
+            ultimoLabelActivado.setIcon(null);
+        }
+
+        if (bo) {
+            String imagePath = "/imagenes/5860579.png";
+            String absolutePath = getClass().getResource(imagePath).getPath();
+            ImageIcon icon = new ImageIcon(absolutePath);
+            label.setIcon(icon);
+            ultimoLabelActivado = label;
+        } else {
+            label.setIcon(null);
+            ultimoLabelActivado = null;
+        }
+    }
+
+    /**
+     * Metodo para activar todos los puntos de interes a la vez, funciona igual
+     * que mostrarPunto, pero ignorando la condicion de activar uno solo a la
+     * vez
+     *
+     * @param label
+     * @param bo
+     */
+    public void mostrarPuntosDeInteres(JLabel label, boolean bo) {
+        if (bo) {
+            String imagePath = "/imagenes/5860579.png";
+            String absolutePath = getClass().getResource(imagePath).getPath();
+            ImageIcon icon = new ImageIcon(absolutePath);
+            label.setIcon(icon);
+        } else {
+            label.setIcon(null);
+        }
+    }
+
+
+    private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("Cisco");
+        this.mostrarInformacion(sesionLocacion);
+        this.mostrarPunto(CISCO, true);
+    }//GEN-LAST:event_CISCOMouseClicked
+
+    private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("Kiawa");
+        this.mostrarInformacion(sesionLocacion);
+        this.mostrarPunto(Kiawa, true);
+    }//GEN-LAST:event_KiawaMouseClicked
+
+    private void AlamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("Alamos");
+        this.mostrarInformacion(sesionLocacion);
+        this.mostrarPunto(Alamos, true);
+    }//GEN-LAST:event_AlamosMouseClicked
+
+    private void BibliotecaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("Biblioteca");
+        this.mostrarInformacion(sesionLocacion);
+        this.mostrarPunto(Biblioteca, true);
+    }//GEN-LAST:event_BibliotecaMouseClicked
+
+    private void PasilloEstudiantilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("Pasillo estudiantil");
+        this.mostrarInformacion(sesionLocacion);
+        this.mostrarPunto(PasilloEstudiantil, true);
+    }//GEN-LAST:event_PasilloEstudiantilMouseClicked
+
+    private void RegistroEscolarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseClicked
+        sesionLocacion = vLocacion.verificarLocacion("Registro escolar");
+        this.mostrarInformacion(sesionLocacion);
+        this.mostrarPunto(RegistroEscolar, true);
+    }//GEN-LAST:event_RegistroEscolarMouseClicked
+
+    private void LV1500MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1500MouseClicked
+        this.mostrarPunto(LV1500, true);
+    }//GEN-LAST:event_LV1500MouseClicked
+
+    private void LV1200MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1200MouseClicked
+        this.mostrarPunto(LV1200, true);
+    }//GEN-LAST:event_LV1200MouseClicked
+
+    private void PoliDeportivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PoliDeportivoMouseClicked
+        this.mostrarPunto(PoliDeportivo, true);
+    }//GEN-LAST:event_PoliDeportivoMouseClicked
+
+    private void CanchaTennisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CanchaTennisMouseClicked
+        this.mostrarPunto(CanchaTennis, true);
+    }//GEN-LAST:event_CanchaTennisMouseClicked
+
+    private void CasaClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CasaClubMouseClicked
+        this.mostrarPunto(CasaClub, true);
+    }//GEN-LAST:event_CasaClubMouseClicked
+
+    private void MovilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MovilidadMouseClicked
+        this.mostrarPunto(Movilidad, true);
+    }//GEN-LAST:event_MovilidadMouseClicked
+
+    private void CulturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CulturaMouseClicked
+        this.mostrarPunto(Cultura, true);
+    }//GEN-LAST:event_CulturaMouseClicked
+
+    private void AV1700MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1700MouseClicked
+        this.mostrarPunto(AV1700, true);
+    }//GEN-LAST:event_AV1700MouseClicked
+
+    private void TutoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TutoriasMouseClicked
+        this.mostrarPunto(Tutorias, true);
+    }//GEN-LAST:event_TutoriasMouseClicked
+
+    private void LV1100MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1100MouseClicked
+        this.mostrarPunto(LV1100, true);
+    }//GEN-LAST:event_LV1100MouseClicked
+
+    private void AV1600MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1600MouseClicked
+        this.mostrarPunto(AV1600, true);
+    }//GEN-LAST:event_AV1600MouseClicked
+
+    private void AV1500MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1500MouseClicked
+        this.mostrarPunto(AV1500, true);
+    }//GEN-LAST:event_AV1500MouseClicked
+
+    private void AV1400MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1400MouseClicked
+        this.mostrarPunto(AV1400, true);
+    }//GEN-LAST:event_AV1400MouseClicked
+
+    private void CADMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CADMouseClicked
+        this.mostrarPunto(CAD, true);
+    }//GEN-LAST:event_CADMouseClicked
+
+    private void CentroIdiomasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CentroIdiomasMouseClicked
+        this.mostrarPunto(CentroIdiomas, true);
+    }//GEN-LAST:event_CentroIdiomasMouseClicked
+
+    private void AudioVisualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AudioVisualMouseClicked
+        this.mostrarPunto(AudioVisual, true);
+    }//GEN-LAST:event_AudioVisualMouseClicked
+
+    private void LV700MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV700MouseClicked
+        this.mostrarPunto(LV700, true);
+    }//GEN-LAST:event_LV700MouseClicked
+
+    private void LV800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV800MouseClicked
+        this.mostrarPunto(LV800, true);
+    }//GEN-LAST:event_LV800MouseClicked
+
+    private void AV1300MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1300MouseClicked
+        this.mostrarPunto(AV1300, true);
+    }//GEN-LAST:event_AV1300MouseClicked
+
+    private void AV1200MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1200MouseClicked
+        this.mostrarPunto(AV1200, true);
+    }//GEN-LAST:event_AV1200MouseClicked
+
+    private void AV1100MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1100MouseClicked
+        this.mostrarPunto(AV1100, true);
+    }//GEN-LAST:event_AV1100MouseClicked
+
+    private void LV500MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV500MouseClicked
+        this.mostrarPunto(LV500, true);
+    }//GEN-LAST:event_LV500MouseClicked
+
+    private void EnfermeriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnfermeriaMouseClicked
+        this.mostrarPunto(Enfermeria, true);
+    }//GEN-LAST:event_EnfermeriaMouseClicked
+
+    private void AulaMagnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AulaMagnaMouseClicked
+        this.mostrarPunto(AulaMagna, true);
+    }//GEN-LAST:event_AulaMagnaMouseClicked
+
+    private void LV300MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV300MouseClicked
+        this.mostrarPunto(LV300, true);
+    }//GEN-LAST:event_LV300MouseClicked
+
+    private void AV1000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1000MouseClicked
+        this.mostrarPunto(AV1000, true);
+    }//GEN-LAST:event_AV1000MouseClicked
+
+    private void ResiedenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResiedenciasMouseClicked
+        this.mostrarPunto(Resiedencias, true);
+    }//GEN-LAST:event_ResiedenciasMouseClicked
+
+    private void AV800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV800MouseClicked
+        this.mostrarPunto(AV800, true);
+    }//GEN-LAST:event_AV800MouseClicked
+
+    private void AV700MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV700MouseClicked
+        this.mostrarPunto(AV700, true);
+    }//GEN-LAST:event_AV700MouseClicked
+
+    private void AV600MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV600MouseClicked
+        this.mostrarPunto(AV600, true);
+    }//GEN-LAST:event_AV600MouseClicked
+
+    private void AlbercaOlimpicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlbercaOlimpicaMouseClicked
+        this.mostrarPunto(AlbercaOlimpica, true);
+    }//GEN-LAST:event_AlbercaOlimpicaMouseClicked
+
+    private void LV1800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1800MouseClicked
+        this.mostrarPunto(LV1800, true);
+    }//GEN-LAST:event_LV1800MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AV1000;
@@ -655,11 +832,11 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel CanchaTennis;
     private javax.swing.JLabel CasaClub;
     private javax.swing.JLabel CentroIdiomas;
-    private javax.swing.JLabel Civil;
     private javax.swing.JLabel Cultura;
     private javax.swing.JLabel Enfermeria;
     private javax.swing.JLabel Kiawa;
     private javax.swing.JLabel LV1100;
+    private javax.swing.JLabel LV1200;
     private javax.swing.JLabel LV1500;
     private javax.swing.JLabel LV1800;
     private javax.swing.JLabel LV300;

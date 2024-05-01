@@ -9,6 +9,11 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mycompany.mapainteractivopersistencia.LocacionDTO;
 import org.bson.Document;
+import com.mongodb.client.gridfs.GridFSBucket;
+import com.mongodb.client.gridfs.GridFSBuckets;
+import com.mongodb.client.gridfs.model.GridFSFile;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  *
@@ -61,4 +66,20 @@ public class LocacionDAO {
         return null;
     }
 
+    public byte[] obtenerImagenLocacion(String nombre) {
+        ConexionBD conexion = new ConexionBD();
+        GridFSBucket gridFSBucket = GridFSBuckets.create(conexion.mongoDatabase, "imagenes");
+
+        try {
+            GridFSFile gridFSFile = gridFSBucket.find(Filters.eq("filename", nombre + ".jpg")).first();
+            if (gridFSFile != null) {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                gridFSBucket.downloadToStream(gridFSFile.getId(), outputStream);
+                return outputStream.toByteArray();
+            }
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return null;
+    }
 }
