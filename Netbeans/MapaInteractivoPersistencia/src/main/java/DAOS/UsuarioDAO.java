@@ -1,20 +1,10 @@
 package DAOS;
 
+import ConexionBD.ConexionBD;
 import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
-import com.mongodb.MongoWriteException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
  *
@@ -22,41 +12,37 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class UsuarioDAO {
 
-    private MongoCollection<Document> collection;
-
+    ConexionBD conexion = new ConexionBD();
+    
     public UsuarioDAO() {
     }
     
-    public void CrearConexion() {
-        String cadenaConexion = "mongodb+srv://luisfavela246853:4qvAKxlMSD7P7LuP@cluster0.bmevjzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-        String database = "mongoBD";
-        String coleccion = "Personas";
-
-        com.mongodb.client.MongoClient mongoClient = MongoClients.create(cadenaConexion);
-        MongoDatabase mongoDataBase = mongoClient.getDatabase(database);
-        this.collection = mongoDataBase.getCollection(coleccion);
-    }
-
     public UsuarioDTO obtenerUsuario(String usuario, String contra) {
+        // Crear una instancia de la clase ConexionBD
+        ConexionBD conexion = new ConexionBD();
+        // Obtener la colección
+        MongoCollection<Document> collection = conexion.CrearConexion();
         
-        this.CrearConexion();
-        org.bson.Document documento=new org.bson.Document("usuario", "insertado").append("contrasena", "funciona");
-        collection.insertOne(documento);
-        
-        Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).first();
-        System.out.println(usuarioEncontrado);
-        
-        if (usuarioEncontrado != null) {
-            String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
-            if (contraseñaAlmacenada.equals(contra)) {
-                System.out.println(usuarioEncontrado.getString("usuario"));
-                System.out.println(usuarioEncontrado.getString("contrasena"));
-                return new UsuarioDTO(usuarioEncontrado.getString("nombre"), usuarioEncontrado.getString("contrasena"));
-            } else {
-                return null;
+        try {
+            // Buscar el usuario en la colección
+            Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).first();
+            if (usuarioEncontrado != null) {
+                // Obtener la contraseña almacenada
+                String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
+                // Verificar si las contraseñas coinciden
+                if (contraseñaAlmacenada.equals(contra)) {
+                    // Cerrar la conexión
+                    conexion.cerrarConexion();
+                    // Retornar un nuevo UsuarioDTO con los datos encontrados
+                    return new UsuarioDTO(usuarioEncontrado.getString("nombre"), usuarioEncontrado.getString("contrasena"));
+                }
             }
-        } else {
-            return null;
+        } finally {
+            // Asegurarse de cerrar la conexión incluso si ocurre una excepción
+            conexion.cerrarConexion();
         }
+        
+        // Si no se encuentra el usuario o las contraseñas no coinciden, retornar null
+        return null;
     }
 }

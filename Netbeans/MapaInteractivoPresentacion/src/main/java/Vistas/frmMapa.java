@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
  * @author JOSUE GOMEZ
  */
 public class frmMapa extends javax.swing.JFrame {
- UsuarioDTO sesion = new UsuarioDTO();
-   ControlPresentacion control = new ControlPresentacion(sesion);
+
+    UsuarioDTO sesion = new UsuarioDTO();
+    ControlPresentacion control = new ControlPresentacion(sesion);
+
     /**
      * Creates new form MapaInteractivo
      *
@@ -27,9 +29,9 @@ public class frmMapa extends javax.swing.JFrame {
     public frmMapa() {
         initComponents();
         this.setVisible(true);
-        
+
     }
-    
+
     public frmMapa(UsuarioDTO usuario) {
         initComponents();
         this.setVisible(true);
@@ -40,7 +42,7 @@ public class frmMapa extends javax.swing.JFrame {
                 if (txtBusqueda.getText().equals("Búsqueda...")) {
                     txtBusqueda.setText("");
                 }
-                
+
             }
 
             @Override
@@ -404,7 +406,7 @@ public class frmMapa extends javax.swing.JFrame {
                 Boton_Ajustes1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_Ajustes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 41));
+        jPanel1.add(Boton_Ajustes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, 41));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -468,34 +470,34 @@ public class frmMapa extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
-public void mostrarInformacion(String direccion){
-      
+    public void mostrarInformacion(String direccion) {
+
         // Ruta correcta de la imagen
-    String imagePath = direccion;
-    
-    // Obtener la ruta absoluta del archivo de imagen
-    String absolutePath = getClass().getResource(imagePath).getPath();
-    
-    // Crear el ImageIcon con la ruta absoluta
-    ImageIcon icon = new ImageIcon(absolutePath);
-    
-    // Asignar el nuevo ícono al JLabel imagen
-    imagen.setIcon(icon);
-}
+        String imagePath = direccion;
+
+        // Obtener la ruta absoluta del archivo de imagen
+        String absolutePath = getClass().getResource(imagePath).getPath();
+
+        // Crear el ImageIcon con la ruta absoluta
+        ImageIcon icon = new ImageIcon(absolutePath);
+
+        // Asignar el nuevo ícono al JLabel imagen
+        imagen.setIcon(icon);
+    }
     private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
-       
+
     }//GEN-LAST:event_KiawaMouseClicked
 
     private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
         this.mostrarInformacion("/imagenes/Cisco.jpg");
-    
+
     }//GEN-LAST:event_CISCOMouseClicked
 
     private void CISCOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseEntered
-         lblNombre.setText("CISCO");
+        lblNombre.setText("CISCO");
         lblDescripcion.setText("<html>Cuenta con 478 computadoras, distribuidos en: "
-            + "Laboratorios de cómputo, aulas interactivas, "
-            + "1 laboratorio y 1 aula de diseño gráfico.</html>");
+                + "Laboratorios de cómputo, aulas interactivas, "
+                + "1 laboratorio y 1 aula de diseño gráfico.</html>");
     }//GEN-LAST:event_CISCOMouseEntered
 
     private void CISCOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseExited
@@ -504,36 +506,36 @@ public void mostrarInformacion(String direccion){
     }//GEN-LAST:event_CISCOMouseExited
 
     private void BibliotecaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseEntered
-       lblNombre.setText("Biblioteca");
+        lblNombre.setText("Biblioteca");
         lblDescripcion.setText("<html>Servicios presenciales: Consulta en Sala, Préstamo de Acervo a"
                 + " Domicilio, Cubículos de Estudio Grupal, Capacitación, entre otros.</html>");
 
     }//GEN-LAST:event_BibliotecaMouseEntered
 
     private void BibliotecaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseExited
-         lblNombre.setText("");
+        lblNombre.setText("");
         lblDescripcion.setText("");
     }//GEN-LAST:event_BibliotecaMouseExited
 
     private void RegistroEscolarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseEntered
-         lblNombre.setText("Registro Escolar");
+        lblNombre.setText("Registro Escolar");
         lblDescripcion.setText("<html>Área de autoservicio de alumnos y maestros, análisis de procesos, "
                 + "Cédula en línea, Titulación Web.</html>");
     }//GEN-LAST:event_RegistroEscolarMouseEntered
 
     private void RegistroEscolarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseExited
-      lblNombre.setText("");
+        lblNombre.setText("");
         lblDescripcion.setText("");
     }//GEN-LAST:event_RegistroEscolarMouseExited
 
     private void PasilloEstudiantilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseEntered
-      lblNombre.setText("Pasillo Estudiantil");
+        lblNombre.setText("Pasillo Estudiantil");
         lblDescripcion.setText("<html>Centro de Servicios Estudiantiles, "
                 + "\nComedor Estudiantil con horario de 8:00 a.m a  4:00 p.m.</html>");
     }//GEN-LAST:event_PasilloEstudiantilMouseEntered
 
     private void PasilloEstudiantilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseExited
-         lblNombre.setText("");
+        lblNombre.setText("");
         lblDescripcion.setText("");
     }//GEN-LAST:event_PasilloEstudiantilMouseExited
 
@@ -543,12 +545,12 @@ public void mostrarInformacion(String direccion){
     }//GEN-LAST:event_KiawaMouseEntered
 
     private void KiawaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseExited
-         lblNombre.setText("");
+        lblNombre.setText("");
         lblDescripcion.setText("");
     }//GEN-LAST:event_KiawaMouseExited
 
     private void AlamosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseEntered
-         lblNombre.setText("Cafetería Potros");
+        lblNombre.setText("Cafetería Potros");
         lblDescripcion.setText("<html>Horario de 8:00 a.m a  7:00 p.m.</html>");
     }//GEN-LAST:event_AlamosMouseEntered
 
@@ -560,7 +562,6 @@ public void mostrarInformacion(String direccion){
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AV1000;
