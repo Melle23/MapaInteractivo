@@ -4,6 +4,7 @@ import Controladora.ControlPresentacion;
 import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -104,10 +105,14 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Boton_PuntosDeInteres = new javax.swing.JButton();
         txtBusqueda = new javax.swing.JTextField();
-        Boton_Ajustes1 = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         contenido = new javax.swing.JPanel();
+        imagen = new javax.swing.JLabel();
+        texto = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Boton_Ajustes1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mapa ITSON");
@@ -150,10 +155,29 @@ public class frmMapa extends javax.swing.JFrame {
         LV500.setVisible(false);
 
         PasilloEstudiantil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        PasilloEstudiantil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PasilloEstudiantilMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PasilloEstudiantilMouseExited(evt);
+            }
+        });
         jPanel1.add(PasilloEstudiantil, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 30, 40));
         PasilloEstudiantil.setVisible(false);
 
         CISCO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        CISCO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CISCOMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CISCOMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CISCOMouseExited(evt);
+            }
+        });
         jPanel1.add(CISCO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
         CISCO.setVisible(false);
 
@@ -165,6 +189,12 @@ public class frmMapa extends javax.swing.JFrame {
         Kiawa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 KiawaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                KiawaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                KiawaMouseExited(evt);
             }
         });
         jPanel1.add(Kiawa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 60));
@@ -187,7 +217,15 @@ public class frmMapa extends javax.swing.JFrame {
         AV800.setVisible(false);
 
         Biblioteca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
-        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
+        Biblioteca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BibliotecaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BibliotecaMouseExited(evt);
+            }
+        });
+        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
         Biblioteca.setVisible(false);
 
         AV600.setVisible(false);
@@ -204,6 +242,14 @@ public class frmMapa extends javax.swing.JFrame {
 
         Alamos.setVisible(false);
         Alamos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        Alamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AlamosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AlamosMouseExited(evt);
+            }
+        });
         jPanel1.add(Alamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, -1, -1));
 
         LV1100.setVisible(false);
@@ -220,6 +266,14 @@ public class frmMapa extends javax.swing.JFrame {
 
         RegistroEscolar.setVisible(false);
         RegistroEscolar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/5860579.png"))); // NOI18N
+        RegistroEscolar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                RegistroEscolarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                RegistroEscolarMouseExited(evt);
+            }
+        });
         jPanel1.add(RegistroEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, -1, -1));
 
         AV1600.setVisible(false);
@@ -284,18 +338,20 @@ public class frmMapa extends javax.swing.JFrame {
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 850, 10));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(25, 111, 196));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Boton_PuntosDeInteres.setBackground(new java.awt.Color(231, 231, 231));
         Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
-        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
             }
         });
+        jPanel2.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 514, -1, -1));
 
         txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtBusqueda.setText("Búsqueda...");
@@ -304,83 +360,51 @@ public class frmMapa extends javax.swing.JFrame {
                 txtBusquedaActionPerformed(evt);
             }
         });
-
-        Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
-        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
-        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Boton_Ajustes1ActionPerformed(evt);
-            }
-        });
+        jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 103, 190, 30));
 
         btnCerrar.setBackground(new java.awt.Color(231, 231, 231));
         btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrar.setText("Cerrar");
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 514, 77, -1));
 
-        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
-        contenido.setLayout(contenidoLayout);
-        contenidoLayout.setHorizontalGroup(
-            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        contenidoLayout.setVerticalGroup(
-            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 354, Short.MAX_VALUE)
-        );
+        contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        contenido.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 130));
+        contenido.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 128, 220, 200));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Boton_Ajustes1))
-                        .addGap(19, 19, 19))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(Boton_PuntosDeInteres)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(Boton_Ajustes1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Boton_PuntosDeInteres)
-                    .addComponent(btnCerrar))
-                .addGap(15, 15, 15))
-        );
+        jPanel2.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 139, 230, 357));
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 230, 30));
+
+        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 50));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 250, 550));
 
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+
+        Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
+        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
+        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_Ajustes1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Boton_Ajustes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, 41));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -444,10 +468,94 @@ public class frmMapa extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
-
+public void mostrarInformacion(String direccion){
+      
+        // Ruta correcta de la imagen
+    String imagePath = direccion;
+    
+    // Obtener la ruta absoluta del archivo de imagen
+    String absolutePath = getClass().getResource(imagePath).getPath();
+    
+    // Crear el ImageIcon con la ruta absoluta
+    ImageIcon icon = new ImageIcon(absolutePath);
+    
+    // Asignar el nuevo ícono al JLabel imagen
+    imagen.setIcon(icon);
+}
     private void KiawaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseClicked
        
     }//GEN-LAST:event_KiawaMouseClicked
+
+    private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
+        this.mostrarInformacion("/imagenes/Cisco.jpg");
+    
+    }//GEN-LAST:event_CISCOMouseClicked
+
+    private void CISCOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseEntered
+         lblNombre.setText("CISCO");
+        lblDescripcion.setText("<html>Cuenta con 478 computadoras, distribuidos en: "
+            + "Laboratorios de cómputo, aulas interactivas, "
+            + "1 laboratorio y 1 aula de diseño gráfico.</html>");
+    }//GEN-LAST:event_CISCOMouseEntered
+
+    private void CISCOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseExited
+        lblNombre.setText("");
+        lblDescripcion.setText("");
+    }//GEN-LAST:event_CISCOMouseExited
+
+    private void BibliotecaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseEntered
+       lblNombre.setText("Biblioteca");
+        lblDescripcion.setText("<html>Servicios presenciales: Consulta en Sala, Préstamo de Acervo a"
+                + " Domicilio, Cubículos de Estudio Grupal, Capacitación, entre otros.</html>");
+
+    }//GEN-LAST:event_BibliotecaMouseEntered
+
+    private void BibliotecaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BibliotecaMouseExited
+         lblNombre.setText("");
+        lblDescripcion.setText("");
+    }//GEN-LAST:event_BibliotecaMouseExited
+
+    private void RegistroEscolarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseEntered
+         lblNombre.setText("Registro Escolar");
+        lblDescripcion.setText("<html>Área de autoservicio de alumnos y maestros, análisis de procesos, "
+                + "Cédula en línea, Titulación Web.</html>");
+    }//GEN-LAST:event_RegistroEscolarMouseEntered
+
+    private void RegistroEscolarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroEscolarMouseExited
+      lblNombre.setText("");
+        lblDescripcion.setText("");
+    }//GEN-LAST:event_RegistroEscolarMouseExited
+
+    private void PasilloEstudiantilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseEntered
+      lblNombre.setText("Pasillo Estudiantil");
+        lblDescripcion.setText("<html>Centro de Servicios Estudiantiles, "
+                + "\nComedor Estudiantil con horario de 8:00 a.m a  4:00 p.m.</html>");
+    }//GEN-LAST:event_PasilloEstudiantilMouseEntered
+
+    private void PasilloEstudiantilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasilloEstudiantilMouseExited
+         lblNombre.setText("");
+        lblDescripcion.setText("");
+    }//GEN-LAST:event_PasilloEstudiantilMouseExited
+
+    private void KiawaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseEntered
+        lblNombre.setText("Cafetería Kiawa");
+        lblDescripcion.setText("<html>Horario de 8:00 a.m a  4:00 p.m.​</html>");
+    }//GEN-LAST:event_KiawaMouseEntered
+
+    private void KiawaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KiawaMouseExited
+         lblNombre.setText("");
+        lblDescripcion.setText("");
+    }//GEN-LAST:event_KiawaMouseExited
+
+    private void AlamosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseEntered
+         lblNombre.setText("Cafetería Potros");
+        lblDescripcion.setText("<html>Horario de 8:00 a.m a  7:00 p.m.</html>");
+    }//GEN-LAST:event_AlamosMouseEntered
+
+    private void AlamosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlamosMouseExited
+        lblNombre.setText("");
+        lblDescripcion.setText("");
+    }//GEN-LAST:event_AlamosMouseExited
 
     /**
      * @param args the command line arguments
@@ -499,10 +607,14 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel Tutorias;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel contenido;
+    private javax.swing.JLabel imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel texto;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }

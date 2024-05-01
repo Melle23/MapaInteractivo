@@ -16,7 +16,7 @@ UsuarioDTO sesion;
      */
     public frmMenu(UsuarioDTO usuario) {
         initComponents();
-        System.out.println(this.sesion);
+        System.out.println("Esta imprimiendo la sesion: " + this.sesion);
         this.setVisible(true);
         this.transparenciaBoton();
          this.sesion = usuario;
