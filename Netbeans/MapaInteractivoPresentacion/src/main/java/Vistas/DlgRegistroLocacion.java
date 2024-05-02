@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
 import Controladora.ControlPresentacion;
@@ -38,8 +34,9 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ButtonRegreso = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,63 +46,69 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         btnRegistrarLocacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registrar Locación");
+        setMinimumSize(new java.awt.Dimension(850, 580));
+        setPreferredSize(new java.awt.Dimension(850, 580));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
-        ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegresoActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 60, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 60, 40));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_2.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 110));
+        lblLogo.setBackground(new java.awt.Color(255, 255, 255));
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_2.png"))); // NOI18N
+        jPanel1.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 110));
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 110));
+
+        jPanel2.setBackground(new java.awt.Color(25, 111, 196));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Descripcion de locacion:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 310, 30));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Descripción de locación:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 280, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Nombre de locacion:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 310, 30));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Nombre de locación:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 280, 30));
 
-        nombreLocacion.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jPanel2.add(nombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 300, -1));
+        nombreLocacion.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
+        jPanel2.add(nombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 320, -1));
 
         descripcionLocacion.setColumns(20);
+        descripcionLocacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         descripcionLocacion.setRows(5);
         jScrollPane1.setViewportView(descripcionLocacion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 300, 170));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 320, 170));
 
-        btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnRegistrarLocacion.setText("Registrar Locacion");
+        btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        btnRegistrarLocacion.setText("Registrar Locación");
+        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarLocacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarLocacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 230, 60));
+        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 230, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 880, 510));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        control.deplegarMenu();
-        dispose();
-    }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnRegistrarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLocacionActionPerformed
         String nombre = nombreLocacion.getText();
@@ -118,15 +121,21 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        control.deplegarMenu();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnRegistrarLocacion;
     private javax.swing.JTextArea descripcionLocacion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JTextField nombreLocacion;
     // End of variables declaration//GEN-END:variables
 }

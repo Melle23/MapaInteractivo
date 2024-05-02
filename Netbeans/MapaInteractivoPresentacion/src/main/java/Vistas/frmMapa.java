@@ -154,10 +154,8 @@ public class frmMapa extends javax.swing.JFrame {
         imagen = new javax.swing.JLabel();
         texto = new javax.swing.JLabel();
         NombreEdificio = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        Boton_Ajustes1 = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mapa ITSON");
@@ -501,32 +499,37 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Boton_PuntosDeInteres.setBackground(new java.awt.Color(231, 231, 231));
-        Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
-        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
             }
         });
-        jPanel2.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 514, -1, -1));
+        jPanel2.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
 
         txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtBusqueda.setText("Búsqueda...");
-        jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 103, 190, 30));
+        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 190, 30));
 
         btnCerrar.setBackground(new java.awt.Color(231, 231, 231));
-        btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrar.setText("Cerrar");
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 514, 77, -1));
+        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 77, -1));
 
         contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         contenido.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 130));
@@ -540,33 +543,24 @@ public class frmMapa extends javax.swing.JFrame {
         NombreEdificio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         contenido.add(NombreEdificio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 20));
 
-        jPanel2.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 139, 230, 357));
-
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 230, 30));
-
-        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel2.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 50));
+        jPanel2.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 357));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 250, 550));
 
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
 
-        Boton_Ajustes1.setBackground(new java.awt.Color(204, 204, 204));
-        Boton_Ajustes1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        Boton_Ajustes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/opcion.png"))); // NOI18N
-        Boton_Ajustes1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Boton_Ajustes1.addActionListener(new java.awt.event.ActionListener() {
+        btnMenu.setBackground(new java.awt.Color(25, 111, 196));
+        btnMenu.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
+        btnMenu.setBorder(null);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Boton_Ajustes1ActionPerformed(evt);
+                btnMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_Ajustes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, 41));
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -583,10 +577,10 @@ public class frmMapa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         control.deplegarMenu();
         dispose();
-    }//GEN-LAST:event_Boton_Ajustes1ActionPerformed
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     private void Boton_PuntosDeInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_PuntosDeInteresActionPerformed
         if (puntosVisibles) {
@@ -930,6 +924,10 @@ public class frmMapa extends javax.swing.JFrame {
         this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV900MouseClicked
 
+    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AV1000;
     private javax.swing.JLabel AV1100;
@@ -948,7 +946,6 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel AudioVisual;
     private javax.swing.JLabel AulaMagna;
     private javax.swing.JLabel Biblioteca;
-    private javax.swing.JButton Boton_Ajustes1;
     private javax.swing.JButton Boton_PuntosDeInteres;
     private javax.swing.JLabel CAD;
     private javax.swing.JLabel CISCO;
@@ -977,14 +974,13 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel Resiedencias;
     private javax.swing.JLabel Tutorias;
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JPanel contenido;
     private javax.swing.JLabel imagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel texto;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables

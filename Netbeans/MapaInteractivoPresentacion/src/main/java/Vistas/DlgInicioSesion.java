@@ -56,7 +56,7 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         btnRegreso.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnRegreso.setForeground(new java.awt.Color(255, 255, 255));
         btnRegreso.setText("Salir");
-        btnRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresoActionPerformed(evt);
@@ -74,7 +74,7 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         btnSinConexin.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnSinConexin.setForeground(new java.awt.Color(255, 255, 255));
         btnSinConexin.setText("Ver mapa sin conexion");
-        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSinConexin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSinConexinActionPerformed(evt);
@@ -86,7 +86,7 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
         btnIniciarSesion2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnIniciarSesion2.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion2.setText("INICIAR SESIÓN");
-        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIniciarSesion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesion2ActionPerformed(evt);
@@ -142,6 +142,10 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSinConexinActionPerformed
 
     private void btnIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesion2ActionPerformed
+//        if(txtUsuario.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(this, "Favor de ingresar un Usuario y Contraseña.",
+//                    "Campo vacío", JOptionPane.WARNING_MESSAGE);
+//        }
         String usuario = txtUsuario.getText();
         String contra = txtContrasena.getText();
         sesion = vUsuario.verificarUsuario(usuario, contra);
