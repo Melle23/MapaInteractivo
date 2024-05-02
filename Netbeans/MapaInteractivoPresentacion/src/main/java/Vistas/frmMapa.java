@@ -5,11 +5,16 @@ import DAOS.LocacionDAO;
 import DTO.ValidacionesLocacion;
 import com.mycompany.mapainteractivopersistencia.LocacionDTO;
 import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.util.List;
 
 /**
  *
@@ -51,6 +56,38 @@ public class frmMapa extends javax.swing.JFrame {
 
             @Override
             public void focusLost(FocusEvent e) {
+            }
+        });
+        txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                actualizar();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                actualizar();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                actualizar();
+            }
+
+            public void actualizar() {
+                String busqueda = txtBusqueda.getText();
+                List<String> resultados = vLocacion.buscarLocaciones(busqueda);
+                // Aquí puedes actualizar tu interfaz gráfica con los resultados de la búsqueda
+                // Por ejemplo, podrías mostrar los resultados en un JList o JComboBox
+            }
+        });
+        txtBusqueda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String busqueda = txtBusqueda.getText();
+                List<String> resultados = vLocacion.buscarLocaciones(busqueda);
+                if (!resultados.isEmpty()) {
+                    // Mostrar la información de la primera locación que coincide con la búsqueda
+                    LocacionDTO locacion = vLocacion.verificarLocacion(resultados.get(0));
+                    mostrarInformacion(locacion);
+                }
             }
         });
         this.sesionUsuario = usuario;
@@ -103,6 +140,8 @@ public class frmMapa extends javax.swing.JFrame {
         AV1700 = new javax.swing.JLabel();
         Cultura = new javax.swing.JLabel();
         Movilidad = new javax.swing.JLabel();
+        LV900 = new javax.swing.JLabel();
+        AV900 = new javax.swing.JLabel();
         CasaClub = new javax.swing.JLabel();
         AulaMagna = new javax.swing.JLabel();
         Label_Mapa = new javax.swing.JLabel();
@@ -134,7 +173,7 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1400MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 40, 30));
+        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 40, 10));
 
         AV1000.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1000.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -150,7 +189,7 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1500MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 40, 20));
+        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 40, 20));
 
         LV1500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV1500.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,6 +458,22 @@ public class frmMapa extends javax.swing.JFrame {
         });
         jPanel1.add(Movilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 20, 30));
 
+        LV900.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LV900.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LV900MouseClicked(evt);
+            }
+        });
+        jPanel1.add(LV900, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 40, 20));
+
+        AV900.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AV900.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AV900MouseClicked(evt);
+            }
+        });
+        jPanel1.add(AV900, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 428, 20, 30));
+
         CasaClub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CasaClub.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -459,11 +514,6 @@ public class frmMapa extends javax.swing.JFrame {
 
         txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtBusqueda.setText("Búsqueda...");
-        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 103, 190, 30));
 
         btnCerrar.setBackground(new java.awt.Color(231, 231, 231));
@@ -533,10 +583,6 @@ public class frmMapa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-
-    }//GEN-LAST:event_txtBusquedaActionPerformed
-
     private void Boton_Ajustes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Ajustes1ActionPerformed
         control.deplegarMenu();
         dispose();
@@ -550,7 +596,7 @@ public class frmMapa extends javax.swing.JFrame {
             this.mostrarPuntosDeInteres(CISCO, true);
             this.mostrarPuntosDeInteres(Alamos, true);
             this.mostrarPuntosDeInteres(RegistroEscolar, true);
-            puntosVisibles = true;
+            puntosVisibles = false;
         } else {
             this.mostrarPuntosDeInteres(Biblioteca, false);
             this.mostrarPuntosDeInteres(PasilloEstudiantil, false);
@@ -558,7 +604,7 @@ public class frmMapa extends javax.swing.JFrame {
             this.mostrarPuntosDeInteres(CISCO, false);
             this.mostrarPuntosDeInteres(Alamos, false);
             this.mostrarPuntosDeInteres(RegistroEscolar, false);
-            puntosVisibles = false;
+            puntosVisibles = true;
         }
     }//GEN-LAST:event_Boton_PuntosDeInteresActionPerformed
 
@@ -742,7 +788,7 @@ public class frmMapa extends javax.swing.JFrame {
 
     private void AV1600MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV1600MouseClicked
         this.mostrarPunto(AV1600, true);
-        sesionLocacion = vLocacion.verificarLocacion("LV1600");
+        sesionLocacion = vLocacion.verificarLocacion("AV1600");
         this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_AV1600MouseClicked
 
@@ -872,6 +918,18 @@ public class frmMapa extends javax.swing.JFrame {
         this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV1800MouseClicked
 
+    private void LV900MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV900MouseClicked
+        this.mostrarPunto(LV900, true);
+        sesionLocacion = vLocacion.verificarLocacion("LV900");
+        this.mostrarInformacion(sesionLocacion);
+    }//GEN-LAST:event_LV900MouseClicked
+
+    private void AV900MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AV900MouseClicked
+        this.mostrarPunto(AV900, true);
+        sesionLocacion = vLocacion.verificarLocacion("AV900");
+        this.mostrarInformacion(sesionLocacion);
+    }//GEN-LAST:event_AV900MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AV1000;
     private javax.swing.JLabel AV1100;
@@ -884,6 +942,7 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel AV600;
     private javax.swing.JLabel AV700;
     private javax.swing.JLabel AV800;
+    private javax.swing.JLabel AV900;
     private javax.swing.JLabel Alamos;
     private javax.swing.JLabel AlbercaOlimpica;
     private javax.swing.JLabel AudioVisual;
@@ -907,6 +966,7 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel LV500;
     private javax.swing.JLabel LV700;
     private javax.swing.JLabel LV800;
+    private javax.swing.JLabel LV900;
     private javax.swing.JLabel Label_LogoITSON;
     private javax.swing.JLabel Label_Mapa;
     private javax.swing.JLabel Movilidad;

@@ -6,6 +6,7 @@ package DAOS;
 
 import ConexionBD.ConexionBD;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mycompany.mapainteractivopersistencia.LocacionDTO;
 import org.bson.Document;
@@ -14,6 +15,8 @@ import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -81,5 +84,22 @@ public class LocacionDAO {
             conexion.cerrarConexion();
         }
         return null;
+    }
+
+    public List<String> obtenerNombresLocaciones() {
+        ConexionBD conexion = new ConexionBD();
+        MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
+        List<String> nombres = new ArrayList<>();
+
+        try {
+            MongoCursor<Document> cursor = collection.find().iterator();
+            while (cursor.hasNext()) {
+                Document locacion = cursor.next();
+                nombres.add(locacion.getString("nombre"));
+            }
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return nombres;
     }
 }
