@@ -23,10 +23,10 @@ public class ValidacionesUsuario implements VerificarUsuario{
     public UsuarioDTO verificarUsuario(String usuario, String contra) {
        if(uDAO.obtenerUsuario(usuario, contra) == null){
            JOptionPane.showMessageDialog(null,"No se encontró el usuario, vuelva a intentarlo.");
+           return null;
        }else{
            return uDAO.obtenerUsuario(usuario, contra);
        }
-       return null;
     }
     
 

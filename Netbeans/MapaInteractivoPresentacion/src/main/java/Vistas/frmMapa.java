@@ -46,9 +46,9 @@ public class frmMapa extends javax.swing.JFrame {
     public frmMapa(UsuarioDTO usuario) {
         initComponents();
         this.sesion = usuario;
-        System.out.println("////////////////////////////////////////////////////"
+        System.out.println("---------------------------------------------------------------------------"
                          + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion 
-                       + "\n////////////////////////////////////////////////////");
+                       + "\n---------------------------------------------------------------------------");
         this.setVisible(true);
         txtBusqueda.addFocusListener(new FocusListener() {
             @Override

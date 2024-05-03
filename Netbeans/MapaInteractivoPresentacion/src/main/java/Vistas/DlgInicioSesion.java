@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  *
  * @author JOSUE GOMEZ
  */
-public final class DlgInicioSesion extends javax.swing.JDialog {
+public class DlgInicioSesion extends javax.swing.JDialog {
 
     ControlPresentacion control;
     ValidacionesUsuario vUsuario = new ValidacionesUsuario();
@@ -142,22 +142,26 @@ public final class DlgInicioSesion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSinConexinActionPerformed
 
     private void btnIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesion2ActionPerformed
-//        if(txtUsuario.getText().isEmpty()){
-//            JOptionPane.showMessageDialog(this, "Favor de ingresar un Usuario y Contraseña.",
-//                    "Campo vacío", JOptionPane.WARNING_MESSAGE);
-//        }
+        if (txtUsuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Favor de ingresar un Usuario y Contraseña.",
+                    "Campo vacío", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         String usuario = txtUsuario.getText();
         String contra = txtContrasena.getText();
+        System.out.println(usuario + " - " + contra);
         sesion = vUsuario.verificarUsuario(usuario, contra);
-        System.out.println("////////////////////////////////////////////////////\n"
-                         + "DlgInicioSesion - Imprimiento tu sesion: " + this.sesion 
-                       + "\n////////////////////////////////////////////////////");
+        System.out.println("\n---------------------------------------------------------------------------"
+                + "DlgInicioSesion - Imprimiento tu sesion: " + sesion
+                + "\n---------------------------------------------------------------------------");
         if (sesion != null) {
+
             dispose();
             control = new ControlPresentacion(sesion);
             control.desplegarMapa();
         }
     }//GEN-LAST:event_btnIniciarSesion2ActionPerformed
+
     public void transparenciaBoton() {
         btnSinConexin.setOpaque(false);
         btnSinConexin.setContentAreaFilled(false);
