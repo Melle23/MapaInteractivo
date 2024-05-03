@@ -1,7 +1,7 @@
 package Controladora;
 
 import Vistas.DlgAjustes;
-import Vistas.DlgEdicionLocaciones;
+import Vistas.DlgMenuLocaciones;
 import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
 import Vistas.DlgRegistroLocacion;
@@ -50,7 +50,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         DlgRegistroLocacion registro = new DlgRegistroLocacion(sesion);
     }
     
-    public void desplegarEdicionLocaciones() {
-        DlgEdicionLocaciones Locaciones = new DlgEdicionLocaciones(sesion);
+    public void desplegarMenuLocaciones() {
+        DlgMenuLocaciones Locaciones = new DlgMenuLocaciones(sesion);
     }
 }

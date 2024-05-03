@@ -19,12 +19,12 @@ public final class frmMenu extends javax.swing.JFrame {
      */
     public frmMenu(UsuarioDTO usuario) {
         initComponents();
+        this.sesion = usuario;
         System.out.println("////////////////////////////////////////////////////"
-                         + "\nfrmMenu - Imprimiento tu sesion: " + this.sesion 
+                         + "\nfrmMenu - Imprimiento tu sesion: " + sesion 
                        + "\n////////////////////////////////////////////////////");
         this.setVisible(true);
         this.transparenciaBoton();
-        this.sesion = usuario;
 
     }
 
@@ -163,7 +163,7 @@ public final class frmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnEditarLocacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionesActionPerformed
-        control.desplegarEdicionLocaciones();
+        control.desplegarMenuLocaciones();
         dispose();
     }//GEN-LAST:event_btnEditarLocacionesActionPerformed
     public void transparenciaBoton() {

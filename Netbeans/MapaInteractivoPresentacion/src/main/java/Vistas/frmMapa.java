@@ -23,12 +23,12 @@ import java.util.List;
 public class frmMapa extends javax.swing.JFrame {
 
     //Gestiona la sesion iniciada
-    UsuarioDTO sesionUsuario = new UsuarioDTO();
+    UsuarioDTO sesion = new UsuarioDTO();
     //Funciona para mantener una unica locacion seleccionada a la vez
     private JLabel ultimoLabelActivado = null;
     //Funciona para mantener los puntos de interes visibles a la vez
     private boolean puntosVisibles = true;
-    ControlPresentacion control = new ControlPresentacion(sesionUsuario);
+    ControlPresentacion control = new ControlPresentacion(sesion);
     LocacionDAO locacion = new LocacionDAO();
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
     LocacionDTO sesionLocacion = new LocacionDTO();
@@ -45,6 +45,10 @@ public class frmMapa extends javax.swing.JFrame {
 
     public frmMapa(UsuarioDTO usuario) {
         initComponents();
+        this.sesion = usuario;
+        System.out.println("////////////////////////////////////////////////////"
+                         + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion 
+                       + "\n////////////////////////////////////////////////////");
         this.setVisible(true);
         txtBusqueda.addFocusListener(new FocusListener() {
             @Override
@@ -72,7 +76,6 @@ public class frmMapa extends javax.swing.JFrame {
                 }
             }
         });
-        this.sesionUsuario = usuario;
     }
 
     /**

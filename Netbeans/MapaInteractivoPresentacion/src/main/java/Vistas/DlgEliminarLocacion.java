@@ -11,19 +11,16 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  *
  * @author favela
  */
-public class DlgEdicionLocaciones extends javax.swing.JFrame {
+public class DlgEliminarLocacion extends javax.swing.JFrame {
 
-    UsuarioDTO sesion = new UsuarioDTO();
+    UsuarioDTO sesion;
     ControlPresentacion control = new ControlPresentacion(sesion);
     
     /**
-     * Creates new form DlgEdicionLocaciones
+     * Creates new form DlgEliminarLocacion
      */
-    public DlgEdicionLocaciones(UsuarioDTO usuario) {
+    public DlgEliminarLocacion() {
         initComponents();
-        setVisible(true);
-        this.sesion = usuario;
-        System.out.println("DlgEdicionLocaciones - Imprimiendo Sesion: " + usuario);
     }
 
     /**
@@ -35,15 +32,9 @@ public class DlgEdicionLocaciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         ButtonRegreso = new javax.swing.JButton();
-        bntRegistro = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
@@ -55,51 +46,33 @@ public class DlgEdicionLocaciones extends javax.swing.JFrame {
                 ButtonRegresoActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 60, 40));
-
-        bntRegistro.setText("Registrar Locacion");
-        bntRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntRegistroActionPerformed(evt);
-            }
-        });
-        jPanel1.add(bntRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 240, 60));
-
-        btnEliminar.setText("Eliminar Locacion");
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 240, 60));
-
-        btnEditar.setText("Editar Locacion");
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(334, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        control.deplegarMenu();
+        control.desplegarMenuLocaciones();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
-    private void bntRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRegistroActionPerformed
-        control.desplegarEdicionLocaciones();
-        dispose();
-    }//GEN-LAST:event_bntRegistroActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
-    private javax.swing.JButton bntRegistro;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
