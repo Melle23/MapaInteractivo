@@ -58,31 +58,13 @@ public class frmMapa extends javax.swing.JFrame {
             public void focusLost(FocusEvent e) {
             }
         });
-        txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                actualizar();
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                actualizar();
-            }
-
-            public void insertUpdate(DocumentEvent e) {
-                actualizar();
-            }
-
-            public void actualizar() {
-                String busqueda = txtBusqueda.getText();
-                List<String> resultados = vLocacion.buscarLocaciones(busqueda);
-                // Aquí puedes actualizar tu interfaz gráfica con los resultados de la búsqueda
-                // Por ejemplo, podrías mostrar los resultados en un JList o JComboBox
-            }
-        });
         txtBusqueda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String busqueda = txtBusqueda.getText();
                 List<String> resultados = vLocacion.buscarLocaciones(busqueda);
+                // Aquí puedes actualizar tu interfaz gráfica con los resultados de la búsqueda
+                // Por ejemplo, podrías mostrar los resultados en un JList o JComboBox
                 if (!resultados.isEmpty()) {
                     // Mostrar la información de la primera locación que coincide con la búsqueda
                     LocacionDTO locacion = vLocacion.verificarLocacion(resultados.get(0));
