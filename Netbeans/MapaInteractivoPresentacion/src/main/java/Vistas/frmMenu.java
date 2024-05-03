@@ -45,7 +45,7 @@ public final class frmMenu extends javax.swing.JFrame {
         btnIniciarSesion = new javax.swing.JButton();
         btnVerHorario = new javax.swing.JButton();
         btnAjustes = new javax.swing.JButton();
-        btnRegistrarLocacion = new javax.swing.JButton();
+        btnEditarLocaciones = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
@@ -62,7 +62,7 @@ public final class frmMenu extends javax.swing.JFrame {
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
@@ -80,7 +80,7 @@ public final class frmMenu extends javax.swing.JFrame {
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulIS.png"))); // NOI18N
         btnIniciarSesion.setBorder(null);
-        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnIniciarSesion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulISS.png"))); // NOI18N
         if (sesion == null) {
             this.setVisible(false);
@@ -96,7 +96,7 @@ public final class frmMenu extends javax.swing.JFrame {
         btnVerHorario.setForeground(new java.awt.Color(255, 255, 255));
         btnVerHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorario.png"))); // NOI18N
         btnVerHorario.setBorder(null);
-        btnVerHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVerHorario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorarioS.png"))); // NOI18N
         btnVerHorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +110,7 @@ public final class frmMenu extends javax.swing.JFrame {
         btnAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulA.png"))); // NOI18N
         btnAjustes.setBorder(null);
         btnAjustes.setBorderPainted(false);
-        btnAjustes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAjustes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAjustes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulAS.png"))); // NOI18N
         btnAjustes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,16 +119,16 @@ public final class frmMenu extends javax.swing.JFrame {
         });
         jPanel2.add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 170, 60));
 
-        btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnRegistrarLocacion.setForeground(new java.awt.Color(0, 102, 255));
-        btnRegistrarLocacion.setText("Registrar locación");
-        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRegistrarLocacion.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarLocaciones.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnEditarLocaciones.setForeground(new java.awt.Color(0, 102, 255));
+        btnEditarLocaciones.setText("Gestionar Locaciones");
+        btnEditarLocaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarLocaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarLocacionActionPerformed(evt);
+                btnEditarLocacionesActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cisco.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -162,10 +162,10 @@ public final class frmMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    private void btnRegistrarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLocacionActionPerformed
-        control.desplegarRegistroLocacion();
+    private void btnEditarLocacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionesActionPerformed
+        control.desplegarEdicionLocaciones();
         dispose();
-    }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
+    }//GEN-LAST:event_btnEditarLocacionesActionPerformed
     public void transparenciaBoton() {
 
         btnAjustes.setOpaque(false);
@@ -189,8 +189,8 @@ public final class frmMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnAjustes;
+    private javax.swing.JButton btnEditarLocaciones;
     private javax.swing.JButton btnIniciarSesion;
-    private javax.swing.JButton btnRegistrarLocacion;
     private javax.swing.JButton btnVerHorario;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

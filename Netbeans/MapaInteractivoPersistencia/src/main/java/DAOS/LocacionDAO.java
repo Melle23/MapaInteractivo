@@ -54,6 +54,31 @@ public class LocacionDAO {
         return null;
     }
 
+    /**
+     * Elimina una locacion de la coleccion de locaciones, y la imagen del
+     * GrillFS correspondiente a esa locacion
+     * 
+     * @param nombre de la locacion
+     */
+    public void eliminarLocacion(String nombre) {
+        ConexionBD conexion = new ConexionBD();
+        MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
+        GridFSBucket gridFSBucket = GridFSBuckets.create(conexion.mongoDatabase, "imagenes");
+
+        try {
+            // Eliminar la locación de la colección "Locaciones"
+            collection.deleteOne(Filters.eq("nombre", nombre));
+
+            // Encontrar y eliminar la imagen correspondiente en GridFS
+            GridFSFile gridFSFile = gridFSBucket.find(Filters.eq("filename", nombre + ".jpg")).first();
+            if (gridFSFile != null) {
+                gridFSBucket.delete(gridFSFile.getObjectId());
+            }
+        } finally {
+            conexion.cerrarConexion();
+        }
+    }
+
     public LocacionDTO obtenerLocacion(String nombre) {
         ConexionBD conexion = new ConexionBD();
         MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
