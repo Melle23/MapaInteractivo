@@ -68,7 +68,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 ButtonRegresoActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 60, 40));
+        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 60, 50));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_2.png"))); // NOI18N
@@ -103,7 +103,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnVerHorarioActionPerformed(evt);
             }
         });
-        jPanel2.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 170, 60));
+        jPanel2.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 170, 60));
 
         btnAjustes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAjustes.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,9 +117,9 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnAjustesActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 170, 60));
+        jPanel2.add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 170, 60));
 
-        btnEditarLocaciones.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnEditarLocaciones.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarLocaciones.setForeground(new java.awt.Color(0, 102, 255));
         btnEditarLocaciones.setText("Gestionar Locaciones");
         btnEditarLocaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -128,7 +128,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnEditarLocacionesActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, -1));
+        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 250, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cisco.png"))); // NOI18N
         jLabel1.setText("jLabel1");

@@ -75,6 +75,7 @@ public class frmMapa extends javax.swing.JFrame {
                     // Mostrar la información de la primera locación que coincide con la búsqueda
                     LocacionPOJO locacion = vLocacion.verificarLocacion(resultados.get(0));
                     mostrarInformacion(locacion);
+                   
                 }
             }
         });
