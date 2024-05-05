@@ -1,28 +1,28 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 
 /**
  *
  * @author RAUL EDUARDO GOMEZ
  */
 public final class frmMenu extends javax.swing.JFrame {
-
-    UsuarioDTO sesion;
-    ControlPresentacion control = new ControlPresentacion(sesion);
+    UsuarioPOJO sesion;
+    ControlPresentacion control;
 
     /**
      * Creates new form Ajustes
      *
      * @param usuario
      */
-    public frmMenu(UsuarioDTO usuario) {
+    public frmMenu(UsuarioPOJO usuario) {
         initComponents();
         this.sesion = usuario;
+         control = new ControlPresentacion(sesion);
         System.out.println("---------------------------------------------------------------------------"
-                         + "\nfrmMenu - Imprimiento tu sesion: " + sesion 
-                       + "\n---------------------------------------------------------------------------");
+                + "\nfrmMenu - Imprimiento tu sesion: " + sesion.getDatos().getNombre()
+                + "\n---------------------------------------------------------------------------");
         this.setVisible(true);
         this.transparenciaBoton();
 
@@ -148,8 +148,8 @@ public final class frmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAjustesActionPerformed
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed
-        control.desplegatHorario();
-        dispose();
+  control.desplegarHorario();
+      dispose();
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed

@@ -10,22 +10,22 @@ import org.bson.types.ObjectId;
  *
  * @author favel
  */
-public class LocacionDTO {
+public class LocacionPOJO {
     
     private ObjectId id;
     private String nombre;
     private String descripcion;
     private byte[] imagen;
 
-    public LocacionDTO() {
+    public LocacionPOJO() {
     }
 
-    public LocacionDTO(String nombre, String descripcion) {
+    public LocacionPOJO(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public LocacionDTO(String nombre, String descripcion, byte[] imagen) {
+    public LocacionPOJO(String nombre, String descripcion, byte[] imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;

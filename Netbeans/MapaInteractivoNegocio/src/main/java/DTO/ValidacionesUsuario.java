@@ -6,7 +6,8 @@ package DTO;
 
 import DAOS.UsuarioDAO;
 import Interfaces.VerificarUsuario;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.DatosPOJO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +21,7 @@ public class ValidacionesUsuario implements VerificarUsuario{
     }
 
     @Override
-    public UsuarioDTO verificarUsuario(String usuario, String contra) {
+    public UsuarioPOJO verificarUsuario(String usuario, String contra) {
        if(uDAO.obtenerUsuario(usuario, contra) == null){
            JOptionPane.showMessageDialog(null,"No se encontró el usuario, vuelva a intentarlo.");
            return null;

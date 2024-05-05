@@ -6,19 +6,34 @@ import org.bson.types.ObjectId;
  *
  * @author Admin
  */
-public class UsuarioDTO {
+public class UsuarioPOJO {
 
     private ObjectId id;
     private String usuario;
     private String contraseña;
-
-    public UsuarioDTO() {
+    private DatosPOJO datos;
+    public UsuarioPOJO() {
     };
 
-    public UsuarioDTO(String usuario, String contraseña) {
+    public UsuarioPOJO(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
+
+    public DatosPOJO getDatos() {
+        return datos;
+    }
+
+    public void setDatos(DatosPOJO datos) {
+        this.datos = datos;
+    }
+
+    public UsuarioPOJO(String usuario, String contraseña, DatosPOJO datos) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.datos = datos;
+    }
+    
 
     public ObjectId getId() {
         return id;

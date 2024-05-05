@@ -2,8 +2,8 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import DTO.ValidacionesLocacion;
-import com.mycompany.mapainteractivopersistencia.LocacionDTO;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.LocacionPOJO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 
 /**
  *
@@ -11,15 +11,15 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public class DlgRegistroLocacion extends javax.swing.JFrame {
 
-    UsuarioDTO sesionUsuario;
+    UsuarioPOJO sesionUsuario;
     ControlPresentacion control = new ControlPresentacion(sesionUsuario);
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
-    LocacionDTO sesionLocacion = new LocacionDTO();
+    LocacionPOJO sesionLocacion = new LocacionPOJO();
     
     /**
      * Creates new form DlgRegistroLocacion
      */
-    public DlgRegistroLocacion(UsuarioDTO usuario) {
+    public DlgRegistroLocacion(UsuarioPOJO usuario) {
         initComponents();
         this.setVisible(true);
         this.sesionUsuario = usuario;

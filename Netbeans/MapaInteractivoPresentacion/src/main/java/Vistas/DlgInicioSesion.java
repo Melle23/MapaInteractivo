@@ -2,8 +2,12 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import DTO.ValidacionesUsuario;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -13,15 +17,61 @@ public class DlgInicioSesion extends javax.swing.JDialog {
 
     ControlPresentacion control;
     ValidacionesUsuario vUsuario = new ValidacionesUsuario();
-    UsuarioDTO sesion = new UsuarioDTO();
+    UsuarioPOJO sesion = new UsuarioPOJO();
 
     public DlgInicioSesion() {
         initComponents();
         this.setVisible(true);
         this.transparenciaBoton();
-        ControlPresentacion control = new ControlPresentacion(sesion);
+        this.configurarCamposTexto();
+       control = new ControlPresentacion(sesion);
     }
+public void configurarCamposTexto() {
+    // Configuración del campo de contraseña
+    txtContrasena.setEchoChar((char) 0); // Para que el texto se muestre normalmente
+    txtContrasena.setText("Ingrese su contraseña");
+    txtContrasena.setForeground(Color.GRAY);
+    txtContrasena.addFocusListener(new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            if (String.valueOf(txtContrasena.getPassword()).equals("Ingrese su contraseña")) {
+                txtContrasena.setText("");
+                txtContrasena.setForeground(Color.BLACK);
+                txtContrasena.setEchoChar('*'); 
+            }
+        }
 
+        @Override
+        public void focusLost(FocusEvent e) {
+            if (String.valueOf(txtContrasena.getPassword()).isEmpty()) {
+                txtContrasena.setEchoChar((char) 0);
+                txtContrasena.setForeground(Color.GRAY);
+                txtContrasena.setText("Ingrese su contraseña");
+            }
+        }
+    });
+
+    // Configuración del campo de usuario
+    txtUsuario.setText("Ingrese su ID...");
+    txtUsuario.setForeground(Color.GRAY);
+    txtUsuario.addFocusListener(new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            if (txtUsuario.getText().equals("Ingrese su ID...")) {
+                txtUsuario.setText("");
+                txtUsuario.setForeground(Color.BLACK);
+            }
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            if (txtUsuario.getText().isEmpty()) {
+                txtUsuario.setText("Ingrese su ID...");
+                txtUsuario.setForeground(Color.GRAY);
+            }
+        }
+    });
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +106,7 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         btnRegreso.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnRegreso.setForeground(new java.awt.Color(255, 255, 255));
         btnRegreso.setText("Salir");
-        btnRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresoActionPerformed(evt);
@@ -74,7 +124,7 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         btnSinConexin.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnSinConexin.setForeground(new java.awt.Color(255, 255, 255));
         btnSinConexin.setText("Ver mapa sin conexion");
-        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSinConexin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSinConexinActionPerformed(evt);
@@ -86,7 +136,7 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         btnIniciarSesion2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnIniciarSesion2.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion2.setText("INICIAR SESIÓN");
-        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnIniciarSesion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesion2ActionPerformed(evt);
@@ -98,9 +148,11 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("USUARIO:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
-
-        txtContrasena.setText("jPasswordField1");
         jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 190, 30));
+
+        txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        txtUsuario.setText("Ingrese su id...");
+        txtUsuario.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 190, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N

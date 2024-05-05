@@ -5,7 +5,7 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 
 /**
  *
@@ -13,13 +13,13 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public class DlgMenuLocaciones extends javax.swing.JFrame {
 
-    UsuarioDTO sesion = new UsuarioDTO();
+    UsuarioPOJO sesion = new UsuarioPOJO();
     ControlPresentacion control = new ControlPresentacion(sesion);
     
     /**
      * Creates new form DlgEdicionLocaciones
      */
-    public DlgMenuLocaciones(UsuarioDTO usuario) {
+    public DlgMenuLocaciones(UsuarioPOJO usuario) {
         initComponents();
         this.sesion = usuario;
         System.out.println("---------------------------------------------------------------------------"

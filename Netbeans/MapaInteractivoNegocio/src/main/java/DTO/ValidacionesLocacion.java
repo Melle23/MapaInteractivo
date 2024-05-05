@@ -5,7 +5,7 @@
 package DTO;
 
 import DAOS.LocacionDAO;
-import com.mycompany.mapainteractivopersistencia.LocacionDTO;
+import com.mycompany.mapainteractivopersistencia.LocacionPOJO;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
@@ -21,8 +21,8 @@ public class ValidacionesLocacion {
     public ValidacionesLocacion() {
     }
 
-    public LocacionDTO registrarLocacion(String nombre, String descripcion) {
-        LocacionDTO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
+    public LocacionPOJO registrarLocacion(String nombre, String descripcion) {
+        LocacionPOJO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
 
         if (NuevaLocacion == null) {
             return NuevaLocacion;
@@ -32,11 +32,11 @@ public class ValidacionesLocacion {
         return null;
     }
 
-    public LocacionDTO verificarLocacion(String nombre) {
-        LocacionDTO locacion = lDAO.obtenerLocacion(nombre);
+    public LocacionPOJO verificarLocacion(String nombre) {
+        LocacionPOJO locacion = lDAO.obtenerLocacion(nombre);
         if (locacion != null) {
             byte[] imagen = lDAO.obtenerImagenLocacion(nombre);
-            return new LocacionDTO(locacion.getNombre(), locacion.getDescripcion(), imagen);
+            return new LocacionPOJO(locacion.getNombre(), locacion.getDescripcion(), imagen);
         } else {
             System.out.println("ValidacionesLocacion: No encontro la locacion");
         }

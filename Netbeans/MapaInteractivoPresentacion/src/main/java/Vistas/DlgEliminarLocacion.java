@@ -5,7 +5,7 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 
 /**
  *
@@ -13,7 +13,7 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public class DlgEliminarLocacion extends javax.swing.JFrame {
 
-    UsuarioDTO sesion;
+    UsuarioPOJO sesion;
     ControlPresentacion control = new ControlPresentacion(sesion);
     
     /**

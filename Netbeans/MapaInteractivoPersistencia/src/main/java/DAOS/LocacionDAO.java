@@ -8,7 +8,7 @@ import ConexionBD.ConexionBD;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
-import com.mycompany.mapainteractivopersistencia.LocacionDTO;
+import com.mycompany.mapainteractivopersistencia.LocacionPOJO;
 import org.bson.Document;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
@@ -40,7 +40,7 @@ public class LocacionDAO {
      * @param descripcion
      * @return
      */
-    public LocacionDTO RegistrarLocacion(String nombre, String descripcion) {
+    public LocacionPOJO RegistrarLocacion(String nombre, String descripcion) {
         ConexionBD conexion = new ConexionBD();
         MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
 
@@ -79,14 +79,14 @@ public class LocacionDAO {
         }
     }
 
-    public LocacionDTO obtenerLocacion(String nombre) {
+    public LocacionPOJO obtenerLocacion(String nombre) {
         ConexionBD conexion = new ConexionBD();
         MongoCollection<Document> collection = conexion.obtenerColeccion("Locaciones");
 
         try {
             Document locacionEncontrada = collection.find(Filters.eq("nombre", nombre)).first();
             if (locacionEncontrada != null) {
-                return new LocacionDTO(locacionEncontrada.getString("nombre"), locacionEncontrada.getString("descripcion"));
+                return new LocacionPOJO(locacionEncontrada.getString("nombre"), locacionEncontrada.getString("descripcion"));
             }
         } finally {
             conexion.cerrarConexion();

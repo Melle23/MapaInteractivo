@@ -7,16 +7,16 @@ import Vistas.DlgInicioSesion;
 import Vistas.DlgRegistroLocacion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 
 /**
  *
  * @author molin
  */
 public class ControlPresentacion {
-UsuarioDTO sesion = new UsuarioDTO();
+UsuarioPOJO sesion = new UsuarioPOJO();
 
-    public ControlPresentacion(UsuarioDTO sesion) {
+    public ControlPresentacion(UsuarioPOJO sesion) {
         this.sesion = sesion;
     }
 
@@ -38,7 +38,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         DlgInicioSesion inicioSesion = new DlgInicioSesion();
     }
     
-    public void desplegatHorario(){
+    public void desplegarHorario(){
         DlgHorario horario = new DlgHorario(sesion);
     }
     

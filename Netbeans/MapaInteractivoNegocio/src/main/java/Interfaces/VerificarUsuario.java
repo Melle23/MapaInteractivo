@@ -4,7 +4,8 @@
  */
 package Interfaces;
 
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.DatosPOJO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
 
 /**
  *
@@ -12,5 +13,5 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public interface VerificarUsuario {
     
-    public UsuarioDTO verificarUsuario(String usuario, String contra);
+    public UsuarioPOJO verificarUsuario(String usuario, String contra);
 }

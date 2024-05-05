@@ -1,7 +1,9 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import com.mycompany.mapainteractivopersistencia.DatosPOJO;
+import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -9,13 +11,21 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public class DlgHorario extends javax.swing.JDialog {
 
-    UsuarioDTO sesion = new UsuarioDTO();
-   ControlPresentacion control = new ControlPresentacion(sesion);
+    UsuarioPOJO sesion;
+    ControlPresentacion control;
+    String imagePath;
+    String absolutePath;
+    ImageIcon icon;
 
-    public DlgHorario(UsuarioDTO usuario) {
+    public DlgHorario(UsuarioPOJO usuario) {
         initComponents();
-        setVisible(true);
- this.sesion = usuario;
+        this.sesion = usuario;
+        control = new ControlPresentacion(usuario);
+        System.out.println("---------------------------------------------------------------------------"
+                + "\nfrmHorario - Imprimiento tu sesion: " + sesion
+                + "\n---------------------------------------------------------------------------");
+        this.setVisible(true);
+        this.desplegarHorario();
     }
 
     /**
@@ -27,14 +37,17 @@ public class DlgHorario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        imagenHorario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         ButtonRegreso = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+
+        jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ver Horario");
-        setPreferredSize(new java.awt.Dimension(880, 620));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -53,6 +66,8 @@ public class DlgHorario extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,16 +76,21 @@ public class DlgHorario extends javax.swing.JDialog {
                 .addGap(867, 867, 867)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(301, 301, 301)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(301, 301, 301)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(19, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(20, Short.MAX_VALUE)))
+                    .addComponent(imagenHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,17 +99,18 @@ public class DlgHorario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                        .addGap(500, 500, 500))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(113, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(41, Short.MAX_VALUE)))
+                    .addContainerGap(88, Short.MAX_VALUE)
+                    .addComponent(imagenHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(44, Short.MAX_VALUE)))
         );
 
         pack();
@@ -101,12 +122,38 @@ public class DlgHorario extends javax.swing.JDialog {
         control.deplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
+    private void desplegarHorario() {
+
+        String nombre = sesion.getDatos().getNombre();
+        switch (nombre) {
+            case "Roberto Favela":
+                break;
+            case "Josue Gomez":
+                System.out.println("Desplegando horario de josue");
+                imagePath = "/imagenes/horarioJosue.png";
+                absolutePath = getClass().getResource(imagePath).getPath();
+                icon = new ImageIcon(absolutePath);
+                imagenHorario.setIcon(icon);
+                break;
+            case "Adriana Gutierrez":
+                imagePath = "/imagenes/horarioAdriana.png";
+                absolutePath = getClass().getResource(imagePath).getPath();
+                icon = new ImageIcon(absolutePath);
+                imagenHorario.setIcon(icon);
+                break;
+            default:
+                System.out.println("no tienes la sesión iniciada :v.");
+                break;
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel imagenHorario;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
