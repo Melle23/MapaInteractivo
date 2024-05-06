@@ -6,8 +6,8 @@ package DTO;
 
 import DAOS.UsuarioDAO;
 import Interfaces.VerificarUsuario;
-import com.mycompany.mapainteractivopersistencia.DatosPOJO;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.DatosPOJO;
+import POJOs.UsuarioPOJO;
 import javax.swing.JOptionPane;
 
 /**

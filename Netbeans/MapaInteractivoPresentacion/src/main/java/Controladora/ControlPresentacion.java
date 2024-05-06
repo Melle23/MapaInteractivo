@@ -7,7 +7,7 @@ import Vistas.DlgInicioSesion;
 import Vistas.DlgRegistroLocacion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.UsuarioPOJO;
 
 /**
  *

@@ -1,8 +1,8 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import com.mycompany.mapainteractivopersistencia.DatosPOJO;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.DatosPOJO;
+import POJOs.UsuarioPOJO;
 import javax.swing.ImageIcon;
 
 /**

@@ -5,7 +5,7 @@
 package DTO;
 
 import DAOS.LocacionDAO;
-import com.mycompany.mapainteractivopersistencia.LocacionPOJO;
+import POJOs.LocacionPOJO;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;

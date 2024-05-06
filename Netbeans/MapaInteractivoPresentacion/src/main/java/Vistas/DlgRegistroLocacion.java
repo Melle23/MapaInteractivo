@@ -2,8 +2,8 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import DTO.ValidacionesLocacion;
-import com.mycompany.mapainteractivopersistencia.LocacionPOJO;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.LocacionPOJO;
+import POJOs.UsuarioPOJO;
 
 /**
  *

@@ -2,7 +2,7 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import DTO.ValidacionesUsuario;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.UsuarioPOJO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;

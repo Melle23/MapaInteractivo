@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.UsuarioPOJO;
 
 /**
  *

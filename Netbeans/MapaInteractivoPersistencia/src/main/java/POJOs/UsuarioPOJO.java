@@ -1,4 +1,4 @@
-package com.mycompany.mapainteractivopersistencia;
+package POJOs;
 
 import org.bson.types.ObjectId;
 

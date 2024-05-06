@@ -4,8 +4,8 @@
  */
 package Interfaces;
 
-import com.mycompany.mapainteractivopersistencia.DatosPOJO;
-import com.mycompany.mapainteractivopersistencia.UsuarioPOJO;
+import POJOs.DatosPOJO;
+import POJOs.UsuarioPOJO;
 
 /**
  *
