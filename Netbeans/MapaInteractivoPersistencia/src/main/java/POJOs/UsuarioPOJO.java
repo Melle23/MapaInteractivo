@@ -11,6 +11,7 @@ public class UsuarioPOJO {
     private ObjectId id;
     private String usuario;
     private String contraseña;
+    private boolean nivelAuditoria;
     private DatosPOJO datos;
     public UsuarioPOJO() {
     };
@@ -32,6 +33,22 @@ public class UsuarioPOJO {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.datos = datos;
+    }
+
+    public UsuarioPOJO(String usuario, String contraseña, boolean nivelAuditoria, DatosPOJO datos) {
+        this.id = id;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.nivelAuditoria = nivelAuditoria;
+        this.datos = datos;
+    }
+
+    public boolean isNivelAuditoria() {
+        return nivelAuditoria;
+    }
+
+    public void setNivelAuditoria(boolean nivelAuditoria) {
+        this.nivelAuditoria = nivelAuditoria;
     }
     
 

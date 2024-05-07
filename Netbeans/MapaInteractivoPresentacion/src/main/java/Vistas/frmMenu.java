@@ -145,7 +145,7 @@ public final class frmMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 public void verificarAdministrador(){
-    if(sesion.getUsuario().equals("admin")){
+    if(sesion.isNivelAuditoria()){
         System.out.println("si es admin");
         btnEditarLocaciones.setVisible(true);
     }else{

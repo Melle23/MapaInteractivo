@@ -6,6 +6,7 @@ import POJOs.UsuarioPOJO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import POJOs.DatosPOJO;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
 
 /**
@@ -19,36 +20,38 @@ public class UsuarioDAO implements UsuariosDAO{
     public UsuarioDAO() {
     }
 
- public UsuarioPOJO obtenerUsuario(String usuario, String contra) {
-         conexion = new ConexionBD();
-        MongoCollection<Document> collection = conexion.obtenerColeccion("Personas");
+    @Override
+   public UsuarioPOJO obtenerUsuario(String usuario, String contra) {
+    ConexionBD conexion = new ConexionBD();
+    MongoCollection<Document> collection = conexion.obtenerColeccion("Personas");
 
-        try {
+    try {
+        Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario))
+                                                .projection(Projections.fields(
+                                                        Projections.include("contrasena", "nivelAuditoria", "datos"),
+                                                        Projections.excludeId()))
+                                                .first();
 
-            Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario)).projection(new Document("contrasena", 1)).first();
+        if (usuarioEncontrado != null) {
+            String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
+            boolean nivelAuditoria = usuarioEncontrado.getBoolean("nivelAuditoria", false); // Establecer un valor por defecto si nivelAuditoria es null
+            if (contraseñaAlmacenada.equals(contra)) {
+                Document datosUsuarioDoc = usuarioEncontrado.get("datos", Document.class);
 
-            if (usuarioEncontrado != null) {
-                String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
+                DatosPOJO datosUsuario = new DatosPOJO(
+                        datosUsuarioDoc.getString("nombre"),
+                        datosUsuarioDoc.getString("carreraUniversitaria"),
+                        datosUsuarioDoc.getInteger("semestre")
+                );
 
-                if (contraseñaAlmacenada.equals(contra)) {
-
-                    Document datosUsuarioDoc = collection.find(Filters.eq("usuario", usuario))
-                            .projection(new Document("datos", 1))
-                            .first()
-                            .get("datos", Document.class);
-
-                    DatosPOJO datosUsuario = new DatosPOJO(
-                            datosUsuarioDoc.getString("nombre"),
-                            datosUsuarioDoc.getString("carreraUniversitaria"),
-                            datosUsuarioDoc.getInteger("semestre")
-                    );
-
-                    return new UsuarioPOJO(usuario, contra, datosUsuario);
-                }
+                return new UsuarioPOJO(usuario, contra, nivelAuditoria, datosUsuario);
             }
-        } finally {
-            conexion.cerrarConexion();
         }
-        return null;
+    } finally {
+        conexion.cerrarConexion();
     }
+    return null;
+}
+
+
 }
