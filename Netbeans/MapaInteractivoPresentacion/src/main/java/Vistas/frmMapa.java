@@ -477,7 +477,7 @@ public class frmMapa extends javax.swing.JFrame {
         });
         jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 30, 20));
 
-        Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.jpg"))); // NOI18N
+        Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.png"))); // NOI18N
         jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 450));
 
         jSeparator2.setForeground(new java.awt.Color(0, 102, 153));

@@ -22,6 +22,7 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
     public ValidacionesLocacion() {
     }
 
+    @Override
     public LocacionPOJO registrarLocacion(String nombre, String descripcion) {
         LocacionPOJO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
 
@@ -33,6 +34,7 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
         return null;
     }
 
+    @Override
     public LocacionPOJO verificarLocacion(String nombre) {
         LocacionPOJO locacion = lDAO.obtenerLocacion(nombre);
         if (locacion != null) {
@@ -44,6 +46,7 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
         return null;
     }
 
+    @Override
     public List<String> buscarLocaciones(String busqueda) {
         List<String> nombresLocaciones = lDAO.obtenerNombresLocaciones();
 
@@ -53,6 +56,16 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
                 .collect(Collectors.toList());
 
         return resultadosBusqueda;
+    }
+
+    @Override
+    public void eliminarLocacion(String nombre) {
+     if(lDAO.obtenerLocacion(nombre) != null){
+         lDAO.eliminarLocacion(nombre);
+         JOptionPane.showMessageDialog(null, "Locacion eliminada con exito.");
+     }else{
+         JOptionPane.showMessageDialog(null, "La locacion no existe, por lo que no puede ser eliminada.");
+     }  
     }
 
 }

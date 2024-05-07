@@ -124,7 +124,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        control.deplegarMenu();
+        control.desplegarMenuLocaciones();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

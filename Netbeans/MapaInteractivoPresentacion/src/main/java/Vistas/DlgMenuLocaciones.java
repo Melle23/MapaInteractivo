@@ -138,7 +138,8 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_bntRegistroActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+control.desplegarEliminarLocacion();
+dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

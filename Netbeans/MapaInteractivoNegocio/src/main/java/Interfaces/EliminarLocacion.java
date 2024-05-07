@@ -6,8 +6,9 @@ package Interfaces;
 
 /**
  *
- * @author Admin
+ * @author JOSUE GOMEZ
  */
-public interface ValidacionesLocaciones extends RegistrarLocacion,BuscarLocaciones,VerificarLocacion,EliminarLocacion{
+public interface EliminarLocacion {
     
+      public void eliminarLocacion(String nombre);
 }

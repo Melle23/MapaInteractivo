@@ -208,9 +208,9 @@ public void configurarCamposTexto() {
                 + "\n---------------------------------------------------------------------------");
         if (sesion != null) {
 
-            dispose();
             control = new ControlPresentacion(sesion);
             control.desplegarMapa();
+             this.dispose();
         }
     }//GEN-LAST:event_btnIniciarSesion2ActionPerformed
 

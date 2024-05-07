@@ -18,6 +18,7 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
     
     /**
      * Creates new form DlgEditarLocacion
+     * @param usuario
      */
     public DlgEditarLocacion(UsuarioPOJO usuario) {
         initComponents();

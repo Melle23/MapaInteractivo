@@ -8,6 +8,7 @@ import Vistas.DlgRegistroLocacion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
 import POJOs.UsuarioPOJO;
+import Vistas.DlgEliminarLocacion;
 
 /**
  *
@@ -19,6 +20,10 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     public ControlPresentacion(UsuarioPOJO sesion) {
         this.sesion = sesion;
     }
+
+    public ControlPresentacion() {
+    }
+    
 
     public void desplegarMapa() {
         frmMapa mapa = new frmMapa(sesion);
@@ -52,5 +57,9 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     
     public void desplegarMenuLocaciones() {
         DlgMenuLocaciones Locaciones = new DlgMenuLocaciones(sesion);
+    }
+    
+    public void desplegarEliminarLocacion(){
+        DlgEliminarLocacion eliminar = new DlgEliminarLocacion(sesion);
     }
 }
