@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import DTO.ValidacionesUsuario;
+import Validaciones.ValidacionesUsuario;
 import POJOs.UsuarioPOJO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;

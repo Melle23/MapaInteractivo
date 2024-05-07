@@ -13,8 +13,8 @@ import POJOs.UsuarioPOJO;
  */
 public class DlgMenuLocaciones extends javax.swing.JFrame {
 
-    UsuarioPOJO sesion = new UsuarioPOJO();
-    ControlPresentacion control = new ControlPresentacion(sesion);
+    UsuarioPOJO sesion;
+    ControlPresentacion control;
     
     /**
      * Creates new form DlgEdicionLocaciones
@@ -26,6 +26,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
         System.out.println("---------------------------------------------------------------------------"
                          + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion 
                        + "\n---------------------------------------------------------------------------");
+        control = new ControlPresentacion(sesion);
         this.setVisible(true);
     }
       public void transparenciaBoton() {

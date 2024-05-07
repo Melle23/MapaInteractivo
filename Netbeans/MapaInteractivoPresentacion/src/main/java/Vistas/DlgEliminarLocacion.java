@@ -14,13 +14,16 @@ import POJOs.UsuarioPOJO;
 public class DlgEliminarLocacion extends javax.swing.JFrame {
 
     UsuarioPOJO sesion;
-    ControlPresentacion control = new ControlPresentacion(sesion);
+    ControlPresentacion control;
     
     /**
      * Creates new form DlgEliminarLocacion
      */
-    public DlgEliminarLocacion() {
+    public DlgEliminarLocacion(UsuarioPOJO usuario) {
         initComponents();
+        this.sesion = usuario;
+        control = new ControlPresentacion(sesion);
+        
     }
 
     /**

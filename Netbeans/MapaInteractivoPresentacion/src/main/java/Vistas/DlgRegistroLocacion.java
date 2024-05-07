@@ -1,7 +1,7 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import DTO.ValidacionesLocacion;
+import Validaciones.ValidacionesLocacion;
 import POJOs.LocacionPOJO;
 import POJOs.UsuarioPOJO;
 

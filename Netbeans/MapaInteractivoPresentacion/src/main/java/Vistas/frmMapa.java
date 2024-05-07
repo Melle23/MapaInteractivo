@@ -2,7 +2,7 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import DAOS.LocacionDAO;
-import DTO.ValidacionesLocacion;
+import Validaciones.ValidacionesLocacion;
 import POJOs.LocacionPOJO;
 import POJOs.UsuarioPOJO;
 import java.awt.event.ActionEvent;

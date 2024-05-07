@@ -9,13 +9,14 @@ import POJOs.UsuarioPOJO;
  */
 public class DlgAjustes extends javax.swing.JDialog {
 
-    UsuarioPOJO sesion = new UsuarioPOJO();
-    ControlPresentacion control = new ControlPresentacion(sesion);
+    UsuarioPOJO sesion;
+    ControlPresentacion control;
 
     public DlgAjustes(UsuarioPOJO usuario) {
         initComponents();
         setVisible(true);
         this.sesion = usuario;
+        control = new ControlPresentacion(sesion);
 
     }
 

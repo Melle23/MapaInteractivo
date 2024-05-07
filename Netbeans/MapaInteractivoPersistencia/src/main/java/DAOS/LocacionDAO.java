@@ -42,7 +42,7 @@ public class LocacionDAO {
      * @return
      */
     public LocacionPOJO RegistrarLocacion(String nombre, String descripcion) {
-         ConexionBD conexion = new ConexionBD();
+          conexion = new ConexionBD();
         try {
             Document locacionNueva = new Document("nombre", nombre)
                     .append("descripcion", descripcion);
@@ -60,7 +60,7 @@ public class LocacionDAO {
      * @param nombre de la locacion
      */
     public void eliminarLocacion(String nombre) {
-         ConexionBD conexion = new ConexionBD();
+          conexion = new ConexionBD();
         try {
             // Eliminar la locación de la colección "Locaciones"
             collection.deleteOne(Filters.eq("nombre", nombre));
@@ -76,7 +76,7 @@ public class LocacionDAO {
     }
 
     public LocacionPOJO obtenerLocacion(String nombre) {
-         ConexionBD conexion = new ConexionBD();
+          conexion = new ConexionBD();
         try {
             Document locacionEncontrada = collection.find(Filters.eq("nombre", nombre)).first();
             if (locacionEncontrada != null) {
@@ -89,7 +89,7 @@ public class LocacionDAO {
     }
 
     public byte[] obtenerImagenLocacion(String nombre) {
-        ConexionBD conexion = new ConexionBD();
+         conexion = new ConexionBD();
        
         try {
             GridFSFile gridFSFile = gridFSBucket.find(Filters.eq("filename", nombre + ".jpg")).first();
@@ -105,7 +105,7 @@ public class LocacionDAO {
     }
 
     public List<String> obtenerNombresLocaciones() {
-         ConexionBD conexion = new ConexionBD();
+          conexion = new ConexionBD();
         List<String> nombres = new ArrayList<>();
 
         try {

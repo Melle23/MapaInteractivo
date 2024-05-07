@@ -1,6 +1,7 @@
 package DAOS;
 
 import ConexionBD.ConexionBD;
+import Interfaces.UsuariosDAO;
 import POJOs.UsuarioPOJO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -11,7 +12,7 @@ import org.bson.Document;
  *
  * @author josue
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements UsuariosDAO{
 
     ConexionBD conexion = new ConexionBD();
 
@@ -19,7 +20,7 @@ public class UsuarioDAO {
     }
 
  public UsuarioPOJO obtenerUsuario(String usuario, String contra) {
-        ConexionBD conexion = new ConexionBD();
+         conexion = new ConexionBD();
         MongoCollection<Document> collection = conexion.obtenerColeccion("Personas");
 
         try {

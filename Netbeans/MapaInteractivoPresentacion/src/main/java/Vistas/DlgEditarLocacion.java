@@ -14,13 +14,15 @@ import POJOs.UsuarioPOJO;
 public class DlgEditarLocacion extends javax.swing.JFrame {
 
     UsuarioPOJO sesion;
-    ControlPresentacion control = new ControlPresentacion(sesion);
+    ControlPresentacion control;
     
     /**
      * Creates new form DlgEditarLocacion
      */
-    public DlgEditarLocacion() {
+    public DlgEditarLocacion(UsuarioPOJO usuario) {
         initComponents();
+        this.sesion = usuario;
+         control = new ControlPresentacion(sesion);
     }
 
     /**

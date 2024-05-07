@@ -5,7 +5,7 @@ import POJOs.UsuarioPOJO;
 
 /**
  *
- * @author RAUL EDUARDO GOMEZ
+ * @author JOSUE GOMEZ
  */
 public final class frmMenu extends javax.swing.JFrame {
     UsuarioPOJO sesion;
@@ -23,8 +23,11 @@ public final class frmMenu extends javax.swing.JFrame {
         System.out.println("---------------------------------------------------------------------------"
                 + "\nfrmMenu - Imprimiento tu sesion: " + sesion.getDatos().getNombre()
                 + "\n---------------------------------------------------------------------------");
+      
         this.setVisible(true);
-        this.transparenciaBoton();
+        this.transparenciaBoton(); 
+        this.verificarAdministrador();
+        
 
     }
 
@@ -141,7 +144,15 @@ public final class frmMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+public void verificarAdministrador(){
+    if(sesion.getUsuario().equals("admin")){
+        System.out.println("si es admin");
+        btnEditarLocaciones.setVisible(true);
+    }else{
+        System.out.println("no entró");
+        btnEditarLocaciones.setVisible(false);
+    }
+}
     private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
         control.desplegarAjustes();
         dispose();
@@ -158,7 +169,7 @@ public final class frmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        control.desplegarMapa();
+        control.desplegarInicioSesion();
         dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
