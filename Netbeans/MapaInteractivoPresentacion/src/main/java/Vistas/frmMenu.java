@@ -68,7 +68,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 ButtonRegresoActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 60, 40));
+        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 50, 40));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_2.png"))); // NOI18N
@@ -128,7 +128,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnRegistrarLocacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 240, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cisco.png"))); // NOI18N
         jLabel1.setText("jLabel1");

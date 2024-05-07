@@ -531,6 +531,7 @@ public class frmMapa extends javax.swing.JFrame {
         });
         jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 77, -1));
 
+        contenido.setBackground(new java.awt.Color(255, 255, 255));
         contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         contenido.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 130));
 
