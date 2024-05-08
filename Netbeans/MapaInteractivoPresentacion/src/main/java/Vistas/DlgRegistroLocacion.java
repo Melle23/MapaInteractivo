@@ -1,9 +1,9 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
-import DTO.ValidacionesLocacion;
-import com.mycompany.mapainteractivopersistencia.LocacionDTO;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import Validaciones.ValidacionesLocacion;
+import POJOs.LocacionPOJO;
+import POJOs.UsuarioPOJO;
 
 /**
  *
@@ -11,15 +11,15 @@ import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
  */
 public class DlgRegistroLocacion extends javax.swing.JFrame {
 
-    UsuarioDTO sesionUsuario;
+    UsuarioPOJO sesionUsuario;
     ControlPresentacion control = new ControlPresentacion(sesionUsuario);
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
-    LocacionDTO sesionLocacion = new LocacionDTO();
+    LocacionPOJO sesionLocacion = new LocacionPOJO();
     
     /**
      * Creates new form DlgRegistroLocacion
      */
-    public DlgRegistroLocacion(UsuarioDTO usuario) {
+    public DlgRegistroLocacion(UsuarioPOJO usuario) {
         initComponents();
         this.setVisible(true);
         this.sesionUsuario = usuario;
@@ -56,13 +56,13 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 60, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 60, 60));
 
         lblLogo.setBackground(new java.awt.Color(255, 255, 255));
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -75,28 +75,30 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Descripción de locación:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 280, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 280, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Nombre de locación:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 280, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 280, 30));
 
         nombreLocacion.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
-        jPanel2.add(nombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 320, -1));
+        jPanel2.add(nombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 320, -1));
 
         descripcionLocacion.setColumns(20);
         descripcionLocacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         descripcionLocacion.setRows(5);
         jScrollPane1.setViewportView(descripcionLocacion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 320, 170));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 320, 170));
 
         btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         btnRegistrarLocacion.setText("Registrar Locación");
-        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnRegistrarLocacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarLocacionActionPerformed(evt);
@@ -122,7 +124,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        control.deplegarMenu();
+        control.desplegarMenuLocaciones();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

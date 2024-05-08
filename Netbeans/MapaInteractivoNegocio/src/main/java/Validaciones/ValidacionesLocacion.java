@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package Validaciones;
 
 import DAOS.LocacionDAO;
-import com.mycompany.mapainteractivopersistencia.LocacionDTO;
+import Interfaces.ValidacionesLocaciones;
+import POJOs.LocacionPOJO;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
@@ -14,15 +15,16 @@ import javax.swing.JOptionPane;
  *
  * @author favel
  */
-public class ValidacionesLocacion {
+public class ValidacionesLocacion implements ValidacionesLocaciones {
 
     LocacionDAO lDAO = new LocacionDAO();
 
     public ValidacionesLocacion() {
     }
 
-    public LocacionDTO registrarLocacion(String nombre, String descripcion) {
-        LocacionDTO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
+    @Override
+    public LocacionPOJO registrarLocacion(String nombre, String descripcion) {
+        LocacionPOJO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
 
         if (NuevaLocacion == null) {
             return NuevaLocacion;
@@ -32,17 +34,19 @@ public class ValidacionesLocacion {
         return null;
     }
 
-    public LocacionDTO verificarLocacion(String nombre) {
-        LocacionDTO locacion = lDAO.obtenerLocacion(nombre);
+    @Override
+    public LocacionPOJO verificarLocacion(String nombre) {
+        LocacionPOJO locacion = lDAO.obtenerLocacion(nombre);
         if (locacion != null) {
             byte[] imagen = lDAO.obtenerImagenLocacion(nombre);
-            return new LocacionDTO(locacion.getNombre(), locacion.getDescripcion(), imagen);
+            return new LocacionPOJO(locacion.getNombre(), locacion.getDescripcion(), imagen);
         } else {
             System.out.println("ValidacionesLocacion: No encontro la locacion");
         }
         return null;
     }
 
+    @Override
     public List<String> buscarLocaciones(String busqueda) {
         List<String> nombresLocaciones = lDAO.obtenerNombresLocaciones();
 
@@ -52,6 +56,16 @@ public class ValidacionesLocacion {
                 .collect(Collectors.toList());
 
         return resultadosBusqueda;
+    }
+
+    @Override
+    public void eliminarLocacion(String nombre) {
+     if(lDAO.obtenerLocacion(nombre) != null){
+         lDAO.eliminarLocacion(nombre);
+         JOptionPane.showMessageDialog(null, "Locacion eliminada con exito.");
+     }else{
+         JOptionPane.showMessageDialog(null, "La locacion no existe, por lo que no puede ser eliminada.");
+     }  
     }
 
 }

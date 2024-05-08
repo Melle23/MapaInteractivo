@@ -1,23 +1,29 @@
 package Controladora;
 
 import Vistas.DlgAjustes;
+import Vistas.DlgMenuLocaciones;
 import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
 import Vistas.DlgRegistroLocacion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import POJOs.UsuarioPOJO;
+import Vistas.DlgEliminarLocacion;
 
 /**
  *
  * @author molin
  */
 public class ControlPresentacion {
-UsuarioDTO sesion = new UsuarioDTO();
+UsuarioPOJO sesion = new UsuarioPOJO();
 
-    public ControlPresentacion(UsuarioDTO sesion) {
+    public ControlPresentacion(UsuarioPOJO sesion) {
         this.sesion = sesion;
     }
+
+    public ControlPresentacion() {
+    }
+    
 
     public void desplegarMapa() {
         frmMapa mapa = new frmMapa(sesion);
@@ -37,7 +43,7 @@ UsuarioDTO sesion = new UsuarioDTO();
         DlgInicioSesion inicioSesion = new DlgInicioSesion();
     }
     
-    public void desplegatHorario(){
+    public void desplegarHorario(){
         DlgHorario horario = new DlgHorario(sesion);
     }
     
@@ -47,5 +53,13 @@ UsuarioDTO sesion = new UsuarioDTO();
     
     public void desplegarRegistroLocacion() {
         DlgRegistroLocacion registro = new DlgRegistroLocacion(sesion);
+    }
+    
+    public void desplegarMenuLocaciones() {
+        DlgMenuLocaciones Locaciones = new DlgMenuLocaciones(sesion);
+    }
+    
+    public void desplegarEliminarLocacion(){
+        DlgEliminarLocacion eliminar = new DlgEliminarLocacion(sesion);
     }
 }

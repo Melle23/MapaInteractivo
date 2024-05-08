@@ -4,14 +4,15 @@
  */
 package Interfaces;
 
-import POJOs.DatosPOJO;
 import POJOs.UsuarioPOJO;
 
 /**
  *
- * @author JOSUE GOMEZ
+ * @author Admin
  */
-public interface VerificarUsuario {
+public interface UsuariosDAO {
     
-    public UsuarioPOJO verificarUsuario(String usuario, String contra);
+    public UsuarioPOJO obtenerUsuario(String usuario, String contra);
+     
+     
 }

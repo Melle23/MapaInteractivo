@@ -4,14 +4,13 @@
  */
 package Interfaces;
 
-import POJOs.DatosPOJO;
-import POJOs.UsuarioPOJO;
+import java.util.List;
 
 /**
  *
- * @author JOSUE GOMEZ
+ * @author Admin
  */
-public interface VerificarUsuario {
+public interface BuscarLocaciones {
     
-    public UsuarioPOJO verificarUsuario(String usuario, String contra);
+    public List<String> buscarLocaciones(String busqueda);
 }

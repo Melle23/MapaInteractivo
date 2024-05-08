@@ -2,9 +2,9 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import DAOS.LocacionDAO;
-import DTO.ValidacionesLocacion;
-import com.mycompany.mapainteractivopersistencia.LocacionDTO;
-import com.mycompany.mapainteractivopersistencia.UsuarioDTO;
+import Validaciones.ValidacionesLocacion;
+import POJOs.LocacionPOJO;
+import POJOs.UsuarioPOJO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -23,15 +23,15 @@ import java.util.List;
 public class frmMapa extends javax.swing.JFrame {
 
     //Gestiona la sesion iniciada
-    UsuarioDTO sesionUsuario = new UsuarioDTO();
+    UsuarioPOJO sesion;
     //Funciona para mantener una unica locacion seleccionada a la vez
     private JLabel ultimoLabelActivado = null;
     //Funciona para mantener los puntos de interes visibles a la vez
     private boolean puntosVisibles = true;
-    ControlPresentacion control = new ControlPresentacion(sesionUsuario);
+    ControlPresentacion control;
     LocacionDAO locacion = new LocacionDAO();
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
-    LocacionDTO sesionLocacion = new LocacionDTO();
+    LocacionPOJO sesionLocacion = new LocacionPOJO();
 
     /**
      * Creates new form MapaInteractivo
@@ -43,8 +43,14 @@ public class frmMapa extends javax.swing.JFrame {
         initComponents();
     }
 
-    public frmMapa(UsuarioDTO usuario) {
+    public frmMapa(UsuarioPOJO usuario) {
         initComponents();
+        this.sesion = usuario;
+        control = new ControlPresentacion(sesion);
+        this.bienvenidaSesion();
+        System.out.println("---------------------------------------------------------------------------"
+                         + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion 
+                       + "\n---------------------------------------------------------------------------");
         this.setVisible(true);
         txtBusqueda.addFocusListener(new FocusListener() {
             @Override
@@ -58,39 +64,21 @@ public class frmMapa extends javax.swing.JFrame {
             public void focusLost(FocusEvent e) {
             }
         });
-        txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                actualizar();
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                actualizar();
-            }
-
-            public void insertUpdate(DocumentEvent e) {
-                actualizar();
-            }
-
-            public void actualizar() {
-                String busqueda = txtBusqueda.getText();
-                List<String> resultados = vLocacion.buscarLocaciones(busqueda);
-                // Aquí puedes actualizar tu interfaz gráfica con los resultados de la búsqueda
-                // Por ejemplo, podrías mostrar los resultados en un JList o JComboBox
-            }
-        });
         txtBusqueda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String busqueda = txtBusqueda.getText();
                 List<String> resultados = vLocacion.buscarLocaciones(busqueda);
+                // Aquí puedes actualizar tu interfaz gráfica con los resultados de la búsqueda
+                // Por ejemplo, podrías mostrar los resultados en un JList o JComboBox
                 if (!resultados.isEmpty()) {
                     // Mostrar la información de la primera locación que coincide con la búsqueda
-                    LocacionDTO locacion = vLocacion.verificarLocacion(resultados.get(0));
+                    LocacionPOJO locacion = vLocacion.verificarLocacion(resultados.get(0));
                     mostrarInformacion(locacion);
+                   
                 }
             }
         });
-        this.sesionUsuario = usuario;
     }
 
     /**
@@ -156,6 +144,7 @@ public class frmMapa extends javax.swing.JFrame {
         NombreEdificio = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
+        lblUsuarioBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mapa ITSON");
@@ -488,7 +477,7 @@ public class frmMapa extends javax.swing.JFrame {
         });
         jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 30, 20));
 
-        Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.jpg"))); // NOI18N
+        Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.png"))); // NOI18N
         jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 450));
 
         jSeparator2.setForeground(new java.awt.Color(0, 102, 153));
@@ -502,7 +491,7 @@ public class frmMapa extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
-        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
@@ -523,7 +512,7 @@ public class frmMapa extends javax.swing.JFrame {
         btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrar.setText("Cerrar");
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -555,13 +544,16 @@ public class frmMapa extends javax.swing.JFrame {
         btnMenu.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
             }
         });
         jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+
+        lblUsuarioBienvenida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(lblUsuarioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 220, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -577,7 +569,11 @@ public class frmMapa extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+private void bienvenidaSesion(){
+    if(sesion != null){
+        lblUsuarioBienvenida.setText("Bienvenido "+sesion.getDatos().getNombre()+ "!");
+    }
+}
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         control.deplegarMenu();
         dispose();
@@ -631,7 +627,7 @@ public class frmMapa extends javax.swing.JFrame {
      *
      * @param sesionLocacion
      */
-    public void mostrarInformacion(LocacionDTO sesionLocacion) {
+    public void mostrarInformacion(LocacionPOJO sesionLocacion) {
         if (sesionLocacion != null) {
             NombreEdificio.setText("");
             texto.setText("");
@@ -982,6 +978,7 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblUsuarioBienvenida;
     private javax.swing.JLabel texto;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
