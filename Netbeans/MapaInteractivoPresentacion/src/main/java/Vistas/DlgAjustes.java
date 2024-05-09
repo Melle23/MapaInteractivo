@@ -2,6 +2,7 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import POJOs.UsuarioPOJO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +18,9 @@ public class DlgAjustes extends javax.swing.JDialog {
         setVisible(true);
         this.sesion = usuario;
         control = new ControlPresentacion(sesion);
+        System.out.println("Valor de sesion: " + sesion);
+        this.usuario();
+        
 
     }
 
@@ -29,42 +33,77 @@ public class DlgAjustes extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnCerrarSesion = new javax.swing.JButton();
         ButtonRegreso = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblUsuarioBienvenida2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
+        setPreferredSize(new java.awt.Dimension(850, 550));
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrarSesion.setBackground(new java.awt.Color(231, 231, 231));
+        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(25, 111, 196));
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 230, -1));
 
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
             }
         });
+        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, 70, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-Usuario.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 186, -1));
+
+        lblUsuarioBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblUsuarioBienvenida2.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioBienvenida2.setToolTipText("");
+        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(784, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+   private void usuario(){      
+    if(sesion != null){
+         lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
+    }
+}
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
 
@@ -72,8 +111,24 @@ public class DlgAjustes extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+         String[] botones = {"Si", "No"};
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
+        if (variable == 0) {
+            control.desplegarInicioSesion();
+            dispose();
+        } else {
+            return;
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblUsuarioBienvenida2;
     // End of variables declaration//GEN-END:variables
 }

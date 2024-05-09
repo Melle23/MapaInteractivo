@@ -500,7 +500,9 @@ public class frmMapa extends javax.swing.JFrame {
         jPanel2.add(Boton_PuntosDeInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
 
         txtBusqueda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBusqueda.setForeground(new java.awt.Color(51, 51, 51));
         txtBusqueda.setText("Búsqueda...");
+        txtBusqueda.setDisabledTextColor(new java.awt.Color(0, 0, 255));
         txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBusquedaActionPerformed(evt);
@@ -518,7 +520,7 @@ public class frmMapa extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 77, -1));
+        jPanel2.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, 90, -1));
 
         contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         contenido.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 130));

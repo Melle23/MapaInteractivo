@@ -152,6 +152,7 @@ public void configurarCamposTexto() {
 
         txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
         txtUsuario.setText("Ingrese su id...");
+        txtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtUsuario.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 190, 30));
 
