@@ -114,7 +114,7 @@ public class DlgAjustes extends javax.swing.JDialog {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         // TODO add your handling code here:
          String[] botones = {"Si", "No"};
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar sesión?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
         if (variable == 0) {
             control.desplegarInicioSesion();
             dispose();
