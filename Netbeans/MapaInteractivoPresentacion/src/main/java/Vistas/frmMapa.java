@@ -491,7 +491,7 @@ public class frmMapa extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
-        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
@@ -512,7 +512,7 @@ public class frmMapa extends javax.swing.JFrame {
         btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrar.setText("Cerrar");
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -544,7 +544,7 @@ public class frmMapa extends javax.swing.JFrame {
         btnMenu.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
@@ -569,13 +569,13 @@ public class frmMapa extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-private void bienvenidaSesion(){
-    if(sesion != null){
-        lblUsuarioBienvenida.setText("Bienvenido "+sesion.getDatos().getNombre()+ "!");
+private void bienvenidaSesion() {
+        if (sesion != null) {
+            lblUsuarioBienvenida.setText("Bienvenido " + sesion.getDatos().getNombre() + "!");
+        }
     }
-}
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        control.deplegarMenu();
+        control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
 
@@ -601,7 +601,9 @@ private void bienvenidaSesion(){
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         String[] botones = {"Si", "No"};
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", 
+                "Pregunta", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,
+                null, botones, botones[0]);
         if (variable == 0) {
             dispose();
         } else {
@@ -679,7 +681,6 @@ private void bienvenidaSesion(){
             label.setIcon(null);
         }
     }
-
 
     private void CISCOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CISCOMouseClicked
         sesionLocacion = vLocacion.verificarLocacion("Cisco");

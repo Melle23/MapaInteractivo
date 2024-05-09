@@ -1,5 +1,7 @@
 package POJOs;
 
+import java.util.List;
+import java.util.Map;
 import org.bson.types.ObjectId;
 
 /**
@@ -13,8 +15,10 @@ public class UsuarioPOJO {
     private String contraseña;
     private boolean nivelAuditoria;
     private DatosPOJO datos;
+    private List<Map<String, String>> horario;
+
     public UsuarioPOJO() {
-    };
+    }
 
     public UsuarioPOJO(String usuario, String contraseña) {
         this.usuario = usuario;
@@ -36,11 +40,18 @@ public class UsuarioPOJO {
     }
 
     public UsuarioPOJO(String usuario, String contraseña, boolean nivelAuditoria, DatosPOJO datos) {
-        this.id = id;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.nivelAuditoria = nivelAuditoria; // Corregir asignación aquí
+        this.datos = datos;
+    }
+
+    public UsuarioPOJO(String usuario, String contraseña, boolean nivelAuditoria, DatosPOJO datos, List<Map<String, String>> horario) {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.nivelAuditoria = nivelAuditoria;
         this.datos = datos;
+        this.horario = horario;
     }
 
     public boolean isNivelAuditoria() {
@@ -50,7 +61,6 @@ public class UsuarioPOJO {
     public void setNivelAuditoria(boolean nivelAuditoria) {
         this.nivelAuditoria = nivelAuditoria;
     }
-    
 
     public ObjectId getId() {
         return id;
@@ -76,4 +86,11 @@ public class UsuarioPOJO {
         this.contraseña = contraseña;
     }
 
+     public List<Map<String, String>> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(List<Map<String, String>> horario) {
+        this.horario = horario;
+    }
 }

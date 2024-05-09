@@ -1,9 +1,16 @@
 package Vistas;
 
 import Controladora.ControlPresentacion;
+import DAOS.UsuarioDAO;
 import POJOs.DatosPOJO;
 import POJOs.UsuarioPOJO;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,11 +28,11 @@ public class DlgHorario extends javax.swing.JDialog {
         initComponents();
         this.sesion = usuario;
         control = new ControlPresentacion(usuario);
+        mostrarHorario();
         System.out.println("---------------------------------------------------------------------------"
-                + "\nfrmHorario - Imprimiento tu sesion: " + sesion
+                + "\nfrmHorario - Imprimiendo tu sesion: " + sesion
                 + "\n---------------------------------------------------------------------------");
         this.setVisible(true);
-        this.desplegarHorario();
     }
 
     /**
@@ -39,104 +46,98 @@ public class DlgHorario extends javax.swing.JDialog {
 
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        imagenHorario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         ButtonRegreso = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaHorario = new javax.swing.JTable();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ver Horario");
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(867, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("HORARIO");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 15, -1, 57));
 
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
             }
         });
+        getContentPane().add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 60, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(867, 867, 867)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(301, 301, 301)
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imagenHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(imagenHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
+        tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Salón", "Materia", "Hora entrada", "Hora salida"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaHorario);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, 300));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        // TODO add your handling code here:
-        control.deplegarMenu();
+        control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
-  private void desplegarHorario() {
-    String nombre = sesion.getDatos().getNombre();
-    switch (nombre) {
-        case "Roberto Favela":
-            break;
-        case "Josue Gomez":
-            System.out.println("Desplegando horario de Josue");
-            icon = new ImageIcon(getClass().getResource("/imagenes/horarioJosue.png"));
-            break;
-        case "Adriana Gutierrez":
-            icon = new ImageIcon(getClass().getResource("/imagenes/horarioAdriana.png"));
-            break;
-        default:
-            System.out.println("No tienes la sesión iniciada :v.");
-            break;
-    }
 
-    if (icon != null) {
-        imagenHorario.setIcon(icon);
-    }
-}
+    private void mostrarHorario() {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        List<Map<String, String>> horarioAleatorio = usuarioDAO.obtenerClases(sesion);
 
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Salón");
+        model.addColumn("Materia");
+        model.addColumn("Hora de Entrada");
+        model.addColumn("Hora de Salida");
+
+        for (Map<String, String> clase : horarioAleatorio) {
+            model.addRow(new Object[]{clase.get("salon"), clase.get("materia"), clase.get("hora_entrada"), clase.get("hora_salida")});
+        }
+
+        tablaHorario.setModel(model);
+        tablaHorario.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); 
+        tablaHorario.getTableHeader().setReorderingAllowed(false); 
+        tablaHorario.setDefaultEditor(Object.class, null); 
+
+        System.out.println("Datos del horario para la tabla:");
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                System.out.print(model.getValueAt(i, j) + " ");
+            }
+            System.out.println();
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
-    private javax.swing.JLabel imagenHorario;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaHorario;
     // End of variables declaration//GEN-END:variables
 }

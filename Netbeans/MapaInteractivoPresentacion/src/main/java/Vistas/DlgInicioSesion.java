@@ -124,7 +124,7 @@ public void configurarCamposTexto() {
         btnSinConexin.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnSinConexin.setForeground(new java.awt.Color(255, 255, 255));
         btnSinConexin.setText("Ver mapa sin conexion");
-        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSinConexin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSinConexin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSinConexinActionPerformed(evt);
@@ -136,7 +136,7 @@ public void configurarCamposTexto() {
         btnIniciarSesion2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnIniciarSesion2.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion2.setText("INICIAR SESIÓN");
-        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIniciarSesion2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIniciarSesion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesion2ActionPerformed(evt);

@@ -2,6 +2,7 @@ package Vistas;
 
 import Controladora.ControlPresentacion;
 import POJOs.UsuarioPOJO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,8 +28,6 @@ public final class frmMenu extends javax.swing.JFrame {
         this.setVisible(true);
         this.transparenciaBoton();
         this.verificarAdministrador();
-
-
     }
 
     /**
@@ -47,7 +46,7 @@ public final class frmMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnIniciarSesion = new javax.swing.JButton();
         btnVerHorario = new javax.swing.JButton();
-        btnAjustes = new javax.swing.JButton();
+        btnCerrarSesion = new javax.swing.JButton();
         btnEditarLocaciones = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -65,7 +64,7 @@ public final class frmMenu extends javax.swing.JFrame {
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
@@ -83,7 +82,7 @@ public final class frmMenu extends javax.swing.JFrame {
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulIS.png"))); // NOI18N
         btnIniciarSesion.setBorder(null);
-        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIniciarSesion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulISS.png"))); // NOI18N
         if (sesion == null) {
             this.setVisible(false);
@@ -93,39 +92,39 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 170, -1));
+        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 170, -1));
 
         btnVerHorario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVerHorario.setForeground(new java.awt.Color(255, 255, 255));
         btnVerHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorario.png"))); // NOI18N
         btnVerHorario.setBorder(null);
-        btnVerHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVerHorario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerHorario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorarioS.png"))); // NOI18N
         btnVerHorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerHorarioActionPerformed(evt);
             }
         });
-        jPanel2.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 170, 60));
+        jPanel2.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 170, 60));
 
-        btnAjustes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAjustes.setForeground(new java.awt.Color(255, 255, 255));
-        btnAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulA.png"))); // NOI18N
-        btnAjustes.setBorder(null);
-        btnAjustes.setBorderPainted(false);
-        btnAjustes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAjustes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulAS.png"))); // NOI18N
-        btnAjustes.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulA.png"))); // NOI18N
+        btnCerrarSesion.setBorder(null);
+        btnCerrarSesion.setBorderPainted(false);
+        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrarSesion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulAS.png"))); // NOI18N
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAjustesActionPerformed(evt);
+                btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 170, 60));
+        jPanel2.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 170, 60));
 
         btnEditarLocaciones.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarLocaciones.setForeground(new java.awt.Color(0, 102, 255));
         btnEditarLocaciones.setText("Gestionar Locaciones");
-        btnEditarLocaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarLocaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarLocaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarLocacionesActionPerformed(evt);
@@ -153,13 +152,23 @@ public void verificarAdministrador(){
         btnEditarLocaciones.setVisible(false);
     }
 }
-    private void btnAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjustesActionPerformed
-        control.desplegarAjustes();
-        dispose();
-    }//GEN-LAST:event_btnAjustesActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        String[] botones = {"Sí", "No"};
+
+        int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cerrar sesión?",
+                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, botones, botones[0]);
+
+        if (opcion == 0) {
+            control.desplegarInicioSesion();
+            dispose();
+        }else{
+            return;
+        }
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed
-  control.desplegarHorario();
+      control.desplegarHorario();
       dispose();
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
@@ -179,9 +188,9 @@ public void verificarAdministrador(){
     }//GEN-LAST:event_btnEditarLocacionesActionPerformed
     public void transparenciaBoton() {
 
-        btnAjustes.setOpaque(false);
-        btnAjustes.setContentAreaFilled(false);
-        btnAjustes.setBorderPainted(false);
+        btnCerrarSesion.setOpaque(false);
+        btnCerrarSesion.setContentAreaFilled(false);
+        btnCerrarSesion.setBorderPainted(false);
 
         btnVerHorario.setOpaque(false);
         btnVerHorario.setContentAreaFilled(false);
@@ -199,7 +208,7 @@ public void verificarAdministrador(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
-    private javax.swing.JButton btnAjustes;
+    private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnEditarLocaciones;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnVerHorario;

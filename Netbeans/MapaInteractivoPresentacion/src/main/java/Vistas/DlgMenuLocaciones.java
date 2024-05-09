@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas;
 
 import Controladora.ControlPresentacion;
@@ -75,7 +71,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
         ButtonRegreso.setForeground(new java.awt.Color(0, 102, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
@@ -128,7 +124,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-        control.deplegarMenu();
+        control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
@@ -138,8 +134,8 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_bntRegistroActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-control.desplegarEliminarLocacion();
-dispose();
+        control.desplegarEliminarLocacion();
+        dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

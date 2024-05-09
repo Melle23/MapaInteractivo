@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package POJOs;
 
 import org.bson.types.ObjectId;
@@ -11,7 +7,7 @@ import org.bson.types.ObjectId;
  * @author favel
  */
 public class LocacionPOJO {
-    
+
     private ObjectId id;
     private String nombre;
     private String descripcion;
@@ -38,8 +34,6 @@ public class LocacionPOJO {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
-    
-    
 
     public ObjectId getId() {
         return id;
@@ -64,7 +58,5 @@ public class LocacionPOJO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-    
+
 }

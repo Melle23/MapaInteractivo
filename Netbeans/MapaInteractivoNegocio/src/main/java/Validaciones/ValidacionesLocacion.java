@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Validaciones;
 
 import DAOS.LocacionDAO;
@@ -29,7 +25,7 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
         if (NuevaLocacion == null) {
             return NuevaLocacion;
         } else {
-            JOptionPane.showMessageDialog(null, "No se registro la locacion.");
+            JOptionPane.showMessageDialog(null, "No se registró la locación.","Error",JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
@@ -62,9 +58,9 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
     public void eliminarLocacion(String nombre) {
      if(lDAO.obtenerLocacion(nombre) != null){
          lDAO.eliminarLocacion(nombre);
-         JOptionPane.showMessageDialog(null, "Locacion eliminada con exito.");
+         JOptionPane.showMessageDialog(null, "Locación eliminada con éxito.");
      }else{
-         JOptionPane.showMessageDialog(null, "La locacion no existe, por lo que no puede ser eliminada.");
+         JOptionPane.showMessageDialog(null, "La locación no existe, por lo que no puede ser eliminada.");
      }  
     }
 

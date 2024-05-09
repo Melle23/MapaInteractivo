@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package POJOs;
 
 /**
@@ -9,7 +5,8 @@ package POJOs;
  * @author JOSUE GOMEZ
  */
 public class DatosPOJO {
-      private String nombre;
+
+    private String nombre;
     private String carreraUniversitaria;
     private int semestre;
 
@@ -48,10 +45,10 @@ public class DatosPOJO {
     // Método toString para representación de cadena
     @Override
     public String toString() {
-        return "Datos{" +
-                "nombre='" + nombre + '\'' +
-                ", carreraUniversitaria='" + carreraUniversitaria + '\'' +
-                ", semestre=" + semestre +
-                '}';
+        return "Datos{"
+                + "nombre='" + nombre + '\''
+                + ", carreraUniversitaria='" + carreraUniversitaria + '\''
+                + ", semestre=" + semestre
+                + '}';
     }
 }

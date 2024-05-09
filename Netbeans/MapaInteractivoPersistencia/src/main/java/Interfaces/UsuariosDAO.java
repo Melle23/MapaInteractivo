@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaces;
 
 import POJOs.UsuarioPOJO;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,5 +12,5 @@ public interface UsuariosDAO {
     
     public UsuarioPOJO obtenerUsuario(String usuario, String contra);
      
-     
+    public List<Map<String, String>> obtenerClases(UsuarioPOJO usuario);
 }

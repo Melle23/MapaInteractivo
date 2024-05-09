@@ -1,6 +1,5 @@
 package Controladora;
 
-import Vistas.DlgAjustes;
 import Vistas.DlgMenuLocaciones;
 import Vistas.DlgHorario;
 import Vistas.DlgInicioSesion;
@@ -29,13 +28,7 @@ UsuarioPOJO sesion = new UsuarioPOJO();
         frmMapa mapa = new frmMapa(sesion);
     }
 
-    
-    /*
-    se saltaron la S
-                  |
-                  V
-    */
-    public void deplegarMenu() {
+    public void desplegarMenu() {
         frmMenu menu = new frmMenu(sesion);
     }
 
@@ -45,10 +38,6 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     
     public void desplegarHorario(){
         DlgHorario horario = new DlgHorario(sesion);
-    }
-    
-    public void desplegarAjustes(){
-        DlgAjustes ajustes = new DlgAjustes(sesion);
     }
     
     public void desplegarRegistroLocacion() {

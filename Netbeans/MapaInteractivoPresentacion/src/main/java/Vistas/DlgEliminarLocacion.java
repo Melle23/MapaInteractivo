@@ -55,18 +55,18 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Nombre de locación:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 280, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 280, 30));
 
         btnEliminarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         btnEliminarLocacion.setText("Eliminar Locación");
-        btnEliminarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarLocacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarLocacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 230, 40));
-        jPanel2.add(nombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 270, 30));
+        jPanel2.add(btnEliminarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 230, 40));
+        jPanel2.add(nombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 270, 30));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
