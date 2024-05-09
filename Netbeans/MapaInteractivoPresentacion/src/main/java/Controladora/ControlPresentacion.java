@@ -22,7 +22,7 @@ UsuarioPOJO sesion = new UsuarioPOJO();
 
     public ControlPresentacion() {
     }
-    
+
 
     public void desplegarMapa() {
         frmMapa mapa = new frmMapa(sesion);
@@ -35,19 +35,19 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     public void desplegarInicioSesion() {
         DlgInicioSesion inicioSesion = new DlgInicioSesion();
     }
-    
+
     public void desplegarHorario(){
         DlgHorario horario = new DlgHorario(sesion);
     }
-    
+
     public void desplegarRegistroLocacion() {
         DlgRegistroLocacion registro = new DlgRegistroLocacion(sesion);
     }
-    
+
     public void desplegarMenuLocaciones() {
         DlgMenuLocaciones Locaciones = new DlgMenuLocaciones(sesion);
     }
-    
+
     public void desplegarEliminarLocacion(){
         DlgEliminarLocacion eliminar = new DlgEliminarLocacion(sesion);
     }
