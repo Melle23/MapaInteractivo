@@ -7,6 +7,7 @@ import Vistas.DlgRegistroLocacion;
 import Vistas.frmMenu;
 import Vistas.frmMapa;
 import POJOs.UsuarioPOJO;
+import Vistas.DlgAjustes;
 import Vistas.DlgEliminarLocacion;
 
 /**
@@ -50,5 +51,9 @@ UsuarioPOJO sesion = new UsuarioPOJO();
 
     public void desplegarEliminarLocacion(){
         DlgEliminarLocacion eliminar = new DlgEliminarLocacion(sesion);
+    }
+    
+    public void desplegarAjustes(){
+        DlgAjustes desplegarAjustes = new DlgAjustes();
     }
 }
