@@ -908,7 +908,7 @@ private void bienvenidaSesion() {
 
     private void LV1800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1800MouseClicked
         this.mostrarPunto(LV1800, true);
-        sesionLocacion = vLocacion.verificarLocacion("LV1800");
+        sesionLocacion = vLocacion.verificarLocacion("AV1800");
         this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV1800MouseClicked
 

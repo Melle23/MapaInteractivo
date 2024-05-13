@@ -153,18 +153,20 @@ public void verificarAdministrador(){
     }
 }
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        String[] botones = {"Sí", "No"};
-
-        int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cerrar sesión?",
-                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, botones, botones[0]);
-
-        if (opcion == 0) {
-            control.desplegarInicioSesion();
-            dispose();
-        }else{
-            return;
-        }
+        control.desplegarAjustes();
+        dispose();
+//        String[] botones = {"Sí", "No"};
+//
+//        int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cerrar sesión?",
+//                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+//                null, botones, botones[0]);
+//
+//        if (opcion == 0) {
+//            control.desplegarInicioSesion();
+//            dispose();
+//        }else{
+//            return;
+//        }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed

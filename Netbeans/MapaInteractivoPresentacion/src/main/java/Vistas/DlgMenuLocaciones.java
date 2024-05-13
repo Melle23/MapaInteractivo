@@ -82,6 +82,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
         bntRegistro.setForeground(new java.awt.Color(255, 255, 255));
         bntRegistro.setText("Registrar Locacion");
         bntRegistro.setBorder(null);
+        bntRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bntRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntRegistroActionPerformed(evt);
@@ -91,6 +92,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
 
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar Locacion");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -100,6 +102,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
 
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar Locacion");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 150, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N

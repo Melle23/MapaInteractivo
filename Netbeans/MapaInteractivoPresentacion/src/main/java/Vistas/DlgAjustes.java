@@ -50,7 +50,7 @@ public class DlgAjustes extends javax.swing.JDialog {
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrarSesion.setText("Cerrar Sesión");
-        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
@@ -71,7 +71,7 @@ public class DlgAjustes extends javax.swing.JDialog {
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, 70, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-Usuario.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 186, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 186, -1));
 
         lblUsuarioBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuarioBienvenida2.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,14 +84,14 @@ public class DlgAjustes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -106,19 +106,22 @@ public class DlgAjustes extends javax.swing.JDialog {
 }
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-
-        control.deplegarMenu();
+        control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
-         String[] botones = {"Si", "No"};
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar sesión?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
-        if (variable == 0) {
+       
+        String[] botones = {"Sí", "No"};
+
+        int opcion = JOptionPane.showOptionDialog(null, "¿Desea cerrar sesión?",
+                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, botones, botones[0]);
+
+        if (opcion == 0) {
             control.desplegarInicioSesion();
             dispose();
-        } else {
+        }else{
             return;
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed

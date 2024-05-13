@@ -45,10 +45,10 @@ public class DlgHorario extends javax.swing.JDialog {
     private void initComponents() {
 
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         ButtonRegreso = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
 
         jFormattedTextField1.setText("jFormattedTextField1");
@@ -57,10 +57,6 @@ public class DlgHorario extends javax.swing.JDialog {
         setTitle("Ver Horario");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(867, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
@@ -79,6 +75,9 @@ public class DlgHorario extends javax.swing.JDialog {
         });
         getContentPane().add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 60, 40));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -87,12 +86,14 @@ public class DlgHorario extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Salón", "Materia", "Hora entrada", "Hora salida"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaHorario);
+        jScrollPane2.setViewportView(tablaHorario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, 300));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 300));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 550));
 
         pack();
         setLocationRelativeTo(null);
@@ -136,8 +137,8 @@ public class DlgHorario extends javax.swing.JDialog {
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaHorario;
     // End of variables declaration//GEN-END:variables
 }
