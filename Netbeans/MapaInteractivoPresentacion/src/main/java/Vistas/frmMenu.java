@@ -190,7 +190,7 @@ public final class frmMenu extends javax.swing.JFrame {
 
     private void btnEditarLocacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionesActionPerformed
         control.desplegarMenuLocaciones();
-        dispose();
+        
     }//GEN-LAST:event_btnEditarLocacionesActionPerformed
     public void transparenciaBoton() {
 

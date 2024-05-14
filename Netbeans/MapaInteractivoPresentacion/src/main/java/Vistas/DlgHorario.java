@@ -3,6 +3,7 @@ package Vistas;
 import Controladora.ControlPresentacion;
 import DAOS.UsuarioDAO;
 import POJOs.DatosPOJO;
+import POJOs.HorarioPOJO;
 import POJOs.UsuarioPOJO;
 import java.util.Arrays;
 import java.util.List;
@@ -18,16 +19,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DlgHorario extends javax.swing.JDialog {
 
-    UsuarioPOJO sesion;
+private UsuarioPOJO sesion;
+    private UsuarioDAO usuarioDAO;
+    private List<HorarioPOJO> horarioAleatorio;
     ControlPresentacion control;
-    String imagePath;
-    String absolutePath;
-    ImageIcon icon;
-
     public DlgHorario(UsuarioPOJO usuario) {
         initComponents();
         this.sesion = usuario;
-        control = new ControlPresentacion(usuario);
+           control = new ControlPresentacion(usuario);
+        this.horarioAleatorio = sesion.getHorario();
         mostrarHorario();
         System.out.println("---------------------------------------------------------------------------"
                 + "\nfrmHorario - Imprimiendo tu sesion: " + sesion
@@ -48,8 +48,10 @@ public class DlgHorario extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         ButtonRegreso = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -78,6 +80,9 @@ public class DlgHorario extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 250, 80));
+
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -91,7 +96,10 @@ public class DlgHorario extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tablaHorario);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, 300));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, 170));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoAzul.jpg"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 550));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 550));
 
@@ -104,18 +112,19 @@ public class DlgHorario extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
+   
     private void mostrarHorario() {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        List<Map<String, String>> horarioAleatorio = usuarioDAO.obtenerClases(sesion);
-
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Salón");
         model.addColumn("Materia");
         model.addColumn("Hora de Entrada");
         model.addColumn("Hora de Salida");
+       
 
-        for (Map<String, String> clase : horarioAleatorio) {
-            model.addRow(new Object[]{clase.get("salon"), clase.get("materia"), clase.get("hora_entrada"), clase.get("hora_salida")});
+        if (horarioAleatorio != null) {
+            for (HorarioPOJO clase : horarioAleatorio) {
+                model.addRow(new Object[]{clase.getSalon(), clase.getMateria(), clase.getHoraEntrada(), clase.getHoraSalida()});
+            }
         }
 
         tablaHorario.setModel(model);
@@ -130,13 +139,14 @@ public class DlgHorario extends javax.swing.JDialog {
             }
             System.out.println();
         }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaHorario;

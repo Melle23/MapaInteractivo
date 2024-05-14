@@ -4,7 +4,10 @@ import Controladora.ControlPresentacion;
 import Validaciones.ValidacionesLocacion;
 import POJOs.LocacionPOJO;
 import POJOs.UsuarioPOJO;
+
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -25,7 +28,14 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         this.setVisible(true);
         this.sesionUsuario = usuario;
     }
-
+public static boolean validarCamposTexto(JTextField... campos) {
+        for (JTextField campo : campos) {
+            if (campo.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +55,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcionLocacion = new javax.swing.JTextArea();
         btnRegistrarLocacion = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Locación");
@@ -97,15 +108,25 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 320, 170));
 
-        btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        btnRegistrarLocacion.setText("Registrar Locación");
+        btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrarLocacion.setText("Poner locacion en el mapa");
         btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarLocacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarLocacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 230, 40));
+        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 220, 30));
+
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        btnRegistrar.setText("Registrar Locación");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 230, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 880, 510));
 
@@ -114,26 +135,8 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLocacionActionPerformed
-        String nombre = txtNombreLocacion.getText();
-        String descripcion = txtDescripcionLocacion.getText();
-
-        if (txtNombreLocacion.getText().isBlank() || txtDescripcionLocacion.getText().isBlank()) {
-            JOptionPane.showMessageDialog(this, "Favor de llenar los campos.",
-                    "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            sesionLocacion = vLocacion.registrarLocacion(nombre, descripcion);
-            if (sesionLocacion == null) {
-                System.out.println("Se registro la locacion: DlgRegistroLocacion");
-                JOptionPane.showMessageDialog(this, "Se registró la locación con éxito.",
-                        "Locación registrada", JOptionPane.INFORMATION_MESSAGE);
-                txtNombreLocacion.setText("");
-                txtDescripcionLocacion.setText("");
-            } else {
-                System.out.println("No se registro: DlgRegistroLocacion");
-                JOptionPane.showMessageDialog(this, "No se pudo registrar la locación.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+     MapaClick mc = new MapaClick();
+     mc.setVisible(true);
     }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -141,7 +144,18 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+     
+             String nombre = txtNombreLocacion.getText();
+             String descripcion = txtDescripcionLocacion.getText();
+        vLocacion.registrarLocacion(nombre,descripcion);
+     JOptionPane.showMessageDialog(null, "Se ha realizado el registro con exito");
+     
+                                                       
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarLocacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

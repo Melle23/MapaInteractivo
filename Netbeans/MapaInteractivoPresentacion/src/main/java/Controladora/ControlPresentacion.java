@@ -8,6 +8,7 @@ import Vistas.frmMenu;
 import Vistas.frmMapa;
 import POJOs.UsuarioPOJO;
 import Vistas.DlgAjustes;
+import Vistas.DlgEditarLocacion;
 import Vistas.DlgEliminarLocacion;
 
 /**
@@ -48,7 +49,9 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     public void desplegarMenuLocaciones() {
         DlgMenuLocaciones Locaciones = new DlgMenuLocaciones(sesion);
     }
-
+ public void desplegarEditarLocacion(){
+        DlgEditarLocacion editar = new DlgEditarLocacion(sesion);
+    }
     public void desplegarEliminarLocacion(){
         DlgEliminarLocacion eliminar = new DlgEliminarLocacion(sesion);
     }

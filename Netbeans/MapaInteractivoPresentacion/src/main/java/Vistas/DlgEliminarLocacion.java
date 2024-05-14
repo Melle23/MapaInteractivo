@@ -3,6 +3,7 @@ package Vistas;
 import Controladora.ControlPresentacion;
 import POJOs.UsuarioPOJO;
 import Validaciones.ValidacionesLocacion;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -111,9 +112,12 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLocacionActionPerformed
-        String nombre = nombreLocacion.getText();
+        if(validarCamposTexto(nombreLocacion)){
+             String nombre = nombreLocacion.getText();
         vLocacion.eliminarLocacion(nombre);
         nombreLocacion.setText("");
+        }
+       JOptionPane.showMessageDialog(null, "Favor de rellenar todos los campos.");
     }//GEN-LAST:event_btnEliminarLocacionActionPerformed
  public static boolean validarCamposTexto(JTextField... campos) {
         for (JTextField campo : campos) {

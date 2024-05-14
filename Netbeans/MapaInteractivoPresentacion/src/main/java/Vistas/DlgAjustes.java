@@ -40,10 +40,13 @@ public class DlgAjustes extends javax.swing.JDialog {
         ButtonRegreso = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblUsuarioBienvenida2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        semestre = new javax.swing.JLabel();
+        carrera = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
-        setPreferredSize(new java.awt.Dimension(850, 550));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
@@ -59,7 +62,7 @@ public class DlgAjustes extends javax.swing.JDialog {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 230, -1));
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 460, 230, -1));
 
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,13 +77,33 @@ public class DlgAjustes extends javax.swing.JDialog {
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, 70, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-Usuario.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 186, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 186, -1));
 
         lblUsuarioBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuarioBienvenida2.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuarioBienvenida2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsuarioBienvenida2.setToolTipText("");
-        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 230, 40));
+        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 230, 40));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Semestre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 120, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Carrera universitaria:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 280, 30));
+
+        semestre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        semestre.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(semestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 270, 40));
+
+        carrera.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        carrera.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 270, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +129,8 @@ public class DlgAjustes extends javax.swing.JDialog {
     private void usuario() {
         if (sesion != null) {
             lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
+             carrera.setText(sesion.getDatos().getCarreraUniversitaria());
+             semestre.setText(String.valueOf(sesion.getDatos().getSemestre()));
         }
     }
 
@@ -134,8 +159,12 @@ public class DlgAjustes extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JLabel carrera;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblUsuarioBienvenida2;
+    private javax.swing.JLabel semestre;
     // End of variables declaration//GEN-END:variables
 }
