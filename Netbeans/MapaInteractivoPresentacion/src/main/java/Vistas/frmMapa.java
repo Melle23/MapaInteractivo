@@ -554,8 +554,8 @@ public class frmMapa extends javax.swing.JFrame {
         });
         jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
-        lblUsuarioBienvenida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(lblUsuarioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 220, 60));
+        lblUsuarioBienvenida.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
+        jPanel1.add(lblUsuarioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 270, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
