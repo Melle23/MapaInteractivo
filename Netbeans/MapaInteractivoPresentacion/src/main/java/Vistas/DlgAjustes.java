@@ -26,7 +26,6 @@ public class DlgAjustes extends javax.swing.JDialog {
         setVisible(true);
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,11 +103,11 @@ public class DlgAjustes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   private void usuario(){
-    if(sesion != null){
-         lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
+    private void usuario() {
+        if (sesion != null) {
+            lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
+        }
     }
-}
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
         control.desplegarMenu();
@@ -126,7 +125,7 @@ public class DlgAjustes extends javax.swing.JDialog {
         if (opcion == 0) {
             control.desplegarInicioSesion();
             dispose();
-        }else{
+        } else {
             return;
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed

@@ -194,7 +194,6 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         sesion = null;
         control = new ControlPresentacion(sesion);
         control.desplegarMapa();
-        
     }//GEN-LAST:event_btnSinConexinActionPerformed
 
     private void btnIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesion2ActionPerformed
@@ -210,7 +209,7 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         System.out.println("\n---------------------------------------------------------------------------"
                 + "DlgInicioSesion - Imprimiento tu sesion: " + sesion
                 + "\n---------------------------------------------------------------------------");
-       
+
         if (sesion != null) {
             control = new ControlPresentacion(sesion);
             control.desplegarMapa();

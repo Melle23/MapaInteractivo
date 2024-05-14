@@ -11,7 +11,7 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
 
     UsuarioPOJO sesion;
     ControlPresentacion control;
-    
+
     /**
      * Creates new form DlgEdicionLocaciones
      */
@@ -20,12 +20,13 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
         this.sesion = usuario;
         this.transparenciaBoton();
         System.out.println("---------------------------------------------------------------------------"
-                         + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion 
-                       + "\n---------------------------------------------------------------------------");
+                + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion
+                + "\n---------------------------------------------------------------------------");
         control = new ControlPresentacion(sesion);
         this.setVisible(true);
     }
-      public void transparenciaBoton() {
+
+    public void transparenciaBoton() {
 
         bntRegistro.setOpaque(false);
         bntRegistro.setContentAreaFilled(false);
@@ -43,7 +44,6 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
         ButtonRegreso.setContentAreaFilled(false);
         ButtonRegreso.setBorderPainted(false);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

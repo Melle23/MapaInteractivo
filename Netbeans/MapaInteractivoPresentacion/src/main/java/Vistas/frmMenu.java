@@ -144,7 +144,7 @@ public final class frmMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void verificarAdministrador() {
         if (sesion.isNivelAuditoria()) {
             System.out.println("si es admin");
@@ -155,7 +155,7 @@ public final class frmMenu extends javax.swing.JFrame {
             btnEditarLocaciones.setVisible(false);
         }
     }
-    
+
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         control.desplegarAjustes();
         dispose();

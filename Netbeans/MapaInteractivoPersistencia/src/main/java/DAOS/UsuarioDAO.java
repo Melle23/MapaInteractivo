@@ -17,7 +17,7 @@ import org.bson.Document;
  *
  * @author josue
  */
-public class UsuarioDAO implements UsuariosDAO{
+public class UsuarioDAO implements UsuariosDAO {
 
     ConexionBD conexion = new ConexionBD();
 
@@ -62,7 +62,7 @@ public class UsuarioDAO implements UsuariosDAO{
         List<Map<String, String>> horario = usuario.getHorario();
 
         if (horario != null) {
-            System.out.println("Tamaño de la lista de horarios: " + horario.size()); 
+            System.out.println("Tamaño de la lista de horarios: " + horario.size());
             for (Map<String, String> clase : horario) {
                 Map<String, String> claseMap = new HashMap<>();
                 claseMap.put("salon", clase.get("salon"));
@@ -72,7 +72,7 @@ public class UsuarioDAO implements UsuariosDAO{
                 clases.add(claseMap);
             }
         } else {
-            System.out.println("No se encontraron clases en el horario."); 
+            System.out.println("No se encontraron clases en el horario.");
         }
 
         System.out.println("Clases:");

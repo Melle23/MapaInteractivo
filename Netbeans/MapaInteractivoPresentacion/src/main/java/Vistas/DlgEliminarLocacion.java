@@ -12,9 +12,11 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
 
     UsuarioPOJO sesion;
     ControlPresentacion control;
-     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
+    ValidacionesLocacion vLocacion = new ValidacionesLocacion();
+
     /**
      * Creates new form DlgEliminarLocacion
+     *
      * @param usuario
      */
     public DlgEliminarLocacion(UsuarioPOJO usuario) {
@@ -22,7 +24,7 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
         this.sesion = usuario;
         control = new ControlPresentacion(sesion);
         this.setVisible(true);
-        
+
     }
 
     /**
@@ -108,9 +110,9 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLocacionActionPerformed
-      String nombre = nombreLocacion.getText();
-      vLocacion.eliminarLocacion(nombre);
-      nombreLocacion.setText("");
+        String nombre = nombreLocacion.getText();
+        vLocacion.eliminarLocacion(nombre);
+        nombreLocacion.setText("");
     }//GEN-LAST:event_btnEliminarLocacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

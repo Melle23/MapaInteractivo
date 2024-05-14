@@ -16,7 +16,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
     ControlPresentacion control = new ControlPresentacion(sesionUsuario);
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
     LocacionPOJO sesionLocacion = new LocacionPOJO();
-    
+
     /**
      * Creates new form DlgRegistroLocacion
      */

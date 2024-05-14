@@ -119,9 +119,9 @@ public class DlgHorario extends javax.swing.JDialog {
         }
 
         tablaHorario.setModel(model);
-        tablaHorario.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); 
-        tablaHorario.getTableHeader().setReorderingAllowed(false); 
-        tablaHorario.setDefaultEditor(Object.class, null); 
+        tablaHorario.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaHorario.getTableHeader().setReorderingAllowed(false);
+        tablaHorario.setDefaultEditor(Object.class, null);
 
         System.out.println("Datos del horario para la tabla:");
         for (int i = 0; i < model.getRowCount(); i++) {
@@ -130,7 +130,7 @@ public class DlgHorario extends javax.swing.JDialog {
             }
             System.out.println();
         }
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
