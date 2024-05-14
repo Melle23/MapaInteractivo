@@ -15,15 +15,17 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
     UsuarioPOJO sesion;
     ControlPresentacion control;
     ValidacionesLocacion vl = new ValidacionesLocacion();
+
     /**
      * Creates new form DlgEditarLocacion
+     *
      * @param usuario
      */
     public DlgEditarLocacion(UsuarioPOJO usuario) {
         initComponents();
         this.sesion = usuario;
-         control = new ControlPresentacion(sesion);
-         this.setVisible(true);
+        control = new ControlPresentacion(sesion);
+        this.setVisible(true);
     }
 
     /**
@@ -140,7 +142,7 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
         control.desplegarMenuLocaciones();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
- public static boolean validarCamposTexto(JTextField... campos) {
+    public static boolean validarCamposTexto(JTextField... campos) {
         for (JTextField campo : campos) {
             if (campo.getText().isEmpty()) {
                 return false;
@@ -149,16 +151,16 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
         return true;
     }
     private void btnEditarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionActionPerformed
-String nombreAnterior = nombreLocacionAnterior.getText();
-String nombreNuevo= nombreLocacion.getText();
-String descripcionNueva = descripcionLocacion.getText();
+        String nombreAnterior = nombreLocacionAnterior.getText();
+        String nombreNuevo = nombreLocacion.getText();
+        String descripcionNueva = descripcionLocacion.getText();
 
-if(validarCamposTexto(nombreLocacionAnterior,nombreLocacion)){
-    vl.editarLocacion(nombreAnterior, nombreNuevo, descripcionNueva);
-        JOptionPane.showMessageDialog(null,"Se ha editado la ubicacion con exito.");
-}else{
-    JOptionPane.showMessageDialog(null, "Rellene todos los campos.");
-}
+        if (validarCamposTexto(nombreLocacionAnterior, nombreLocacion)) {
+            vl.editarLocacion(nombreAnterior, nombreNuevo, descripcionNueva);
+            JOptionPane.showMessageDialog(null, "Se ha editado la ubicacion con exito.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos.");
+        }
 
     }//GEN-LAST:event_btnEditarLocacionActionPerformed
 

@@ -68,7 +68,7 @@ public static boolean validarCamposTexto(JTextField... campos) {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -110,7 +110,7 @@ public static boolean validarCamposTexto(JTextField... campos) {
 
         btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrarLocacion.setText("Poner locacion en el mapa");
-        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrarLocacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnRegistrarLocacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarLocacionActionPerformed(evt);
