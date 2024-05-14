@@ -54,6 +54,6 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     }
     
     public void desplegarAjustes(){
-        DlgAjustes desplegarAjustes = new DlgAjustes();
+        DlgAjustes desplegarAjustes = new DlgAjustes(sesion);
     }
 }

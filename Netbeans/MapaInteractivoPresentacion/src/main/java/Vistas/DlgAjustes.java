@@ -15,17 +15,13 @@ public class DlgAjustes extends javax.swing.JDialog {
 
     public DlgAjustes(UsuarioPOJO usuario) {
         initComponents();
-        setVisible(true);
         this.sesion = usuario;
+        this.setVisible(true);
         control = new ControlPresentacion(sesion);
         System.out.println("Valor de sesion: " + sesion);
         this.usuario();
         
 
-    }
-
-    public DlgAjustes() {
-        setVisible(true);
     }
 
     
