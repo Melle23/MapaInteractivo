@@ -24,54 +24,56 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         this.setVisible(true);
         this.transparenciaBoton();
         this.configurarCamposTexto();
-       control = new ControlPresentacion(sesion);
+        control = new ControlPresentacion(sesion);
     }
-public void configurarCamposTexto() {
-    // Configuración del campo de contraseña
-    txtContrasena.setEchoChar((char) 0); // Para que el texto se muestre normalmente
-    txtContrasena.setText("Ingrese su contraseña");
-    txtContrasena.setForeground(Color.GRAY);
-    txtContrasena.addFocusListener(new FocusListener() {
-        @Override
-        public void focusGained(FocusEvent e) {
-            if (String.valueOf(txtContrasena.getPassword()).equals("Ingrese su contraseña")) {
-                txtContrasena.setText("");
-                txtContrasena.setForeground(Color.BLACK);
-                txtContrasena.setEchoChar('*'); 
-            }
-        }
 
-        @Override
-        public void focusLost(FocusEvent e) {
-            if (String.valueOf(txtContrasena.getPassword()).isEmpty()) {
-                txtContrasena.setEchoChar((char) 0);
-                txtContrasena.setForeground(Color.GRAY);
-                txtContrasena.setText("Ingrese su contraseña");
+    public void configurarCamposTexto() {
+        // Configuración del campo de contraseña
+        txtContrasena.setEchoChar((char) 0); // Para que el texto se muestre normalmente
+        txtContrasena.setText("Ingrese su contraseña");
+        txtContrasena.setForeground(Color.GRAY);
+        txtContrasena.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (String.valueOf(txtContrasena.getPassword()).equals("Ingrese su contraseña")) {
+                    txtContrasena.setText("");
+                    txtContrasena.setForeground(Color.BLACK);
+                    txtContrasena.setEchoChar('*');
+                }
             }
-        }
-    });
 
-    // Configuración del campo de usuario
-    txtUsuario.setText("Ingrese su ID...");
-    txtUsuario.setForeground(Color.GRAY);
-    txtUsuario.addFocusListener(new FocusListener() {
-        @Override
-        public void focusGained(FocusEvent e) {
-            if (txtUsuario.getText().equals("Ingrese su ID...")) {
-                txtUsuario.setText("");
-                txtUsuario.setForeground(Color.BLACK);
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (String.valueOf(txtContrasena.getPassword()).isEmpty()) {
+                    txtContrasena.setEchoChar((char) 0);
+                    txtContrasena.setForeground(Color.GRAY);
+                    txtContrasena.setText("Ingrese su contraseña");
+                }
             }
-        }
+        });
 
-        @Override
-        public void focusLost(FocusEvent e) {
-            if (txtUsuario.getText().isEmpty()) {
-                txtUsuario.setText("Ingrese su ID...");
-                txtUsuario.setForeground(Color.GRAY);
+        // Configuración del campo de usuario
+        txtUsuario.setText("Ingrese su ID...");
+        txtUsuario.setForeground(Color.GRAY);
+        txtUsuario.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtUsuario.getText().equals("Ingrese su ID...")) {
+                    txtUsuario.setText("");
+                    txtUsuario.setForeground(Color.BLACK);
+                }
             }
-        }
-    });
-}
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtUsuario.getText().isEmpty()) {
+                    txtUsuario.setText("Ingrese su ID...");
+                    txtUsuario.setForeground(Color.GRAY);
+                }
+            }
+        });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,6 +194,7 @@ public void configurarCamposTexto() {
         sesion = null;
         control = new ControlPresentacion(sesion);
         control.desplegarMapa();
+        
     }//GEN-LAST:event_btnSinConexinActionPerformed
 
     private void btnIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesion2ActionPerformed
@@ -207,11 +210,11 @@ public void configurarCamposTexto() {
         System.out.println("\n---------------------------------------------------------------------------"
                 + "DlgInicioSesion - Imprimiento tu sesion: " + sesion
                 + "\n---------------------------------------------------------------------------");
+       
         if (sesion != null) {
-
             control = new ControlPresentacion(sesion);
             control.desplegarMapa();
-             this.dispose();
+            this.dispose();
         }
     }//GEN-LAST:event_btnIniciarSesion2ActionPerformed
 

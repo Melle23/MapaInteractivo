@@ -20,8 +20,6 @@ public class DlgAjustes extends javax.swing.JDialog {
         control = new ControlPresentacion(sesion);
         System.out.println("Valor de sesion: " + sesion);
         this.usuario();
-
-
     }
 
     public DlgAjustes() {
@@ -47,6 +45,7 @@ public class DlgAjustes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
         setPreferredSize(new java.awt.Dimension(850, 550));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,7 +66,7 @@ public class DlgAjustes extends javax.swing.JDialog {
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
@@ -80,8 +79,9 @@ public class DlgAjustes extends javax.swing.JDialog {
 
         lblUsuarioBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuarioBienvenida2.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioBienvenida2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsuarioBienvenida2.setToolTipText("");
-        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 230, 40));
+        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,14 +89,14 @@ public class DlgAjustes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -111,7 +111,6 @@ public class DlgAjustes extends javax.swing.JDialog {
 }
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-
         control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed

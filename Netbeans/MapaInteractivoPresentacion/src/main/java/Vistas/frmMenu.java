@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
  * @author JOSUE GOMEZ
  */
 public final class frmMenu extends javax.swing.JFrame {
+
     UsuarioPOJO sesion;
     ControlPresentacion control;
 
@@ -20,7 +21,7 @@ public final class frmMenu extends javax.swing.JFrame {
     public frmMenu(UsuarioPOJO usuario) {
         initComponents();
         this.sesion = usuario;
-         control = new ControlPresentacion(sesion);
+        control = new ControlPresentacion(sesion);
         System.out.println("---------------------------------------------------------------------------"
                 + "\nfrmMenu - Imprimiento tu sesion: " + sesion.getDatos().getNombre()
                 + "\n---------------------------------------------------------------------------");
@@ -130,7 +131,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnEditarLocacionesActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 250, 40));
+        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 250, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cisco.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -143,15 +144,18 @@ public final class frmMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-public void verificarAdministrador(){
-    if(sesion.isNivelAuditoria()){
-        System.out.println("si es admin");
-        btnEditarLocaciones.setVisible(true);
-    }else{
-        System.out.println("no entró");
-        btnEditarLocaciones.setVisible(false);
+    
+    public void verificarAdministrador() {
+        if (sesion.isNivelAuditoria()) {
+            System.out.println("si es admin");
+            btnEditarLocaciones.setVisible(true);
+            btnVerHorario.setEnabled(false);
+        } else {
+            System.out.println("no entró");
+            btnEditarLocaciones.setVisible(false);
+        }
     }
-}
+    
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         control.desplegarAjustes();
         dispose();
@@ -170,8 +174,8 @@ public void verificarAdministrador(){
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed
-      control.desplegarHorario();
-      dispose();
+        control.desplegarHorario();
+        dispose();
     }//GEN-LAST:event_btnVerHorarioActionPerformed
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
