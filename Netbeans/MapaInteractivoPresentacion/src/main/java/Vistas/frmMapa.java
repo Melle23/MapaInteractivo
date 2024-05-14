@@ -5,6 +5,7 @@ import DAOS.LocacionDAO;
 import Validaciones.ValidacionesLocacion;
 import POJOs.LocacionPOJO;
 import POJOs.UsuarioPOJO;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -49,8 +50,8 @@ public class frmMapa extends javax.swing.JFrame {
         control = new ControlPresentacion(sesion);
         this.bienvenidaSesion();
         System.out.println("---------------------------------------------------------------------------"
-                         + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion 
-                       + "\n---------------------------------------------------------------------------");
+                + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion
+                + "\n---------------------------------------------------------------------------");
         this.setVisible(true);
         txtBusqueda.addFocusListener(new FocusListener() {
             @Override
@@ -75,7 +76,7 @@ public class frmMapa extends javax.swing.JFrame {
                     // Mostrar la información de la primera locación que coincide con la búsqueda
                     LocacionPOJO locacion = vLocacion.verificarLocacion(resultados.get(0));
                     mostrarInformacion(locacion);
-                   
+
                 }
             }
         });
@@ -554,8 +555,8 @@ public class frmMapa extends javax.swing.JFrame {
         });
         jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
-        lblUsuarioBienvenida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(lblUsuarioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 220, 60));
+        lblUsuarioBienvenida.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
+        jPanel1.add(lblUsuarioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 270, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -571,19 +572,28 @@ public class frmMapa extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-private void bienvenidaSesion() {
+    private void bienvenidaSesion() {
         if (sesion != null) {
             lblUsuarioBienvenida.setText("Bienvenido " + sesion.getDatos().getNombre() + "!");
         }
     }
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        if(sesion == null){
+        if (sesion == null) {
+            String[] botones = {"Sí", "No"};
+
+            int opcion = JOptionPane.showOptionDialog(null, "Tiene que tener una sesión iniciada para acceder al menú. "
+                    + "\n¿Desea iniciar sesión?",
+                    "Acceder a menú", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, botones, botones[0]);
+            if (opcion == 0) {
+                control.desplegarInicioSesion();
+                dispose();
+            } else {
+                return;
+            }
+        } else {
+            control.desplegarMenu();
             dispose();
-            control.desplegarInicioSesion();
-            JOptionPane.showMessageDialog(null, "Tienes que iniciar sesion para acceder a las funciones adicionales.");
-        }else{
-             control.desplegarMenu();
-        dispose();
         }
     }//GEN-LAST:event_btnMenuActionPerformed
 
@@ -609,8 +619,8 @@ private void bienvenidaSesion() {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         String[] botones = {"Si", "No"};
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?", 
-                "Pregunta", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,
+        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar la aplicacion?",
+                "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, botones, botones[0]);
         if (variable == 0) {
             dispose();
@@ -914,7 +924,7 @@ private void bienvenidaSesion() {
 
     private void LV1800MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LV1800MouseClicked
         this.mostrarPunto(LV1800, true);
-        sesionLocacion = vLocacion.verificarLocacion("LV1800");
+        sesionLocacion = vLocacion.verificarLocacion("AV1800");
         this.mostrarInformacion(sesionLocacion);
     }//GEN-LAST:event_LV1800MouseClicked
 

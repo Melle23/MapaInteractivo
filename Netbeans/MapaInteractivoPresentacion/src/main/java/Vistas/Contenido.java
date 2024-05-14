@@ -14,9 +14,11 @@ public class Contenido extends javax.swing.JFrame {
     public Contenido() {
         initComponents();
     }
-public JPanel traerContenido(){
-    return this.contenido;
-}
+
+    public JPanel traerContenido() {
+        return this.contenido;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +70,6 @@ public JPanel traerContenido(){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenido;

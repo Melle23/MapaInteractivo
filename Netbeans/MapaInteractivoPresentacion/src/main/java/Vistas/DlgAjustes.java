@@ -15,14 +15,15 @@ public class DlgAjustes extends javax.swing.JDialog {
 
     public DlgAjustes(UsuarioPOJO usuario) {
         initComponents();
-        setVisible(true);
         this.sesion = usuario;
+        this.setVisible(true);
         control = new ControlPresentacion(sesion);
         System.out.println("Valor de sesion: " + sesion);
         this.usuario();
-        
-        
+    }
 
+    public DlgAjustes() {
+        setVisible(true);
     }
 
     /**
@@ -39,14 +40,11 @@ public class DlgAjustes extends javax.swing.JDialog {
         ButtonRegreso = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblUsuarioBienvenida2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lblCarrera = new javax.swing.JLabel();
-        lblSemestre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
         setPreferredSize(new java.awt.Dimension(850, 550));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,19 +53,19 @@ public class DlgAjustes extends javax.swing.JDialog {
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrarSesion.setText("Cerrar Sesión");
-        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 230, -1));
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 230, -1));
 
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
         ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonRegresoActionPerformed(evt);
@@ -76,32 +74,13 @@ public class DlgAjustes extends javax.swing.JDialog {
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, 70, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-Usuario.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 186, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 186, -1));
 
         lblUsuarioBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuarioBienvenida2.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuarioBienvenida2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsuarioBienvenida2.setToolTipText("");
-        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 230, 40));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Semestre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 120, 30));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Carrera universitaria:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 280, 30));
-
-        lblCarrera.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCarrera.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lblCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 300, 40));
-
-        lblSemestre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblSemestre.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(lblSemestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 230, 30));
+        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,14 +88,14 @@ public class DlgAjustes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -124,26 +103,26 @@ public class DlgAjustes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   private void usuario(){      
-    if(sesion != null){
-      String semestre = String.valueOf(sesion.getDatos().getSemestre());
-         lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
-         lblCarrera.setText(sesion.getDatos().getCarreraUniversitaria());
-         lblSemestre.setText(semestre);
+    private void usuario() {
+        if (sesion != null) {
+            lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
+        }
     }
-}
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
-
         control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
-         String[] botones = {"Si", "No"};
-        int variable = JOptionPane.showOptionDialog(null, "¿Desea cerrar sesión?", "Pregunta", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null/*icono*/, botones, botones[0]);
-        if (variable == 0) {
+
+        String[] botones = {"Sí", "No"};
+
+        int opcion = JOptionPane.showOptionDialog(null, "¿Desea cerrar sesión?",
+                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, botones, botones[0]);
+
+        if (opcion == 0) {
             control.desplegarInicioSesion();
             dispose();
         } else {
@@ -156,11 +135,7 @@ public class DlgAjustes extends javax.swing.JDialog {
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblCarrera;
-    private javax.swing.JLabel lblSemestre;
     private javax.swing.JLabel lblUsuarioBienvenida2;
     // End of variables declaration//GEN-END:variables
 }
