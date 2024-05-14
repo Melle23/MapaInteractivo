@@ -3,6 +3,7 @@ package Vistas;
 import Controladora.ControlPresentacion;
 import DAOS.UsuarioDAO;
 import POJOs.DatosPOJO;
+import POJOs.HorarioPOJO;
 import POJOs.UsuarioPOJO;
 import java.util.Arrays;
 import java.util.List;
@@ -46,10 +47,12 @@ public class DlgHorario extends javax.swing.JDialog {
 
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        ButtonRegreso = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHorario = new javax.swing.JTable();
+        ButtonRegreso = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -60,24 +63,6 @@ public class DlgHorario extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(867, 0, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel2.setText("HORARIO");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 15, -1, 57));
-
-        ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
-        ButtonRegreso.setBorder(null);
-        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegresoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 60, 40));
 
         tablaHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,7 +77,33 @@ public class DlgHorario extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tablaHorario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, 160));
+
+        ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonRegreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
+        ButtonRegreso.setBorder(null);
+        ButtonRegreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonRegresoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 60, 40));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel2.setText("HORARIO DEL DIA");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, 57));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 320, 90));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoAzul.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 850, 550));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 550));
 
         pack();
         setLocationRelativeTo(null);
@@ -105,7 +116,7 @@ public class DlgHorario extends javax.swing.JDialog {
 
     private void mostrarHorario() {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        List<Map<String, String>> horarioAleatorio = usuarioDAO.obtenerClases(sesion);
+        List<HorarioPOJO> horarioAleatorio = usuarioDAO.obtenerClases(sesion);
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Salón");
@@ -113,9 +124,9 @@ public class DlgHorario extends javax.swing.JDialog {
         model.addColumn("Hora de Entrada");
         model.addColumn("Hora de Salida");
 
-        for (Map<String, String> clase : horarioAleatorio) {
-            model.addRow(new Object[]{clase.get("salon"), clase.get("materia"), clase.get("hora_entrada"), clase.get("hora_salida")});
-        }
+       for (HorarioPOJO clase : horarioAleatorio) { // Corrección aquí: quita los símbolos < >
+    model.addRow(new Object[]{clase.getSalon(), clase.getMateria(), clase.getHoraEntrada(), clase.getHoraSalida()}); // Corrección aquí: accede a los métodos de la clase HorarioPOJO
+}
 
         tablaHorario.setModel(model);
         tablaHorario.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); 
@@ -135,7 +146,9 @@ public class DlgHorario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaHorario;

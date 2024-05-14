@@ -130,7 +130,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnEditarLocacionesActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 250, 40));
+        jPanel2.add(btnEditarLocaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 250, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cisco.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -147,24 +147,16 @@ public void verificarAdministrador(){
     if(sesion.isNivelAuditoria()){
         System.out.println("si es admin");
         btnEditarLocaciones.setVisible(true);
+        btnVerHorario.setVisible(false);
+        btnCerrarSesion.setVisible(false);
     }else{
         System.out.println("no entró");
         btnEditarLocaciones.setVisible(false);
     }
 }
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        String[] botones = {"Sí", "No"};
-
-        int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea cerrar sesión?",
-                "Confirmación", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, botones, botones[0]);
-
-        if (opcion == 0) {
-            control.desplegarInicioSesion();
-            dispose();
-        }else{
-            return;
-        }
+      control.desplegarAjustes();
+      dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnVerHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHorarioActionPerformed
@@ -184,7 +176,7 @@ public void verificarAdministrador(){
 
     private void btnEditarLocacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionesActionPerformed
         control.desplegarMenuLocaciones();
-        dispose();
+       
     }//GEN-LAST:event_btnEditarLocacionesActionPerformed
     public void transparenciaBoton() {
 

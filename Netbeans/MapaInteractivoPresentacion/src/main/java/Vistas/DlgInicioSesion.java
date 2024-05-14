@@ -8,6 +8,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -172,7 +173,14 @@ public void configurarCamposTexto() {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+ public static boolean validarCamposTexto(JTextField... campos) {
+        for (JTextField campo : campos) {
+            if (campo.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
     private void btnRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresoActionPerformed
         String[] botones = {"Si", "No"};
 

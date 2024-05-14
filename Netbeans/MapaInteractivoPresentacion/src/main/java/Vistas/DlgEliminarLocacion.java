@@ -7,6 +7,7 @@ package Vistas;
 import Controladora.ControlPresentacion;
 import POJOs.UsuarioPOJO;
 import Validaciones.ValidacionesLocacion;
+import javax.swing.JTextField;
 
 /**
  *
@@ -116,7 +117,14 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
       
       vLocacion.eliminarLocacion(nombre);
     }//GEN-LAST:event_btnEliminarLocacionActionPerformed
-
+ public static boolean validarCamposTexto(JTextField... campos) {
+        for (JTextField campo : campos) {
+            if (campo.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         control.desplegarMenuLocaciones();
         dispose();

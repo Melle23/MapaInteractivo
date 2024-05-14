@@ -1,5 +1,6 @@
 package Interfaces;
 
+import POJOs.HorarioPOJO;
 import POJOs.UsuarioPOJO;
 import java.util.List;
 import java.util.Map;
@@ -12,5 +13,5 @@ public interface UsuariosDAO {
     
     public UsuarioPOJO obtenerUsuario(String usuario, String contra);
      
-    public List<Map<String, String>> obtenerClases(UsuarioPOJO usuario);
+    public List<HorarioPOJO> obtenerClases(UsuarioPOJO usuario);
 }

@@ -22,4 +22,6 @@ public interface LocacionesDAO {
     public byte[] obtenerImagenLocacion(String nombre);
 
     public List<String> obtenerNombresLocaciones();
+ 
+    public void editarLocacion(String nombreAnterior, String nuevoNombre, String nuevaDescripcion);
 }

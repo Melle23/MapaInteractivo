@@ -577,8 +577,14 @@ private void bienvenidaSesion() {
         }
     }
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        control.desplegarMenu();
+        if(sesion == null){
+            dispose();
+            control.desplegarInicioSesion();
+            JOptionPane.showMessageDialog(null, "Tienes que iniciar sesion para acceder a las funciones adicionales.");
+        }else{
+             control.desplegarMenu();
         dispose();
+        }
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void Boton_PuntosDeInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_PuntosDeInteresActionPerformed

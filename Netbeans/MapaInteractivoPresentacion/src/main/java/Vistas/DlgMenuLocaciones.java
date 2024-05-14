@@ -100,6 +100,11 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
 
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar Locacion");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 150, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1).png"))); // NOI18N
@@ -137,6 +142,11 @@ public class DlgMenuLocaciones extends javax.swing.JFrame {
         control.desplegarEliminarLocacion();
         dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+      control.desplegarEditarLocacion();
+      dispose();
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonRegreso;

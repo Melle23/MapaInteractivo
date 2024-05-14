@@ -15,7 +15,7 @@ public class UsuarioPOJO {
     private String contraseña;
     private boolean nivelAuditoria;
     private DatosPOJO datos;
-    private List<Map<String, String>> horario;
+    private List<HorarioPOJO> horario;
 
     public UsuarioPOJO() {
     }
@@ -46,7 +46,7 @@ public class UsuarioPOJO {
         this.datos = datos;
     }
 
-    public UsuarioPOJO(String usuario, String contraseña, boolean nivelAuditoria, DatosPOJO datos, List<Map<String, String>> horario) {
+    public UsuarioPOJO(String usuario, String contraseña, boolean nivelAuditoria, DatosPOJO datos, List<HorarioPOJO> horario) {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.nivelAuditoria = nivelAuditoria;
@@ -86,11 +86,11 @@ public class UsuarioPOJO {
         this.contraseña = contraseña;
     }
 
-     public List<Map<String, String>> getHorario() {
+     public List<HorarioPOJO> getHorario() {
         return horario;
     }
 
-    public void setHorario(List<Map<String, String>> horario) {
+    public void setHorario(List<HorarioPOJO> horario) {
         this.horario = horario;
     }
 }

@@ -21,6 +21,7 @@ public class DlgAjustes extends javax.swing.JDialog {
         System.out.println("Valor de sesion: " + sesion);
         this.usuario();
         
+        
 
     }
 
@@ -38,6 +39,10 @@ public class DlgAjustes extends javax.swing.JDialog {
         ButtonRegreso = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblUsuarioBienvenida2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblCarrera = new javax.swing.JLabel();
+        lblSemestre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajustes");
@@ -56,7 +61,7 @@ public class DlgAjustes extends javax.swing.JDialog {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 230, -1));
+        jPanel1.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 230, -1));
 
         ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,12 +76,32 @@ public class DlgAjustes extends javax.swing.JDialog {
         jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 6, 70, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono-Usuario.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 186, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 186, -1));
 
         lblUsuarioBienvenida2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblUsuarioBienvenida2.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuarioBienvenida2.setToolTipText("");
-        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 230, 40));
+        jPanel1.add(lblUsuarioBienvenida2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 230, 40));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Semestre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 120, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Carrera universitaria:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 280, 30));
+
+        lblCarrera.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCarrera.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 300, 40));
+
+        lblSemestre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSemestre.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblSemestre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 230, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,14 +109,14 @@ public class DlgAjustes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -101,13 +126,16 @@ public class DlgAjustes extends javax.swing.JDialog {
 
    private void usuario(){      
     if(sesion != null){
+      String semestre = String.valueOf(sesion.getDatos().getSemestre());
          lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
+         lblCarrera.setText(sesion.getDatos().getCarreraUniversitaria());
+         lblSemestre.setText(semestre);
     }
 }
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
 
-        control.deplegarMenu();
+        control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
@@ -128,7 +156,11 @@ public class DlgAjustes extends javax.swing.JDialog {
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCarrera;
+    private javax.swing.JLabel lblSemestre;
     private javax.swing.JLabel lblUsuarioBienvenida2;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,4 +64,9 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
      }  
     }
 
+    @Override
+    public void editarLocacion(String nombreAnterior, String nuevoNombre, String nuevaDescripcion) {
+       lDAO.editarLocacion(nombreAnterior, nuevoNombre, nuevaDescripcion);
+    }
+
 }
