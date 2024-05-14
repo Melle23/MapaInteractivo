@@ -20,9 +20,14 @@ public class DlgAjustes extends javax.swing.JDialog {
         control = new ControlPresentacion(sesion);
         System.out.println("Valor de sesion: " + sesion);
         this.usuario();
-        
+
 
     }
+
+    public DlgAjustes() {
+        setVisible(true);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,14 +89,14 @@ public class DlgAjustes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -99,19 +104,20 @@ public class DlgAjustes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   private void usuario(){      
+   private void usuario(){
     if(sesion != null){
          lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
     }
 }
 
     private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
+
         control.desplegarMenu();
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-       
+
         String[] botones = {"Sí", "No"};
 
         int opcion = JOptionPane.showOptionDialog(null, "¿Desea cerrar sesión?",

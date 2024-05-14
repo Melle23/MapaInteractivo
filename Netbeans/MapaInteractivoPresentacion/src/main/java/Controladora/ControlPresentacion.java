@@ -52,8 +52,8 @@ UsuarioPOJO sesion = new UsuarioPOJO();
     public void desplegarEliminarLocacion(){
         DlgEliminarLocacion eliminar = new DlgEliminarLocacion(sesion);
     }
-    
+
     public void desplegarAjustes(){
-        DlgAjustes ajustes = new DlgAjustes(sesion);
+        DlgAjustes desplegarAjustes = new DlgAjustes();
     }
 }
