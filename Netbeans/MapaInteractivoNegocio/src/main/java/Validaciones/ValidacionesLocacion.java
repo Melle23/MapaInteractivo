@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author favel
+ * @author favela,Josue Gomez
  */
 public class ValidacionesLocacion implements ValidacionesLocaciones {
 
@@ -19,13 +19,13 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
     }
 
     @Override
-    public LocacionPOJO registrarLocacion(String nombre, String descripcion) {
-        LocacionPOJO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion);
+    public LocacionPOJO registrarLocacion(String nombre, String descripcion, int x, int y) {
+        LocacionPOJO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion, x, y);
 
         if (NuevaLocacion == null) {
             return NuevaLocacion;
         } else {
-            JOptionPane.showMessageDialog(null, "No se registró la locación.","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se registró la locación.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
@@ -46,7 +46,6 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
     public List<String> buscarLocaciones(String busqueda) {
         List<String> nombresLocaciones = lDAO.obtenerNombresLocaciones();
 
-        // Filtrar la lista de nombres de locaciones que contienen la cadena de búsqueda
         List<String> resultadosBusqueda = nombresLocaciones.stream()
                 .filter(nombre -> nombre.toLowerCase().contains(busqueda.toLowerCase()))
                 .collect(Collectors.toList());
@@ -56,17 +55,17 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
 
     @Override
     public void eliminarLocacion(String nombre) {
-     if(lDAO.obtenerLocacion(nombre) != null){
-         lDAO.eliminarLocacion(nombre);
-         JOptionPane.showMessageDialog(null, "Locación eliminada con éxito.");
-     }else{
-         JOptionPane.showMessageDialog(null, "La locación no existe, por lo que no puede ser eliminada.");
-     }  
+        if (lDAO.obtenerLocacion(nombre) != null) {
+            lDAO.eliminarLocacion(nombre);
+            JOptionPane.showMessageDialog(null, "Locación eliminada con éxito.");
+        } else {
+            JOptionPane.showMessageDialog(null, "La locación no existe, por lo que no puede ser eliminada.");
+        }
     }
 
     @Override
     public void editarLocacion(String nombreAnterior, String nuevoNombre, String nuevaDescripcion) {
-       lDAO.editarLocacion(nombreAnterior, nuevoNombre, nuevaDescripcion);
+        lDAO.editarLocacion(nombreAnterior, nuevoNombre, nuevaDescripcion);
     }
 
 }

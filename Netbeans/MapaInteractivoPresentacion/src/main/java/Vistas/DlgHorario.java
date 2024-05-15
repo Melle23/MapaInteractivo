@@ -96,7 +96,7 @@ private UsuarioPOJO sesion;
         ));
         jScrollPane2.setViewportView(tablaHorario);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, 170));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoAzul.jpg"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 550));
@@ -117,13 +117,15 @@ private UsuarioPOJO sesion;
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Salón");
         model.addColumn("Materia");
-        model.addColumn("Hora de Entrada");
+         model.addColumn("Hora de Entrada");
         model.addColumn("Hora de Salida");
+      
        
 
         if (horarioAleatorio != null) {
             for (HorarioPOJO clase : horarioAleatorio) {
                 model.addRow(new Object[]{clase.getSalon(), clase.getMateria(), clase.getHoraEntrada(), clase.getHoraSalida()});
+                System.out.println(clase.getMateria());
             }
         }
 

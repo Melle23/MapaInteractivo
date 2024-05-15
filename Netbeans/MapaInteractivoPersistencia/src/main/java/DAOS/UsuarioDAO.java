@@ -16,73 +16,105 @@ import org.bson.Document;
 
 /**
  *
- * @author josue
+ * @author Josue Gomez
  */
-    public class UsuarioDAO implements UsuariosDAO {
+/**
+ * La clase UsuarioDAO proporciona métodos para interactuar con la base de datos
+ * de usuarios en MongoDB. Implementa la interfaz UsuariosDAO y ofrece
+ * funcionalidades para obtener usuarios y sus horarios.
+ *
+ */
+public class UsuarioDAO implements UsuariosDAO {
 
-        ConexionBD conexion;
- private List<HorarioPOJO> listaHorarios;
-        public UsuarioDAO() {
-        }
+    /**
+     * Objeto para gestionar la conexión con la base de datos.
+     */
+    private ConexionBD conexion;
 
-        @Override
-       public UsuarioPOJO obtenerUsuario(String usuario, String contra) {
-    conexion = new ConexionBD();
-    MongoCollection<Document> collection = conexion.obtenerColeccion("Personas");
+    /**
+     * Lista de horarios del usuario.
+     */
+    private List<HorarioPOJO> listaHorarios;
 
-    try {
-        Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario))
-                .projection(Projections.fields(
-                        Projections.include("contrasena", "nivelAuditoria", "datos", "horario"), // Asegúrate de que el nombre del campo sea correcto
-                        Projections.excludeId()))
-                .first();
+    /**
+     * Constructor por defecto.
+     */
+    public UsuarioDAO() {
+    }
 
-        if (usuarioEncontrado != null) {
-            String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
-            boolean nivelAuditoria = usuarioEncontrado.getBoolean("nivelAuditoria", false);
-            if (contraseñaAlmacenada.equals(contra)) {
-                Document datosUsuarioDoc = usuarioEncontrado.get("datos", Document.class);
+    /**
+     * Obtiene un usuario de la base de datos dado su nombre de usuario y
+     * contraseña.
+     *
+     * @param usuario El nombre de usuario.
+     * @param contra La contraseña del usuario.
+     * @return Un objeto UsuarioPOJO si el usuario y la contraseña coinciden, de
+     * lo contrario, null.
+     */
+    @Override
+    public UsuarioPOJO obtenerUsuario(String usuario, String contra) {
+        conexion = new ConexionBD();
+        MongoCollection<Document> collection = conexion.obtenerColeccion("Personas");
 
-                DatosPOJO datosUsuario = new DatosPOJO(
-                        datosUsuarioDoc.getString("nombre"),
-                        datosUsuarioDoc.getString("carreraUniversitaria"),
-                        datosUsuarioDoc.getInteger("semestre")
-                );
+        try {
+            Document usuarioEncontrado = collection.find(Filters.eq("usuario", usuario))
+                    .projection(Projections.fields(
+                            Projections.include("contrasena", "nivelAuditoria", "datos", "horario"), // Asegúrate de que el nombre del campo sea correcto
+                            Projections.excludeId()))
+                    .first();
 
-                List<HorarioPOJO> horarios = new ArrayList<>();
-                List<Document> horariosDocs = usuarioEncontrado.getList("horario", Document.class);
-                if (horariosDocs != null) {
-                    for (Document horarioDoc : horariosDocs) {
-                        HorarioPOJO horario = new HorarioPOJO(
-                                horarioDoc.getString("salon"),
-                                  horarioDoc.getString("materia"),
-                                horarioDoc.getString("hora_entrada"),
-                                horarioDoc.getString("hora_salida")
-                               
-                        );
-                        horarios.add(horario);
-                        System.out.println("...................................");
-                        System.out.println(horarios);
-                        System.out.println("...................................");
+            if (usuarioEncontrado != null) {
+                String contraseñaAlmacenada = usuarioEncontrado.getString("contrasena");
+                boolean nivelAuditoria = usuarioEncontrado.getBoolean("nivelAuditoria", false);
+                if (contraseñaAlmacenada.equals(contra)) {
+                    Document datosUsuarioDoc = usuarioEncontrado.get("datos", Document.class);
+
+                    DatosPOJO datosUsuario = new DatosPOJO(
+                            datosUsuarioDoc.getString("nombre"),
+                            datosUsuarioDoc.getString("carreraUniversitaria"),
+                            datosUsuarioDoc.getInteger("semestre")
+                    );
+
+                    List<HorarioPOJO> horarios = new ArrayList<>();
+                    List<Document> horariosDocs = usuarioEncontrado.getList("horario", Document.class);
+                    if (horariosDocs != null) {
+                        for (Document horarioDoc : horariosDocs) {
+                            HorarioPOJO horario = new HorarioPOJO(
+                                    horarioDoc.getString("salon"),
+                                    horarioDoc.getString("materia"),
+                                    horarioDoc.getString("hora_entrada"),
+                                    horarioDoc.getString("hora_salida")
+                            );
+                            System.out.println(horario.getSalon() + " " + horario.getMateria() + " " + horario.getHoraEntrada() + " " + horario.getHoraSalida());
+                            horarios.add(horario);
+                            System.out.println("...................................");
+                            System.out.println(horarios);
+                            System.out.println("...................................");
+                        }
                     }
+
+                    UsuarioPOJO usuarioPOJO = new UsuarioPOJO(usuario, contra, nivelAuditoria, datosUsuario);
+                    usuarioPOJO.setHorario(horarios);
+                    this.listaHorarios = horarios;
+                    return usuarioPOJO;
                 }
-
-                UsuarioPOJO usuarioPOJO = new UsuarioPOJO(usuario, contra, nivelAuditoria, datosUsuario);
-                usuarioPOJO.setHorario(horarios);
-                this.listaHorarios = horarios; 
-                return usuarioPOJO;
             }
+        } finally {
+            conexion.cerrarConexion();
         }
-    } finally {
-        conexion.cerrarConexion();
+        return null;
     }
-    return null;
+
+      /**
+     * Obtiene la lista de clases (horarios) de un usuario.
+     * 
+     * @param usuario El usuario del cual se quieren obtener las clases.
+     * @return Una lista de objetos HorarioPOJO correspondientes a las clases del usuario.
+     */
+    @Override
+    public List<HorarioPOJO> obtenerClases(UsuarioPOJO usuario) {
+        return listaHorarios;
+
+    }
+
 }
-
-        @Override
-       public List<HorarioPOJO> obtenerClases(UsuarioPOJO usuario) {
-          return listaHorarios; 
-
-    }
-
-    }

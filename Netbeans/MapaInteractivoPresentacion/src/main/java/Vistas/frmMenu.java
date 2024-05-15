@@ -41,17 +41,31 @@ public final class frmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         ButtonRegreso = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnIniciarSesion = new javax.swing.JButton();
         btnVerHorario = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnEditarLocaciones = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -79,22 +93,6 @@ public final class frmMenu extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulIS.png"))); // NOI18N
-        btnIniciarSesion.setBorder(null);
-        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnIniciarSesion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulISS.png"))); // NOI18N
-        if (sesion == null) {
-            this.setVisible(false);
-        }
-        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarSesionActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 170, -1));
-
         btnVerHorario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVerHorario.setForeground(new java.awt.Color(255, 255, 255));
         btnVerHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rectanguloAzulVerHorario.png"))); // NOI18N
@@ -106,7 +104,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnVerHorarioActionPerformed(evt);
             }
         });
-        jPanel2.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 170, 60));
+        jPanel2.add(btnVerHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 170, 60));
 
         btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,7 +118,7 @@ public final class frmMenu extends javax.swing.JFrame {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 170, 60));
+        jPanel2.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 170, 60));
 
         btnEditarLocaciones.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarLocaciones.setForeground(new java.awt.Color(0, 102, 255));
@@ -150,6 +148,7 @@ public final class frmMenu extends javax.swing.JFrame {
             System.out.println("si es admin");
             btnEditarLocaciones.setVisible(true);
             btnVerHorario.setEnabled(false);
+            
         } else {
             System.out.println("no entró");
             btnEditarLocaciones.setVisible(false);
@@ -183,11 +182,6 @@ public final class frmMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ButtonRegresoActionPerformed
 
-    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        control.desplegarInicioSesion();
-        dispose();
-    }//GEN-LAST:event_btnIniciarSesionActionPerformed
-
     private void btnEditarLocacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionesActionPerformed
         control.desplegarMenuLocaciones();
         
@@ -202,9 +196,6 @@ public final class frmMenu extends javax.swing.JFrame {
         btnVerHorario.setContentAreaFilled(false);
         btnVerHorario.setBorderPainted(false);
 
-        btnIniciarSesion.setOpaque(false);
-        btnIniciarSesion.setContentAreaFilled(false);
-        btnIniciarSesion.setBorderPainted(false);
 
         ButtonRegreso.setOpaque(false);
         ButtonRegreso.setContentAreaFilled(false);
@@ -216,12 +207,13 @@ public final class frmMenu extends javax.swing.JFrame {
     private javax.swing.JButton ButtonRegreso;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnEditarLocaciones;
-    private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnVerHorario;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

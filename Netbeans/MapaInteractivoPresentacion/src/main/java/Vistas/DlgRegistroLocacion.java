@@ -19,6 +19,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
     ControlPresentacion control = new ControlPresentacion(sesionUsuario);
     ValidacionesLocacion vLocacion = new ValidacionesLocacion();
     LocacionPOJO sesionLocacion = new LocacionPOJO();
+    MapaClick mc;
 
     /**
      * Creates new form DlgRegistroLocacion
@@ -28,7 +29,8 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         this.setVisible(true);
         this.sesionUsuario = usuario;
     }
-public static boolean validarCamposTexto(JTextField... campos) {
+
+    public static boolean validarCamposTexto(JTextField... campos) {
         for (JTextField campo : campos) {
             if (campo.getText().isEmpty()) {
                 return false;
@@ -36,6 +38,7 @@ public static boolean validarCamposTexto(JTextField... campos) {
         }
         return true;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,8 +138,8 @@ public static boolean validarCamposTexto(JTextField... campos) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarLocacionActionPerformed
-     MapaClick mc = new MapaClick();
-     mc.setVisible(true);
+        mc = new MapaClick();
+        mc.setVisible(true);
     }//GEN-LAST:event_btnRegistrarLocacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -145,13 +148,32 @@ public static boolean validarCamposTexto(JTextField... campos) {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-     
-             String nombre = txtNombreLocacion.getText();
-             String descripcion = txtDescripcionLocacion.getText();
-        vLocacion.registrarLocacion(nombre,descripcion);
-     JOptionPane.showMessageDialog(null, "Se ha realizado el registro con exito");
-     
-                                                       
+        if (!validarCamposTexto(txtNombreLocacion)) {
+            JOptionPane.showMessageDialog(null, "Rellene todos los campos.");
+        } else {
+            String nombre = txtNombreLocacion.getText();
+            String descripcion = txtDescripcionLocacion.getText();
+
+            if (mc == null) {
+                JOptionPane.showMessageDialog(null, "No ha elegido locacion para el punto.");
+                return;
+            }
+            Integer x = mc.getX();
+            Integer y = mc.getY();
+
+            if (descripcion.isEmpty()) {
+                int opcion = JOptionPane.showConfirmDialog(null, "La descripción está vacía. ¿Desea registrar la locación sin descripción?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.NO_OPTION) {
+                    return;
+                }
+            }
+            vLocacion.registrarLocacion(nombre, descripcion, x, y);
+            JOptionPane.showMessageDialog(null, "Se ha realizado el registro con éxito.");
+            dispose();
+
+        }
+
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

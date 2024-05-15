@@ -116,8 +116,9 @@ public class DlgEliminarLocacion extends javax.swing.JFrame {
              String nombre = nombreLocacion.getText();
         vLocacion.eliminarLocacion(nombre);
         nombreLocacion.setText("");
-        }
+        }else{
        JOptionPane.showMessageDialog(null, "Favor de rellenar todos los campos.");
+        }
     }//GEN-LAST:event_btnEliminarLocacionActionPerformed
  public static boolean validarCamposTexto(JTextField... campos) {
         for (JTextField campo : campos) {

@@ -89,13 +89,13 @@ public class DlgAjustes extends javax.swing.JDialog {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Semestre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 120, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 120, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Carrera universitaria:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 280, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 280, 30));
 
         semestre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         semestre.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,14 +111,14 @@ public class DlgAjustes extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -127,10 +127,16 @@ public class DlgAjustes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usuario() {
-        if (sesion != null) {
+           if (sesion != null) {
             lblUsuarioBienvenida2.setText(sesion.getDatos().getNombre());
-             carrera.setText(sesion.getDatos().getCarreraUniversitaria());
-             semestre.setText(String.valueOf(sesion.getDatos().getSemestre()));
+            carrera.setText(sesion.getDatos().getCarreraUniversitaria());
+            semestre.setText(String.valueOf(sesion.getDatos().getSemestre()));
+
+            if (sesion.isNivelAuditoria()) {
+                jLabel4.setText("Cuenta:");
+                jLabel3.setVisible(false);
+                semestre.setText(" ");
+            }
         }
     }
 

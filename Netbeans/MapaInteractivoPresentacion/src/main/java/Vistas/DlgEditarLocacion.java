@@ -57,7 +57,7 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-back.png"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -103,7 +103,7 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
                 btnEditarLocacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 230, 40));
+        jPanel2.add(btnEditarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 230, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,6 +136,7 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -154,10 +155,11 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
         String nombreAnterior = nombreLocacionAnterior.getText();
         String nombreNuevo = nombreLocacion.getText();
         String descripcionNueva = descripcionLocacion.getText();
-
         if (validarCamposTexto(nombreLocacionAnterior, nombreLocacion)) {
+            
             vl.editarLocacion(nombreAnterior, nombreNuevo, descripcionNueva);
             JOptionPane.showMessageDialog(null, "Se ha editado la ubicacion con exito.");
+            dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos.");
         }
