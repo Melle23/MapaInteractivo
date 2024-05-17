@@ -152,18 +152,27 @@ public class DlgEditarLocacion extends javax.swing.JFrame {
         return true;
     }
     private void btnEditarLocacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarLocacionActionPerformed
-        String nombreAnterior = nombreLocacionAnterior.getText();
-        String nombreNuevo = nombreLocacion.getText();
-        String descripcionNueva = descripcionLocacion.getText();
-        if (validarCamposTexto(nombreLocacionAnterior, nombreLocacion)) {
-            
-            vl.editarLocacion(nombreAnterior, nombreNuevo, descripcionNueva);
-            JOptionPane.showMessageDialog(null, "Se ha editado la ubicacion con exito.");
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Rellene todos los campos.");
+       String nombreAnterior = nombreLocacionAnterior.getText();
+    String nombreNuevo = nombreLocacion.getText();
+    String descripcionNueva = descripcionLocacion.getText();
+
+    if (validarCamposTexto(nombreLocacionAnterior, nombreLocacion)) {
+        
+     
+        if (descripcionNueva.isEmpty()) {
+            int opcion = JOptionPane.showConfirmDialog(null, "La descripción está vacía. ¿Desea editar la locación sin descripción?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.NO_OPTION) {
+                return; 
+            }
         }
 
+     
+        vl.editarLocacion(nombreAnterior, nombreNuevo, descripcionNueva);
+        JOptionPane.showMessageDialog(null, "Se ha editado la ubicación con éxito.");
+        dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos.");
+    }
     }//GEN-LAST:event_btnEditarLocacionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
