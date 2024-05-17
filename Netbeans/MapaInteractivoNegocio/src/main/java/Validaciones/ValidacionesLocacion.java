@@ -3,8 +3,11 @@ package Validaciones;
 import DAOS.LocacionDAO;
 import Interfaces.ValidacionesLocaciones;
 import POJOs.LocacionPOJO;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +17,7 @@ import javax.swing.JOptionPane;
 public class ValidacionesLocacion implements ValidacionesLocaciones {
 
     LocacionDAO lDAO = new LocacionDAO();
-
+   List<JLabel> puntos = new ArrayList<>();
     public ValidacionesLocacion() {
     }
 
@@ -22,12 +25,13 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
     public LocacionPOJO registrarLocacion(String nombre, String descripcion, int x, int y) {
         LocacionPOJO NuevaLocacion = lDAO.RegistrarLocacion(nombre, descripcion, x, y);
 
-        if (NuevaLocacion == null) {
+        if (NuevaLocacion != null) {
             return NuevaLocacion;
         } else {
             JOptionPane.showMessageDialog(null, "No se registró la locación.", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
-        return null;
+        
     }
 
     @Override
@@ -67,5 +71,13 @@ public class ValidacionesLocacion implements ValidacionesLocaciones {
     public void editarLocacion(String nombreAnterior, String nuevoNombre, String nuevaDescripcion) {
         lDAO.editarLocacion(nombreAnterior, nuevoNombre, nuevaDescripcion);
     }
+   
+     public List<JLabel> devolverListaLabels(){
+       return lDAO.obtenerLocacionesComoJLabels();
+    }
+     
+     public void insertarImagenLocacion(String nombre, File file){
+         lDAO.guardarImagenLocacion(nombre, file);
+     }
 
 }

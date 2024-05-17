@@ -10,10 +10,16 @@ import org.bson.Document;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.model.GridFSFile;
+import com.mongodb.client.gridfs.model.GridFSUploadOptions;
 import com.mongodb.client.model.Updates;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JLabel;
 
 /**
  *
@@ -47,10 +53,12 @@ public class LocacionDAO implements LocacionesDAO{
                     .append("descripcion", descripcion).append("posicionX", x)
                     .append("posicionY", y);
             collection.insertOne(locacionNueva);
+              LocacionPOJO l = new LocacionPOJO(nombre,descripcion,x,y);
+            return l;
         } finally {
+          
             conexion.cerrarConexion();
         }
-        return null;
     }
 
     /**
@@ -161,6 +169,43 @@ public class LocacionDAO implements LocacionesDAO{
                 Document newMetadata = new Document("filename", nuevoNombre + ".jpg");
                 gridFSBucket.rename(gridFSFile.getObjectId(), nuevoNombre + ".jpg");
             }
+        } finally {
+            conexion.cerrarConexion();
+        }
+    }
+    
+      public List<JLabel> obtenerLocacionesComoJLabels() {
+        List<JLabel> locacionesJLabels = new ArrayList<>();
+        conexion = new ConexionBD();
+        try {
+            MongoCursor<Document> cursor = collection.find(Filters.and(Filters.ne("posicionX", 0), Filters.ne("posicionY", 0))).iterator();
+            while (cursor.hasNext()) {
+                Document locacionDoc = cursor.next();
+                int x = locacionDoc.getInteger("posicionX");
+                int y = locacionDoc.getInteger("posicionY");
+                String nombre = locacionDoc.getString("nombre");
+                JLabel labelLocacion = new JLabel();
+                labelLocacion.setBounds(x, y, 100, 100); // Puedes ajustar el tamaño según sea necesario
+                labelLocacion.setName(nombre);
+                locacionesJLabels.add(labelLocacion);
+            }
+        } finally {
+            conexion.cerrarConexion();
+        }
+        return locacionesJLabels;
+    }
+      
+    public void guardarImagenLocacion(String nombre, File file) {
+        conexion = new ConexionBD();
+        try (InputStream streamToUploadFrom = new FileInputStream(file)) {
+            GridFSUploadOptions options = new GridFSUploadOptions()
+                    .chunkSizeBytes(1024)
+                    .metadata(new Document("type", "image")
+                    .append("content_type", "image/jpeg"));
+
+            gridFSBucket.uploadFromStream(nombre + ".jpg", streamToUploadFrom, options);
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             conexion.cerrarConexion();
         }

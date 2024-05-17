@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,18 +26,16 @@ import java.util.List;
  * @author JOSUE GOMEZ
  */
 public class frmMapa extends javax.swing.JFrame {
-
-    //Gestiona la sesion iniciada
-    UsuarioPOJO sesion;
-    //Funciona para mantener una unica locacion seleccionada a la vez
+  // Gestiona la sesión iniciada
+    private UsuarioPOJO sesion;
+    // Funciona para mantener la última locación seleccionada
     private JLabel ultimoLabelActivado = null;
-    //Funciona para mantener los puntos de interes visibles a la vez
+    // Funciona para mantener los puntos de interés visibles
     private boolean puntosVisibles = true;
-    ControlPresentacion control;
-    LocacionDAO locacion = new LocacionDAO();
-    ValidacionesLocacion vLocacion = new ValidacionesLocacion();
-    LocacionPOJO sesionLocacion = new LocacionPOJO();
-
+    private ValidacionesLocacion vLocacion = new ValidacionesLocacion();
+    private List<JLabel> puntos;
+ControlPresentacion control;
+   LocacionPOJO sesionLocacion = new LocacionPOJO();
     /**
      * Creates new form MapaInteractivo
      *
@@ -48,6 +50,14 @@ public class frmMapa extends javax.swing.JFrame {
         initComponents();
         this.sesion = usuario;
         control = new ControlPresentacion(sesion);
+        puntos = vLocacion.devolverListaLabels();
+        this.mostrarPuntos(puntos);
+        this.asignarEventos(puntos);
+        System.out.println("...................LISTA MAPA.........................");
+        for (int i = 0; i <puntos.size(); i++) {
+                  System.out.println(puntos.get(i).toString());
+             }
+        System.out.println("..........................................................");
         this.bienvenidaSesion();
         System.out.println("---------------------------------------------------------------------------"
                 + "\nDlgMenuLocaciones - Imprimiento tu sesion: " + sesion
@@ -143,7 +153,6 @@ public class frmMapa extends javax.swing.JFrame {
         imagen = new javax.swing.JLabel();
         texto = new javax.swing.JLabel();
         NombreEdificio = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         lblUsuarioBienvenida = new javax.swing.JLabel();
 
@@ -153,7 +162,6 @@ public class frmMapa extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         AV1400.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1400.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,7 +169,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1400MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1400, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 40, 10));
 
         AV1000.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1000.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,7 +176,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1000MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 325, 30, 30));
 
         AV1500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1500.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,7 +183,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1500MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 40, 20));
 
         LV1500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV1500.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,7 +190,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV1500MouseClicked(evt);
             }
         });
-        jPanel1.add(LV1500, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 50, 40));
 
         PoliDeportivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PoliDeportivo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,7 +197,6 @@ public class frmMapa extends javax.swing.JFrame {
                 PoliDeportivoMouseClicked(evt);
             }
         });
-        jPanel1.add(PoliDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 60, 30));
 
         CentroIdiomas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CentroIdiomas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,7 +204,6 @@ public class frmMapa extends javax.swing.JFrame {
                 CentroIdiomasMouseClicked(evt);
             }
         });
-        jPanel1.add(CentroIdiomas, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 40, 30));
 
         AudioVisual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AudioVisual.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,7 +211,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AudioVisualMouseClicked(evt);
             }
         });
-        jPanel1.add(AudioVisual, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 30, 30));
 
         LV500.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV500.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,7 +218,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV500MouseClicked(evt);
             }
         });
-        jPanel1.add(LV500, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 40, 20));
 
         PasilloEstudiantil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PasilloEstudiantil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -225,7 +225,6 @@ public class frmMapa extends javax.swing.JFrame {
                 PasilloEstudiantilMouseClicked(evt);
             }
         });
-        jPanel1.add(PasilloEstudiantil, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 50, 40));
 
         CISCO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CISCO.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -233,7 +232,6 @@ public class frmMapa extends javax.swing.JFrame {
                 CISCOMouseClicked(evt);
             }
         });
-        jPanel1.add(CISCO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 40, 30));
 
         AlbercaOlimpica.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AlbercaOlimpica.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,7 +239,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AlbercaOlimpicaMouseClicked(evt);
             }
         });
-        jPanel1.add(AlbercaOlimpica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 50, 60));
 
         Kiawa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Kiawa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -249,7 +246,6 @@ public class frmMapa extends javax.swing.JFrame {
                 KiawaMouseClicked(evt);
             }
         });
-        jPanel1.add(Kiawa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 30, 60));
 
         CAD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CAD.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -257,7 +253,6 @@ public class frmMapa extends javax.swing.JFrame {
                 CADMouseClicked(evt);
             }
         });
-        jPanel1.add(CAD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 40, 30));
 
         Resiedencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Resiedencias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -265,7 +260,6 @@ public class frmMapa extends javax.swing.JFrame {
                 ResiedenciasMouseClicked(evt);
             }
         });
-        jPanel1.add(Resiedencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 50, 30));
 
         LV1800.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV1800.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -273,7 +267,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV1800MouseClicked(evt);
             }
         });
-        jPanel1.add(LV1800, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 40, 30));
 
         AV800.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV800.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,7 +274,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV800MouseClicked(evt);
             }
         });
-        jPanel1.add(AV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 40, 20));
 
         Biblioteca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Biblioteca.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -289,7 +281,6 @@ public class frmMapa extends javax.swing.JFrame {
                 BibliotecaMouseClicked(evt);
             }
         });
-        jPanel1.add(Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 365, 40, 50));
 
         AV600.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV600.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -297,7 +288,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV600MouseClicked(evt);
             }
         });
-        jPanel1.add(AV600, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 30, 20));
 
         AV700.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV700.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -305,7 +295,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV700MouseClicked(evt);
             }
         });
-        jPanel1.add(AV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 30, 20));
 
         LV300.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV300.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -313,7 +302,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV300MouseClicked(evt);
             }
         });
-        jPanel1.add(LV300, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 30, 20));
 
         Alamos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Alamos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,7 +309,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AlamosMouseClicked(evt);
             }
         });
-        jPanel1.add(Alamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 20, 30));
 
         LV1100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV1100.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -329,7 +316,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV1100MouseClicked(evt);
             }
         });
-        jPanel1.add(LV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 30, 40));
 
         CanchaTennis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CanchaTennis.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -337,7 +323,6 @@ public class frmMapa extends javax.swing.JFrame {
                 CanchaTennisMouseClicked(evt);
             }
         });
-        jPanel1.add(CanchaTennis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 60, 30));
 
         LV1200.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV1200.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -345,7 +330,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV1200MouseClicked(evt);
             }
         });
-        jPanel1.add(LV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 50, 30));
 
         RegistroEscolar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RegistroEscolar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,7 +337,6 @@ public class frmMapa extends javax.swing.JFrame {
                 RegistroEscolarMouseClicked(evt);
             }
         });
-        jPanel1.add(RegistroEscolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 30, 30));
 
         AV1600.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1600.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -361,7 +344,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1600MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1600, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 40, 20));
 
         LV800.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV800.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -369,7 +351,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV800MouseClicked(evt);
             }
         });
-        jPanel1.add(LV800, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 40, 20));
 
         LV700.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV700.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -377,7 +358,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV700MouseClicked(evt);
             }
         });
-        jPanel1.add(LV700, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 310, 30, 20));
 
         AV1100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1100.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -385,7 +365,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1100MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1100, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 335, 40, 20));
 
         AV1200.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1200.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -393,7 +372,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1200MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1200, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 30, 20));
 
         AV1300.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1300.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -401,7 +379,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1300MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1300, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 40, 20));
 
         Enfermeria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Enfermeria.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -409,7 +386,6 @@ public class frmMapa extends javax.swing.JFrame {
                 EnfermeriaMouseClicked(evt);
             }
         });
-        jPanel1.add(Enfermeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 30, 20));
 
         Tutorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Tutorias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -417,10 +393,8 @@ public class frmMapa extends javax.swing.JFrame {
                 TutoriasMouseClicked(evt);
             }
         });
-        jPanel1.add(Tutorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 30, 30));
 
         Label_LogoITSON.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo_ITSON (1)_1.png"))); // NOI18N
-        jPanel1.add(Label_LogoITSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 80));
 
         AV1700.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV1700.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -428,7 +402,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV1700MouseClicked(evt);
             }
         });
-        jPanel1.add(AV1700, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 30, 20));
 
         Cultura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Cultura.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -436,7 +409,6 @@ public class frmMapa extends javax.swing.JFrame {
                 CulturaMouseClicked(evt);
             }
         });
-        jPanel1.add(Cultura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 20, 30));
 
         Movilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Movilidad.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -444,7 +416,6 @@ public class frmMapa extends javax.swing.JFrame {
                 MovilidadMouseClicked(evt);
             }
         });
-        jPanel1.add(Movilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 20, 30));
 
         LV900.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LV900.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -452,7 +423,6 @@ public class frmMapa extends javax.swing.JFrame {
                 LV900MouseClicked(evt);
             }
         });
-        jPanel1.add(LV900, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 40, 20));
 
         AV900.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AV900.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -460,7 +430,6 @@ public class frmMapa extends javax.swing.JFrame {
                 AV900MouseClicked(evt);
             }
         });
-        jPanel1.add(AV900, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 428, 20, 30));
 
         CasaClub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CasaClub.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -468,7 +437,6 @@ public class frmMapa extends javax.swing.JFrame {
                 CasaClubMouseClicked(evt);
             }
         });
-        jPanel1.add(CasaClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 30, 40));
 
         AulaMagna.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AulaMagna.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -476,14 +444,11 @@ public class frmMapa extends javax.swing.JFrame {
                 AulaMagnaMouseClicked(evt);
             }
         });
-        jPanel1.add(AulaMagna, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 30, 20));
 
         Label_Mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/croquis-nainari.png"))); // NOI18N
-        jPanel1.add(Label_Mapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 450));
 
         jSeparator2.setForeground(new java.awt.Color(0, 102, 153));
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 850, 10));
 
         jPanel2.setBackground(new java.awt.Color(25, 111, 196));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -492,7 +457,7 @@ public class frmMapa extends javax.swing.JFrame {
         Boton_PuntosDeInteres.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         Boton_PuntosDeInteres.setForeground(new java.awt.Color(25, 111, 196));
         Boton_PuntosDeInteres.setText("Puntos interés");
-        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_PuntosDeInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_PuntosDeInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_PuntosDeInteresActionPerformed(evt);
@@ -515,7 +480,7 @@ public class frmMapa extends javax.swing.JFrame {
         btnCerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCerrar.setForeground(new java.awt.Color(25, 111, 196));
         btnCerrar.setText("Cerrar");
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -538,25 +503,291 @@ public class frmMapa extends javax.swing.JFrame {
 
         jPanel2.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 230, 357));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 250, 550));
-
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
-
         btnMenu.setBackground(new java.awt.Color(25, 111, 196));
         btnMenu.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
         btnMenu.setBorder(null);
-        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         lblUsuarioBienvenida.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
-        jPanel1.add(lblUsuarioBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 270, 50));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(Label_LogoITSON, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(lblUsuarioBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnMenu))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(AV1500, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170)
+                .addComponent(AV600, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(AV1600, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(CAD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(Biblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(AulaMagna, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(325, 325, 325)
+                .addComponent(AV1000, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(AlbercaOlimpica, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(CasaClub, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(CISCO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(AV1400, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(RegistroEscolar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(AV900, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(LV700, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(AudioVisual, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(LV1200, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(360, 360, 360)
+                .addComponent(Alamos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(Enfermeria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(Cultura, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(AV1700, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(AV1200, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(Tutorias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(370, 370, 370)
+                .addComponent(AV800, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(410, 410, 410)
+                .addComponent(Resiedencias, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(LV1100, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(370, 370, 370)
+                .addComponent(AV700, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(LV300, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(CanchaTennis, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(Movilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(CentroIdiomas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(LV900, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(LV500, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(Kiawa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(PasilloEstudiantil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(PoliDeportivo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(AV1100, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(Label_Mapa, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(AV1300, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(LV1800, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(LV800, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(LV1500, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(600, 600, 600)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label_LogoITSON, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lblUsuarioBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnMenu)))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(AV1500, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addComponent(AV600, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(AV1600, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(347, 347, 347)
+                        .addComponent(CAD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(Biblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addComponent(AulaMagna, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(AV1000, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(AlbercaOlimpica, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(347, 347, 347)
+                        .addComponent(CasaClub, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(CISCO, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(277, 277, 277)
+                        .addComponent(AV1400, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(RegistroEscolar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(AV900, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(LV700, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(AudioVisual, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(LV1200, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(357, 357, 357)
+                        .addComponent(Alamos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(Enfermeria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(417, 417, 417)
+                        .addComponent(Cultura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(AV1700, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(AV1200, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(Tutorias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(277, 277, 277)
+                        .addComponent(AV800, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(Resiedencias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(LV1100, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(297, 297, 297)
+                        .addComponent(AV700, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(377, 377, 377)
+                        .addComponent(LV300, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(CanchaTennis, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(387, 387, 387)
+                        .addComponent(Movilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(377, 377, 377)
+                        .addComponent(CentroIdiomas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(LV900, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(287, 287, 287)
+                        .addComponent(LV500, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(Kiawa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(357, 357, 357)
+                        .addComponent(PasilloEstudiantil, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(PoliDeportivo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(AV1100, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(Label_Mapa, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(AV1300, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(LV1800, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(280, 280, 280)
+                .addComponent(LV800, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(LV1500, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -577,6 +808,13 @@ public class frmMapa extends javax.swing.JFrame {
             lblUsuarioBienvenida.setText("Bienvenido " + sesion.getDatos().getNombre() + "!");
         }
     }
+    
+    public void mostrarPuntos(List<JLabel> puntos) {
+    for (JLabel punto : puntos) {
+        // Agrega el JLabel al jPanel1 con las coordenadas adecuadas
+        jPanel1.add(punto);
+    }
+}
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         if (sesion == null) {
             String[] botones = {"Sí", "No"};
@@ -697,6 +935,21 @@ public class frmMapa extends javax.swing.JFrame {
             label.setIcon(icon);
         } else {
             label.setIcon(null);
+        }
+    }
+public void asignarEventos(List<JLabel> puntosInteres) {
+    for (JLabel punto : puntos) {
+            punto.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // Aquí puedes definir lo que sucede cuando se hace clic en un punto
+                    // Por ejemplo, mostrar información sobre la locación asociada al punto
+                    String nombreLocacion = punto.getName();
+                    LocacionPOJO locacion = vLocacion.verificarLocacion(nombreLocacion);
+                    mostrarInformacion(locacion);
+                    mostrarPunto(punto,true);
+                }
+            });
         }
     }
 
@@ -993,7 +1246,6 @@ public class frmMapa extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JPanel contenido;
     private javax.swing.JLabel imagen;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;

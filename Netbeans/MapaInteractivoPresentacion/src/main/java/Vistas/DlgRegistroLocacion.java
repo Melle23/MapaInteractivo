@@ -4,10 +4,24 @@ import Controladora.ControlPresentacion;
 import Validaciones.ValidacionesLocacion;
 import POJOs.LocacionPOJO;
 import POJOs.UsuarioPOJO;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.basic.BasicFileChooserUI;
 
 /**
  *
@@ -15,19 +29,24 @@ import javax.swing.JTextField;
  */
 public class DlgRegistroLocacion extends javax.swing.JFrame {
 
-    UsuarioPOJO sesionUsuario;
-    ControlPresentacion control = new ControlPresentacion(sesionUsuario);
-    ValidacionesLocacion vLocacion = new ValidacionesLocacion();
-    LocacionPOJO sesionLocacion = new LocacionPOJO();
-    MapaClick mc;
+    private UsuarioPOJO sesionUsuario;
+    private ControlPresentacion control;
+    private ValidacionesLocacion vLocacion;
+    private LocacionPOJO sesionLocacion;
+    private MapaClick mc;
+    private File imagenSeleccionada;
 
     /**
      * Creates new form DlgRegistroLocacion
+     *
+     * @param usuario
      */
     public DlgRegistroLocacion(UsuarioPOJO usuario) {
+        this.sesionUsuario = usuario;
+        this.control = new ControlPresentacion(sesionUsuario);
+        this.vLocacion = new ValidacionesLocacion();
         initComponents();
         this.setVisible(true);
-        this.sesionUsuario = usuario;
     }
 
     public static boolean validarCamposTexto(JTextField... campos) {
@@ -59,6 +78,9 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         txtDescripcionLocacion = new javax.swing.JTextArea();
         btnRegistrarLocacion = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Locación");
@@ -89,27 +111,27 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(25, 111, 196));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Descripción de locación:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 280, 30));
+        jLabel1.setText("(Por motivos de diseño, porfavor imagenes de 220x165)");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 270, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Nombre de locación:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 280, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 280, 30));
 
         txtNombreLocacion.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
-        jPanel2.add(txtNombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 320, -1));
+        jPanel2.add(txtNombreLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 320, -1));
 
         txtDescripcionLocacion.setColumns(20);
         txtDescripcionLocacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDescripcionLocacion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcionLocacion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 320, 170));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 320, 170));
 
         btnRegistrarLocacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrarLocacion.setText("Poner locacion en el mapa");
@@ -119,7 +141,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
                 btnRegistrarLocacionActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 220, 30));
+        jPanel2.add(btnRegistrarLocacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 220, 30));
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         btnRegistrar.setText("Registrar Locación");
@@ -129,7 +151,27 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 230, 40));
+        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 230, 40));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/selectorImagenes.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 60, 60));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Descripción de locación:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 280, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Seleccion de imagen:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 170, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 880, 510));
 
@@ -155,7 +197,7 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
             String descripcion = txtDescripcionLocacion.getText();
 
             if (mc == null) {
-                JOptionPane.showMessageDialog(null, "No ha elegido locacion para el punto.");
+                JOptionPane.showMessageDialog(null, "No ha elegido locación para el punto.");
                 return;
             }
             Integer x = mc.getX();
@@ -167,21 +209,50 @@ public class DlgRegistroLocacion extends javax.swing.JFrame {
                     return;
                 }
             }
-            vLocacion.registrarLocacion(nombre, descripcion, x, y);
-            JOptionPane.showMessageDialog(null, "Se ha realizado el registro con éxito.");
-            dispose();
 
+            LocacionPOJO locacion = vLocacion.registrarLocacion(nombre, descripcion, x, y);
+           locacion = vLocacion.verificarLocacion(nombre);
+            vLocacion.insertarImagenLocacion(nombre, imagenSeleccionada);
+            if (locacion != null) {
+                JOptionPane.showMessageDialog(null, "Se ha realizado el registro con éxito.");
+                System.out.println(locacion.toString());
+
+                dispose();
+            }
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
         }
 
+        fileChooser.setPreferredSize(new Dimension(800, 600));
 
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+        fileChooser.setDialogTitle("Seleccionar Imagen");
+
+        fileChooser.setMultiSelectionEnabled(false);
+
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+            imagenSeleccionada = fileChooser.getSelectedFile();
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarLocacion;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

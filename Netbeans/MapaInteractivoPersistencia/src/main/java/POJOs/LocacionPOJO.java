@@ -41,6 +41,8 @@ public class LocacionPOJO {
      */
     private byte[] imagen;
 
+        private int x;
+    private int y;
     /**
      * Constructor por defecto.
      */
@@ -69,6 +71,12 @@ public class LocacionPOJO {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
+    }
+ public LocacionPOJO(String nombre, String descripcion, int x, int y) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -143,4 +151,27 @@ public class LocacionPOJO {
         this.descripcion = descripcion;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "LocacionPOJO{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen + ", x=" + x + ", y=" + y + '}';
+    }
+
+ 
+    
 }
